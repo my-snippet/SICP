@@ -1,3 +1,4 @@
+#lang racket
 (define (square x) (* x x))
 (define (3rd-square x) (* (square x) (square x)))
 
