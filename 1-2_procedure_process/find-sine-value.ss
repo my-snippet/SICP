@@ -8,6 +8,7 @@
 (define (cube x)
   (* x x x))
 
+;; One level version
 (define (sine x)
   (cond ((< x 0.1) x)
         (else (- (* 3 
@@ -16,6 +17,7 @@
                     (cube (sine (/ x 3.0))))))))
 
 
+;; Two level version
 (define (p x) (- (* 3 x) (* 4 (cube x))))
 
 (define (sine-example angle)
