@@ -34,18 +34,16 @@
 (define (square n)
   (* n n))
 
-;; This implementation is somewhat different with book.
-(define (fast-exp a n)
-  (if (even? n)
-      (fast-exp-inner a n 1 1)
-      (fast-exp-inner a (- n 1) a)))
 
-(define (fast-exp-inner a n pre-moved-value)
+(define (fast-exp a n)
   (if (> n 0)
-      (square (exp a (/ n 2)))
+      (if (even? n)
+          (square (fast-exp a (/ n 2)))
+          (* a (fast-exp a (- n 1))))
       1))
+          
 
 (fast-exp 2 4)
-;(fast-exp 3 4)
-;(fast-exp 3 0)
-;(fast-exp 3 1)
+(fast-exp 3 4)
+(fast-exp 3 0)
+(fast-exp 3 1)
