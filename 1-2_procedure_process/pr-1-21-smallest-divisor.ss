@@ -21,4 +21,6 @@
         ((divides? test-divisor n) test-divisor)
         (else (find-divisor n (+ test-divisor 1)))))
   
-(smallest-divisor 12)
+(smallest-divisor 199)
+(smallest-divisor 1999)
+(smallest-divisor 19999)
