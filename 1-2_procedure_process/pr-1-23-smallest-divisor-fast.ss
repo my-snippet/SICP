@@ -22,3 +22,9 @@
 
 (smallest-divisor-fast 27)
 (smallest-divisor-fast 2792819)
+
+(smallest-divisor-fast 24)
+(smallest-divisor-fast 2402090)
+
+;; I guess even number must be divided by 2.
+;; That causes this procedure no less than two times previous procedure
