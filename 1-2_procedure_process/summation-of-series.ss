@@ -15,11 +15,16 @@
 (define (cube n)
   (* n n n))
 
+
+;; ∑(x)
+(define (sum-plus-1 a b)
+  (sum identity a inc b))
+
+
+;; ∑(x^3)
 (define (sum-cubes a b)
   (sum cube a inc b))
 
-(define (sum-plus-1 a b)
-  (sum identity a inc b))
 
 (sum-cubes 2 2)
 (sum-cubes 2 5)
@@ -47,7 +52,7 @@
 
 (define (pi-value-using-leibniz-series n)
   (* 4 (leibniz-series 0 n)))
-  
+
 
 (leibniz-series-term 1)
 (leibniz-series-term 2)
