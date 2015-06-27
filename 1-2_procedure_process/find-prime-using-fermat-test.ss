@@ -42,3 +42,11 @@
 (fast-prime? 7 1000)
 (fast-prime? 4 1)
 (fast-prime? 4 1000)
+
+;; Carmichael number test (pr-1-27)
+(fast-prime? 561 100)
+(fast-prime? 1105 100)
+(fast-prime? 1729 100)
+(fast-prime? 2465 100)
+(fast-prime? 2821 100)
+(fast-prime? 6601 100)
