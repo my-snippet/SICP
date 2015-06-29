@@ -26,9 +26,29 @@
   (product-iter k 1))
 
 
+;; output pi value
 (define (get-pi-value-using-pi-product n)
   (* 4 (product pi-product-term 1 inc n)))
 
 (get-pi-value-using-pi-product 1)
 (get-pi-value-using-pi-product 100)
 (get-pi-value-using-pi-product 10000)
+
+
+;; get pi value using pi product by recursive
+(define (product-recursive term k next n)
+  (if (> k n)
+      1
+      (* (term k)
+         (product-recursive term
+                            (next k) 
+                            next
+                            n))))
+
+;; output pi value by recursive
+(define (get-pi-value-using-pi-product-by-recursive n)
+  (* 4 (product-recursive pi-product-term 1 inc n)))
+
+(get-pi-value-using-pi-product-by-recursive 1)
+(get-pi-value-using-pi-product-by-recursive 100)
+(get-pi-value-using-pi-product-by-recursive 10000)
