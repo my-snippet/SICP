@@ -1,7 +1,7 @@
 #lang racket
 
 ;; Idea
-;; If remainder of (3k-1)/number is 0
+;; If remainder of 3/number is 2
 ;; then D = k+1
 ;; else D = 1
 ;; It should represents like this :
@@ -17,3 +17,10 @@
                        d 
                        (- k 1))))
       0))
+
+(define (cont-frac-find-e-easy k)
+  (cont-frac (lambda (n) 1.0)
+             (lambda (d) (if (= (remainder k 3) 2)
+                             (+ k 1)
+                             1))
+             k))
