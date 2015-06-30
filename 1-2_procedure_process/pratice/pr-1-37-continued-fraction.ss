@@ -41,4 +41,38 @@
 (find-inverse-phi-close-enough cont-frac-easy)
 
 
-;; To do : Make cont-frac iterative
+;; cont-frac iterative
+(define (cont-frac-iter n d k)
+  (define (cont-frac-iter-inner k result)
+    (if (> k 0)
+        (cont-frac-iter-inner 
+         (- k 1) 
+         (/ (n temp-value) 
+            (+ (d temp-value) 
+               result)))
+        result))
+  
+  (cont-frac-iter-inner k 0))
+
+(define (cont-frac-iter-easy k)
+  (cont-frac-iter (lambda (n) 1.0)
+             (lambda (d) 1.0)
+             k))
+
+
+(cont-frac-iter-easy 10)
+(cont-frac-iter-easy 11)
+(cont-frac-iter-easy 12)
+
+
+;; Check whether the two data is equal
+(define (equal? f1 f2 k)
+  (define (equal?-inner k)
+    (if (> k 0)
+        (and (= (f1 k) 
+                (f2 k))
+             (equal? f1 f2 (- k 1)))
+        true))
+  (equal?-inner k))
+
+(equal? cont-frac-easy cont-frac-iter-easy 1000)
