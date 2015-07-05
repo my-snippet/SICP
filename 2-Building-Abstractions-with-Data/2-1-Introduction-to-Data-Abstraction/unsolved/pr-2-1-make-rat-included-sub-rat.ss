@@ -21,8 +21,8 @@
 (define (make-rat n d)
   (let ((g (gcd n d)))
     (if (and (< n 0) (< d 0))
-        (cons (* (/ g n) (- 1))
-              (* (/ g d) (- 1)))
+        (cons (abs (/ g n))
+              (abs (/ g d)))
         (cons (/ n g) (/ d g))
         )))
 
@@ -56,6 +56,6 @@
 (print-rat (sub-rat minus-one-half one-third))
 
 
-;;
-(add-rat minus-one-third one-half)
+;; needed to fix
+(print-rat (sub-rat one-third minus-one-half))
 (print-rat (add-rat minus-one-third one-half))
