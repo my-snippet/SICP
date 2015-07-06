@@ -20,11 +20,15 @@
 ;; make rational number
 (define (make-rat n d)
   (let ((g (gcd n d)))
-    (if (and (< n 0) (< d 0))
-        (cons (abs (/ n g))
-              (abs (/ d g)))
-        (cons (/ n g) (/ d g))
-        )))
+    (cond ((= d 0) false)
+          ((= n 0) (cons 0 0))
+          ((and (< n 0) (< d 0))
+           (cons (abs (/ n g))
+                 (abs (/ d g))))
+          ((xor (< n 0) (< d 0))
+           (cons (- (/ n g)) (abs (/ d g))))
+          (else (cons (/ n g) (/ d g))))
+        ))
 
 (define (numer x)
   (car x))
@@ -67,3 +71,10 @@
 
 ;; (- (1/3)) + (1/2)
 (print-rat (add-rat minus-one-third one-half))
+
+;;
+(define zero-denominator (make-rat 0 2))
+(define zero-numerator (make-rat 2 0))
+
+(print-rat zero-denominator)
+;;(print-rat zero-numerator)
