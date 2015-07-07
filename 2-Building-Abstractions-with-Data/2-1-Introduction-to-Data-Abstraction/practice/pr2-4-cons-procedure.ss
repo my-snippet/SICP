@@ -39,9 +39,13 @@
 
 (define (car-lambda z)
   (z (lambda (a b) a)))
+
+(define (cdr-lambda z)
+  (z (lambda (a b) b)))
       
       
 (car-lambda (cons-lambda 11 99))
+(cdr-lambda (cons-lambda 11 99))
 ;;
 
 ;; process explanation
