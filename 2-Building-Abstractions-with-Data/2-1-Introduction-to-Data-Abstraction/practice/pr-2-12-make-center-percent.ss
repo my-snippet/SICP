@@ -17,6 +17,9 @@
                  (+ c (* c allowable-error))))
 
 (define (percent c)
-  (/ (- (cdr c) (car c)) 2.0))
+  (/ (/ (- (cdr c) (car c)) 2.0) 
+     (center c)))
 
-(make-center-percent 100 0.1)
+(define r1 (make-center-percent 100 0.1))
+r1
+(percent r1)
