@@ -55,9 +55,8 @@ r2
 ;;
 ;;
 
-;; Recheck div-interval value, it shows double pair
 (define (div-interval x y)
-  (make-interval x
+  (mul-interval x
                  (make-interval (/ 1.0 (upper-bound y))
                                 (/ 1.0 (lower-bound y)))))
 ;;
