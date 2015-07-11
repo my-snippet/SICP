@@ -5,9 +5,6 @@
 ;; if var1 is not single data ( like 1, not (1, 2) )
 ;; the result ((var1) var2)
 
-;; First cons process make (n1 . n2), not (n1 n2)
-;; I haven't resolved it yet
-
 
 (define one-to-five (list 1 2 3 4 5))
 (define evens (list 2 4 6 8))
@@ -28,8 +25,8 @@
 
 (define (reverse items)
   (define (reverse-inner items n)
-    (if (= n 0)
-        (list-ref items n)
+    (if (< n 0)
+        null
         (cons (list-ref items n)
               (reverse-inner items (- n 1)))))
   (reverse-inner items (- (length items) 1)))
