@@ -1,7 +1,7 @@
 #lang racket
 
 ;; 
-(define (first-domination kinds-of-coins)
+(define (first-denomination kinds-of-coins)
   (cond ((= kinds-of-coins 5) 50)
         ((= kinds-of-coins 4) 25)
         ((= kinds-of-coins 3) 10)
@@ -14,14 +14,14 @@
       (if (= a 0)
           1
           (+ (cc-old a (- n 1))
-             (cc-old (- a (first-domination n)) n)))))
+             (cc-old (- a (first-denomination n)) n)))))
 
 (define (cc-old-in-book amount kinds-of-coins)
   (cond ((= amount 0) 1)
         ((or (= kinds-of-coins 0) (< amount 0)) 0)
         (else (+ (cc-old-in-book 
                   (- amount 
-                     (first-domination kinds-of-coins))
+                     (first-denomination kinds-of-coins))
                   kinds-of-coins)
                  (cc-old-in-book 
                   amount
