@@ -7,25 +7,25 @@
 (define (cc amount coin-values)
 
   (define (no-more? coin-values)
-    (null? (car coin-values)))
+    (null? coin-values))
 
   (define (first-denomination coin-values)
-    (display coin-values)
     (car coin-values))
 
   (define (except-first-denomination coin-values)
-    (display coin-values)
     (cdr coin-values))
 
   (cond ((= amount 0) 1)
-        ((or (< amount 0) (no-more? coin-values) 0))
+        ((or (< amount 0) (no-more? coin-values)) 0)
         (else (+ (cc amount
                      (except-first-denomination coin-values))
                  (cc (- amount
                         (first-denomination coin-values))
                      coin-values)))))
          
-(cc 10 us-coins)
+(cc 100 us-coins)
+(cc 100 uk-coins)
+(cc 100 kr-coins)
 (newline)
   
 ;; Previous style
@@ -60,3 +60,5 @@
 
 (cc-old-in-book 50 0)
 (cc-old-in-book 50 2)
+
+(cc-old-in-book 100 5)
