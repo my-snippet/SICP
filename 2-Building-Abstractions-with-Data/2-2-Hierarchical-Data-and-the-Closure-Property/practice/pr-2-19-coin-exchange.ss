@@ -1,8 +1,15 @@
 #lang racket
 
+;; The result is same.
+;; Because the algorhythm checks all cases
+
 (define us-coins (list 50 25 10 5 1))
+(define us-coins-reverse (list 1 5 10 25 50))
 (define uk-coins (list 100 50 20 10 5 2 1 0.5))
+(define uk-coins-reverse (list 0.5 1 2 5 10 20 50 100))
 (define kr-coins (list 100 50 10 1))
+(define kr-coins-reverse (list 1 10 50 100))
+
 
 (define (cc amount coin-values)
 
@@ -24,8 +31,13 @@
                      coin-values)))))
          
 (cc 100 us-coins)
+(cc 100 us-coins-reverse)
+(newline)
 (cc 100 uk-coins)
+(cc 100 uk-coins-reverse)
+(newline)
 (cc 100 kr-coins)
+(cc 100 kr-coins-reverse)
 (newline)
   
 ;; Previous style
