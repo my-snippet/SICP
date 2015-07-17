@@ -20,6 +20,7 @@ x
         null
         (if (pair? (list-ref items n))
             (cons (deep-reverse (car items))
+                  ;; position of items cannot move this process (only first position repeated)
                   (deep-reverse-inner items (- n 1)))
             (cons (list-ref items n)
                   (deep-reverse-inner items (- n 1))))))
