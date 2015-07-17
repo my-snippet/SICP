@@ -14,17 +14,18 @@ x
       0
       (+ 1 (length (cdr items)))))
 
-(define (reverse items)
-  (define (reverse-inner items n)
+(define (deep-reverse items)
+  (define (deep-reverse-inner items n)
     (if (< n 0)
         null
-        (cons (list-ref items n)
-              (reverse-inner items (- n 1)))))
-  (reverse-inner items (- (length items) 1)))
+        (if (pair? (list-ref items n))
+            (cons (deep-reverse (car items))
+                  (deep-reverse-inner items (- n 1)))
+            (cons (list-ref items n)
+                  (deep-reverse-inner items (- n 1))))))
+  (deep-reverse-inner items (- (length items) 1)))
 
-(reverse x)
+(deep-reverse x)
 
 
-(define (deep-reverse items)
-  (display "Idea : if the car of items(argument) value is pair? THEN, repeat one more"))
-  
+(display "Idea : if the car of items(argument) value is pair? THEN, repeat one more")
