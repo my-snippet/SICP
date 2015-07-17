@@ -12,14 +12,11 @@
       0
       (+ 1 (length (cdr items)))))
 
-(define (fringe items)
-  (define (fringe-inner n)
-    (if (< n 0)
-        null
-        (if (pair? (car items))
-            (fringe (car items))
-            (cons (fringe (car items))
-                    (fringe (cdr items))))))
-  (fringe-inner (- (length items) 1)))
+;(define (fringe items)
 
-(fringe x)
+;(fringe x)
+
+;;          t
+;;      t       t
+;;    t   t   t   t
+;; idea : (cons (fringe (car items)) (fringe (cdr items)))
