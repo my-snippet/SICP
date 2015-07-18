@@ -1,6 +1,7 @@
 #lang racket
 
 (define x (list (list 1 2) (list 3 4)))
+x
 
 (define (list-ref items n)
   (if (= n 0)
@@ -12,11 +13,16 @@
       0
       (+ 1 (length (cdr items)))))
 
-;(define (fringe items)
+(define (fringe items)
+  (if (null? items)
+      null
+      (if (pair? items)
+          (fringe (car items))
+          items)))
 
-;(fringe x)
+(fringe x)
 
 ;;          t
 ;;      t       t
 ;;    t   t   t   t
-;; idea : (cons (fringe (car items)) (fringe (cdr items)))
+;; idea : 
