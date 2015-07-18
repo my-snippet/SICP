@@ -12,13 +12,12 @@
                 (scale-tree (cdr tree) factor)))))
 
 
-;; Apply map to the sub-tree as a sequence
+;; Apply map to the tree as a sequence of sub-tree
 (define (scale-tree-using-map tree factor)
   (map (lambda (sub-tree)
-         (if (not (pair? sub-tree))
-             (* sub-tree factor)
-             (cons (scale-tree (car sub-tree) factor)
-                   (scale-tree (cdr sub-tree) factor))))
+         (if (pair? sub-tree)
+             (scale-tree-using-map sub-tree factor)
+             (* sub-tree factor)))
        tree))
 
 ;(map (lambda (x) (* x x)) (list 3 5))
