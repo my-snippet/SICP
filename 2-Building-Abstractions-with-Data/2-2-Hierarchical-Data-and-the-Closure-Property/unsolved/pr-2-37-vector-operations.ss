@@ -15,15 +15,25 @@
 
 (define (dot-product v w)
   (accumulate + 0 (map * v w)))
-(dot-product (list 1 2) (list 3 4))
+;(dot-product (list 1 2) (list 3 4))
 
 
 (define (transpose mat)
   (accumulate-n cons null mat))
-(transpose (list (list 1 2) (list 3 4)))
+;(transpose (list (list 1 2) (list 3 4)))
 
 
 ;; row * col <-- row : fixed to the one row
 ;; vector means a sequence in here (so, 1*1 matrix)
-;(define (matrix-*-vector m v)
-;  (map ? m))
+(define (matrix-*-vector m v)
+  (map (lambda (x) (map * x v)) m))
+(matrix-*-vector (list (list 1 2) (list 3 4))
+                 (list 5 6))
+
+
+;; not complete
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map car m)))
+(matrix-*-matrix (list (list 1 2) (list 3 4))
+                 (list (list 5 6) (list 7 8)))
