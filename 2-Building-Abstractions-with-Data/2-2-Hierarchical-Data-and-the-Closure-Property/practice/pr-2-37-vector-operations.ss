@@ -31,9 +31,10 @@
                  (list 5 6))
 
 
-;; not complete
 (define (matrix-*-matrix m n)
   (let ((cols (transpose n)))
-    (map (lambda (x y) (map * x y)) m n)))
+    (map (lambda (x) 
+           (map (lambda (y) 
+                  (accumulate + 0 (map * x y))) cols)) m)))
 (matrix-*-matrix (list (list 1 2) (list 3 4))
                  (list (list 5 6) (list 7 8)))
