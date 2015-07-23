@@ -15,9 +15,18 @@
   (iter initial sequence))
 
 (define (reverse-fold-right sequence)
-  (fold-right (lambda (x y) (cons x y)) null sequence))
-
+  (fold-right (lambda (x y) 
+                (if (null? y)
+                    (cons x y)
+                    (append y (list x))))
+              null sequence))
+ 
 (define (reverse-fold-left sequence)
-  (fold-left (lambda (x y) 0) null sequence))
+  (fold-left (lambda (x y) 
+               (if (null? y)
+                   (cons x y)
+                   (append y (list x)))) 
+             null sequence))
 
 (reverse-fold-right (list 1 2 3))
+(reverse-fold-left (list 1 2 3))
