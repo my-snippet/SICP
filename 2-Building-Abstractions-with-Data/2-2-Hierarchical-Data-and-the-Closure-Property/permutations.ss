@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../modules/filter-acc.ss")
+(require "../modules/sequence-operations.ss")
 
 (define (flatmap proc seq)
   (accumulate append null (map proc seq)))
@@ -12,3 +12,4 @@
                  (map (lambda (p) (cons x p))
                       (permutations (remove x s))))
                s)))
+
