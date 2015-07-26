@@ -37,7 +37,8 @@
 (define (get-h a b n)
   (/ (- b a) (* n 1.0)))
 
-;; I cannot find solution without sum customization
+;; customization
+;; later it should be changed using sum
 
 (define (sum-for-simpson-law term a next b k n)
   (if (> k n)
