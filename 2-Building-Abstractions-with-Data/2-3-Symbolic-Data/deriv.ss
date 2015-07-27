@@ -1,6 +1,7 @@
 #lang racket
 
 (define (variable? x)
+  ;; symbol? checks if x is characters or not
   (symbol? x))
 
 (define (same-variable? v1 v2)
@@ -30,6 +31,12 @@
 (define (multiplier p)
   (caddr p))
 
+
+;; following procedure (deriv) use 4 case
+;; dc/dx = 0 (c = constant, other variable)
+;; dx/dx = 1
+;; d(u+v)/dx = du/dx + dv/dx
+;; d(uv)/dx = u(d(v)/dx) + v(d(u)/dx)
 (define (deriv exp var)
   (cond ((number? exp) 0)
         ((variable? exp)
@@ -41,11 +48,12 @@
          (make-sum
           (make-product (multiplier exp)
                         (deriv (multiplicand exp) var))
-          (make-product (deriv (multiplicand exp) var)
+          (make-product (deriv (multiplier exp) var)
                         (multiplicand exp))))
         (else
          (error "unknown expression type -- DERIV" exp))))
 
 (deriv '(+ x 3) 'x)
+(deriv '(* 3 x) 'x)
 (deriv '(* x x) 'x)
 (deriv '(* x y) 'x)
