@@ -57,3 +57,6 @@
 (deriv '(* 3 x) 'x)
 (deriv '(* x x) 'x)
 (deriv '(* x y) 'x)
+
+;; need more simple
+(deriv '(* (* x y) (+ 3 x)) 'x)
