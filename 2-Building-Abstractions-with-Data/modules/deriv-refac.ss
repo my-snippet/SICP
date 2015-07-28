@@ -1,6 +1,7 @@
 #lang racket
 
-(provide make-sum
+(provide =number?
+         make-sum
          make-product)
 
 (define (=number? exp num)
