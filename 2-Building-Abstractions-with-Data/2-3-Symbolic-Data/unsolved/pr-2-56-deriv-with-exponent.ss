@@ -6,6 +6,15 @@
 (define (exponentiation? x)
   (and (pair? x) (eq? (car x) '**)))
 
+(define (base x)
+  (cadr x))
+
+(define (exponent x)
+  (caddr x))
+
+(define (make-exponentiation base exponent)
+  0)
+
 ;; following procedure (deriv) use 4+3 case
 ;; dc/dx = 0 (c = constant, other variable)
 ;; dx/dx = 1
