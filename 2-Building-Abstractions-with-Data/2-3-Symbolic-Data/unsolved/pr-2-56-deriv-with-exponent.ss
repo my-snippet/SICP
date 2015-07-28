@@ -2,6 +2,7 @@
 
 (require "../../modules/deriv.ss")
 (require "../../modules/deriv-refac.ss")
+(require "../../../modules/1/fast-exp.ss")
 
 (define (exponentiation? x)
   (and (pair? x) (eq? (car x) '**)))
@@ -13,7 +14,10 @@
   (caddr x))
 
 (define (make-exponentiation base exponent)
-  0)
+  (cond ((=number? exponent 0) 1)
+        ((=number? exponent 1) base)
+        ((and (number? base) (number? exponent)) (fast-exp base exponent))
+        (else (list '** base exponent))))
 
 ;; following procedure (deriv) use 4+3 case
 ;; dc/dx = 0 (c = constant, other variable)
@@ -38,5 +42,10 @@
                         (deriv (multiplicand exp) var))
           (make-product (deriv (multiplier exp) var)
                         (multiplicand exp))))
+        ((exponentiation? exp)
+         (make-exponentiation (base exp)
+                              (exponent exp)))
         (else
          (error "unknown expression type -- DERIV" exp))))
+
+(deriv '(** 2 0) 'x)
