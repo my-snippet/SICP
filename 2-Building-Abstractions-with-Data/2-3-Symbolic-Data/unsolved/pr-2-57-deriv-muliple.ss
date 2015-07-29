@@ -3,6 +3,16 @@
 (require "../../modules/deriv-refac.ss")
 
 
+;; IDEA
+;; + (derivatives of addition) :
+;; d(a+b+c+d)/dx = a' + b' + c' + d'
+;; (make-sum a1 (make-sum (+ a2 a3 ... an)))
+;;
+;; * (derivatives of productiion) :
+;; d(abcd)/dx = d(QW)/dx = Q'W + QW' = a'bcd + a(bcd)'
+;; = a'bcd + (a(b'cd + b(c'd + cd'))
+
+
 (define (variable? x)
   ;; symbol? checks if x is characters or not
   (symbol? x))
@@ -21,8 +31,6 @@
 
 (define (addend s)
   ((lambda (next)
-     (display next)
-     (newline)
      (cond ((or (not (pair? next)) (null? next)) 0)
            (else (append (list (car s)) next))))
   (cdr (cdr s))))
@@ -31,7 +39,15 @@
   (cadr p))
 
 (define (multiplier p)
-  (caddr p))
+  ((lambda (next)
+     (if (pair? next)
+         (if (pair? (cdr next))
+             (append (list (car p)) next)
+             (cadr next))
+         (if (null? next)
+             next
+             (append (list (car p)) next))))
+       (cdr (cdr p))))
 
 (define (deriv exp var)
   (cond ((number? exp) 0)
@@ -49,6 +65,9 @@
         (else
          (error "unknown expression type -- DERIV" exp))))
 
-(deriv '(+ (+ x y x) (+ x x x y x)) 'x)
-;(deriv '(* x x) 'x)
-;(deriv '(+ (* x y) (* x x)) 'x)
+;(deriv '(+ (+ x y (* x x)) (+ x x (* 4 x) y x)) 'x)
+(deriv '(* x x) 'x)
+;(deriv '(* x x x) 'x)
+;(deriv '(* x x x x) 'x)
+;(deriv '(* x x y) 'x)
+;(deriv '(* (+ x y) (+ x x)) 'x)
