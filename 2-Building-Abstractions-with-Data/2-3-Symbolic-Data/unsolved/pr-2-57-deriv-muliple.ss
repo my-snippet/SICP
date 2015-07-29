@@ -4,7 +4,9 @@
 
 (define (next-seq l)
   ((lambda (next)
-     (cond ((null? next) 0)
+     (display next)
+     (newline)
+     (cond ((or (not (pair? next)) (null? next)) 0)
            (else (append (list (car l)) next))))
   (cdr (cdr l))))
 
@@ -31,7 +33,7 @@
   (cadr p))
 
 (define (multiplier p)
-  (next-seq p))
+  (caddr p))
 
 (define (deriv exp var)
   (cond ((number? exp) 0)
@@ -49,5 +51,5 @@
         (else
          (error "unknown expression type -- DERIV" exp))))
 
-(deriv '(* x x) 'x)
+(deriv '(+ (+ x y x) (+ x x x y x)) 'x)
 ;(deriv '(+ (* x y) (* x x)) 'x)
