@@ -38,16 +38,19 @@
 (define (multiplicand p)
   (cadr p))
 
+
+;; First, check () or null passed : like (* x null) -> then 1
+;; Second, check 4th value exist : like (* a1 a2 a3 ...) 
+;; -> then append (a2 a3 ...) with (*), if not, just return a2
 (define (multiplier p)
-  ((lambda (next)
-     (if (pair? next)
-         (if (pair? (cdr next))
-             (append (list (car p)) next)
-             (cadr next))
-         (if (null? next)
-             next
-             (append (list (car p)) next))))
-       (cdr (cdr p))))
+  (cond ((null? p) 1)
+        ((pair? p) ((lambda (next)
+                      (if (pair? (cdr next))
+                          (append (list (car p)) next)
+                          (car next)))
+                    (cdr (cdr p))))
+        (else p)))
+
 
 (define (deriv exp var)
   (cond ((number? exp) 0)
@@ -65,9 +68,9 @@
         (else
          (error "unknown expression type -- DERIV" exp))))
 
-;(deriv '(+ (+ x y (* x x)) (+ x x (* 4 x) y x)) 'x)
+(deriv '(+ (+ x y (* x x)) (+ x x (* 4 x) y x)) 'x)
 (deriv '(* x x) 'x)
-;(deriv '(* x x x) 'x)
-;(deriv '(* x x x x) 'x)
-;(deriv '(* x x y) 'x)
-;(deriv '(* (+ x y) (+ x x)) 'x)
+(deriv '(* x x x) 'x)
+(deriv '(* x x x x) 'x)
+(deriv '(* x x y) 'x)
+(deriv '(* (+ x y) (+ x x)) 'x)
