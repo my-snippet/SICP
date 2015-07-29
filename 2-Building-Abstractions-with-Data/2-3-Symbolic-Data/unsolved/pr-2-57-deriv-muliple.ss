@@ -2,13 +2,6 @@
 
 (require "../../modules/deriv-refac.ss")
 
-(define (next-seq l)
-  ((lambda (next)
-     (display next)
-     (newline)
-     (cond ((or (not (pair? next)) (null? next)) 0)
-           (else (append (list (car l)) next))))
-  (cdr (cdr l))))
 
 (define (variable? x)
   ;; symbol? checks if x is characters or not
@@ -27,7 +20,12 @@
   (cadr s))
 
 (define (addend s)
-  (next-seq s))
+  ((lambda (next)
+     (display next)
+     (newline)
+     (cond ((or (not (pair? next)) (null? next)) 0)
+           (else (append (list (car s)) next))))
+  (cdr (cdr s))))
 
 (define (multiplicand p)
   (cadr p))
@@ -52,4 +50,5 @@
          (error "unknown expression type -- DERIV" exp))))
 
 (deriv '(+ (+ x y x) (+ x x x y x)) 'x)
+;(deriv '(* x x) 'x)
 ;(deriv '(+ (* x y) (* x x)) 'x)
