@@ -10,6 +10,12 @@
 ;; d(u^n)/dx = n * u^(n-1) * du/dx  <<-- too long
 
 
+;; IDEA
+;; make list quote operation sign only,
+;; then variable name will be not showing, but the value of variable showing
+;; refer "make-exponentiation" procedure
+
+
 (define (exponentiation? x)
   (and (pair? x) (eq? (car x) '**)))
 
