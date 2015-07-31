@@ -15,6 +15,9 @@
           (* a (fast-exp a (- n 1))))
       1))
 
+;; needed to fix
+;; x only x or x^2, not increment like these x^3, x^4, ..., x^k
+;; reference : http://wikibootup.github.io/sicp/1-Abstraction-using-procedure/4-continued-fraction.html
 (define (tan-cf x k)
   (define (tan-cf-inner i)
     (let ((n (fast-exp x i))

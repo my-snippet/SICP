@@ -4,6 +4,7 @@
 (define inverse-phi-value-lowest-least-upper-bound 0.6180)
 (define inverse-phi-value-greatest-lower-bound 0.6181)
 
+;;  needed to fix recursive
 (define (cont-frac n d k)
   (if (> k 0)
       (/ (n temp-value) 
