@@ -1,12 +1,18 @@
 #lang racket
 
+(define (element-of-set? x set)
+  (cond ((null? set) false)
+        ((equal? x (car set)) true)
+        (else (element-of-set? x (cdr set)))))
+
 (define (adjoin-set x set)
-  (cond ((or (null? set) (< x (car set)))
+  (cond ((element-of-set? x set) set)
+        ((or (null? set) (< x (car set)))
          (cons x
                set))
-         ((> x (car set))
-          (cons (car set)
-                  (adjoin-set x (cdr set))))))
+        ((> x (car set))
+         (cons (car set)
+               (adjoin-set x (cdr set))))))
 
 (adjoin-set 4 (list 1 3 5 7))
 (adjoin-set 4 '())
