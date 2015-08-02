@@ -2,6 +2,13 @@
 
 (require "../../../modules/2/ordered-list.ss")
 
+;; but the implementation has complex of THETA(n^2)
+;; Is there another way?
+
+;; IDEA
+;; If the last number of set1 is smaller than the first number, then just apppend two list
+;; this case, complex : THETA(n)
+
 (define (adjoin-set x set)
   (cond ((element-of-set? x set) set)
         ((or (null? set) (< x (car set)))
