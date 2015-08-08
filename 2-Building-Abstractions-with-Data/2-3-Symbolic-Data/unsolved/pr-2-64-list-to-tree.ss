@@ -11,7 +11,9 @@
       (let ((left-size (quotient (- n 1) 2)))
         (let ((left-result
                (partial-tree elts left-size)))
-          (let ((left-tree (car left-result)) (non-left-elts (cdr left-result)) (right-size (- n (+ left-size 1))))
+          (let ((left-tree (car left-result)) 
+                (non-left-elts (cdr left-result)) 
+                (right-size (- n (+ left-size 1))))
             (let ((this-entry (car non-left-elts)) (right-result
                                                     (partial-tree
                                                      (cdr non-left-elts)
@@ -22,3 +24,9 @@
                                  left-tree
                                  right-tree)
                       remaining-elts))))))))
+
+
+(list->tree (list 1 3 5 7 9 11))
+
+;; Sometimes left side is bigger than right. Why?
+;; like this -> ;; (list->tree (list 3 2 1 0))
