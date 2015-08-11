@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../../../modules/2/list-to-tree.ss")
+(require "../../modules/2/list-to-tree.ss")
 
 ;; Simple version : searching key 
 ;;
