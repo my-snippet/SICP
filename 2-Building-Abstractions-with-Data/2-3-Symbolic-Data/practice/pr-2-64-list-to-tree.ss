@@ -28,5 +28,11 @@
 
 (list->tree (list 1 3 5 7 9 11))
 
-;; Sometimes left side is bigger than right. Why?
-;; like this -> ;; (list->tree (list 3 2 1 0))
+;; Question a : Describe how this procedure works
+;; Answer : 
+;; First, Seperate left side of middle position and right side of middle position
+;; Second, Do each sides as left tree, right tree
+;; Third, Insert Middle position element of upper tree & 
+;; Repeat partial-tree inserted left tree, right tree
+
+;; Question b : THETA(log n)
