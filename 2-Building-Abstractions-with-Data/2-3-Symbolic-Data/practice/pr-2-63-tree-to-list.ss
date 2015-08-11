@@ -3,9 +3,6 @@
 (require "../../../modules/2/binary-tree.ss")
 
 (define (tree->list-1 tree)
-;  (display tree)
- ;   (newline)
-    
   (if (null? tree)
       '()
       (append (tree->list-1 (left-branch tree))
@@ -15,8 +12,6 @@
 
 (define (tree->list-2 tree)
   (define (copy-to-list tree result-list)
-    (display result-list)
-    (newline)
     (if (null? tree)
         result-list
         (copy-to-list (left-branch tree)
