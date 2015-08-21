@@ -1,5 +1,7 @@
 *.ss~
 *.ss#*
+*.scm~
+*.scm#*
 
 **/venv/
 .env
