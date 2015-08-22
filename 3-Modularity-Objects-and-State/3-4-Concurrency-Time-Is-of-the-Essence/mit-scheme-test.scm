@@ -1,4 +1,4 @@
-(load "modules/3/parallel.scm")
+(load "../../modules/3/parallel.scm")
 
 (define (square x)
   (* x x))
