@@ -50,3 +50,19 @@
   (stream-filter prime?
 		 (stream-enumerate-interval
 		  10000 1000000))))
+
+
+;; Delay & Force
+(define (force delayed-object)
+  (delayed-object))
+
+(define (memo-proc proc)
+  (let ((already-run? false) (result false))
+    (if (not already-run?)
+	(begin (set! result (proc))
+	       (set! already-run? true)
+	       result))))
+
+(define (delay proc)
+  (memo-proc (lambda () proc)))
+(force (delay (lambda () (display "delayed"))))
