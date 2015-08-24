@@ -2,7 +2,7 @@
 
 (require "../../modules/deriv.ss")
 (require "../../modules/deriv-refac.ss")
-(require "../../../modules/1/fast-exp.ss")
+;(require "../../../modules/1/fast-exp.ss")
 
 
 ;; Done
@@ -25,15 +25,24 @@
 (define (exponent x)
   (caddr x))
 
-(define (make-exponentiation base exponent var)
-  ((lambda (derivated-base)
-     (cond ((or (number? base) (=number? exponent 0)) 0)
-           ((=number? exponent 1) derivated-base)
-           ((=number? derivated-base 0) 0)
-           (else (append 
-                  (list '* exponent
-                  (list '** base (list '- exponent 1))) (list derivated-base)))))
-   (deriv base var)))
+(define (make-exponentiation base exponent)
+  (cond ((=number? exponent 0) 0)
+        ((=number? exponent 1) 1)
+        (else (list '** base exponent))))
+         ;((number? exponent)
+  ;       (let ((derived-base (deriv base base)))
+  ;         (if (number? derived-base)
+  ;             (append 
+  ;              (list '* (* exponent derived-base)
+  ;                    (list '** base (- exponent 1))))
+  ;             (append 
+  ;              (list '* exponent
+  ;                    (list '** base (- exponent 1))
+  ;                    derived-base)))))
+ ;        (else (append 
+ ;               (list '* exponent
+ ;                     (list '** base (list '- exponent 1))) base))))
+;(else (list '** base exponent))))
 
 ;; following procedure (deriv) use 4+3 case
 ;; dc/dx = 0 (c = constant, other variable)
@@ -59,14 +68,25 @@
           (make-product (deriv (multiplier exp) var)
                         (multiplicand exp))))
         ((exponentiation? exp)
-         (make-exponentiation (base exp)
-                              (exponent exp)
-                              var))
+         (if (number? (exponent exp))
+             (make-product (make-product (exponent exp)
+                                         (make-exponentiation (base exp)
+                                                              (- (exponent exp) 1))
+                                         )
+                           (deriv (base exp) var))
+             (make-product (make-product (exponent exp)
+                                         (make-exponentiation (base exp)
+                                                              (list '- (exponent exp) 1))
+                                         )
+                           (deriv (base exp) var))))
         (else
          (error "unknown expression type -- DERIV" exp))))
 
 (deriv '(** x 0) 'x)
 (deriv '(** x 1) 'x)
 (deriv '(** x 2) 'x)
+(deriv '(** x 3) 'x)
+(deriv '(** x 4) 'x)
+(newline)
 (deriv '(** y 2) 'x)
-(deriv '(** (* x x) n) 'x)
+(deriv '(** (* x y) n) 'x)
