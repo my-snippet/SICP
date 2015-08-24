@@ -26,8 +26,8 @@
   (caddr x))
 
 (define (make-exponentiation base exponent)
-  (cond ((=number? exponent 0) 0)
-        ((=number? exponent 1) 1)
+  (cond ((=number? exponent 0) 1)
+        ((=number? exponent 1) base)
         (else (list '** base exponent))))
          ;((number? exponent)
   ;       (let ((derived-base (deriv base base)))
@@ -87,6 +87,7 @@
 (deriv '(** x 2) 'x)
 (deriv '(** x 3) 'x)
 (deriv '(** x 4) 'x)
-(newline)
+
 (deriv '(** y 2) 'x)
 (deriv '(** (* x y) n) 'x)
+(deriv '(** (* u y) n) 'x)
