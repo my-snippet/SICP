@@ -53,3 +53,11 @@
                pred
                (stream-cdr stream))))
     (else (stream-filter pred (stream-cdr stream)))))
+
+
+(define (display-stream-range proc start end)
+  (if (>= start end)
+      (display-line (stream-ref proc end))
+      (begin
+    (display-line (stream-ref proc start))
+    (display-stream-range proc (+ start 1) end))))
