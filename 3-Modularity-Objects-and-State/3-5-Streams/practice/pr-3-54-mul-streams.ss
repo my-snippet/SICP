@@ -8,7 +8,7 @@
 
 
 ;; It start with 2 for factorials
-(define integers (cons-stream 2 (add-streams ones integers)))
+(define integers (cons-stream 1 (add-streams ones integers)))
 
 
 (define (mul-stream s1 s2)
@@ -17,7 +17,7 @@
 
 (define factorials
   (cons-stream 1
-	       (mul-stream integers
+	       (mul-stream (stream-cdr integers)
 			   factorials)))
 ;; (stream-ref factorials 4)
 
