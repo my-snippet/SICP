@@ -61,3 +61,7 @@
       (begin
     (display-line (stream-ref proc start))
     (display-stream-range proc (+ start 1) end))))
+
+
+(define (scale-stream stream factor)
+  (stream-map (lambda (x) (* x factor)) stream))

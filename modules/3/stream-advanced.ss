@@ -1,4 +1,4 @@
-(load "stream.ss")
+(load "../../modules/3/stream.ss")
 
 
 (define ones (cons-stream 1 ones))
