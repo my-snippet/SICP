@@ -23,6 +23,9 @@
 ;; 3. The position of (99 th of S, 99 th of T) = (2^1 + 2^2 + ... + 2^99)
 ;; So, There are (2^1 + 2^2 + ... + 2^99) pairs before The position of (99 th of S, 99 th of T)
 
+;; And the reason why this patterns produce is (pairs s2 (stream-cdr s1))
+;; (stream-cdr pairs) makes pairs 2^n times
+
 (define (pow var)
   (lambda (exp)
     (define (iter n result)
@@ -42,10 +45,10 @@
 
 
 (define int-pairs (pairs integers integers))
-
+(display-stream-range int-pairs 0 200)
 
 ;; 1. 
-;; (stream-ref int-pairs (+ 1 (* 2 (- 99 (+ 0 1)))))
+(stream-ref int-pairs (+ 1 (* 2 (- 99 (+ 0 1)))))
 
 
 ;; * Problem 2 and 3 has too big size, so I substituted this small size
