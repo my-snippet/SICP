@@ -36,15 +36,38 @@
     (cons-stream (+ (car stream-value) (cadr stream-value))
 		 (stream-of-sum-of-each-pair (stream-cdr s)))))
 ;; (display-stream-range (stream-of-sum-of-each-pair pairs-of-triple-numbers) 0 10)
+(define stream-of-sum-of-each-triple-numbers (stream-of-sum-of-each-pair pairs-of-triple-numbers))
 
+(define (stream-of-ramanujan-numbers?)
+  (define (iter stream-op1 stream-op2)
+    (display (stream-car stream-op1))
+    ;;
+    (display ", ")
+    (display (stream-car stream-op2))
+    
+    (newline)
+    ;;
+    (cons-stream (= (stream-car stream-op1) (stream-car stream-op2))
+		 (interleave (stream-map (lambda (x) (= (stream-car stream-op1) x))
+					 (stream-cdr stream-op2))
+			     (iter (stream-cdr stream-op1) (stream-cdr stream-op2)))))
+  (iter stream-of-sum-of-each-triple-numbers
+	(stream-cdr stream-of-sum-of-each-triple-numbers)))
+(display-stream-range (stream-of-ramanujan-numbers?) 0 1000)
 
-
+(define (stream-of-ramanujan-numbers)
+  (define (iter stream-of-ramanujan)
+    (if (number? (stream-car stream-of-ramanujan))
+	(cons-stream (stream-car stream-of-ramanujan)
+		     (iter (stream-cdr stream-of-ramanujan)))))
+  (iter (stream-of-ramanujan-numbers?)))
+;; (display-stream-range (stream-of-ramanujan-numbers) 0 0)
 ;;(define (stream-of-ramanujan-numbers? s)
 ;;  (stream-map (lambda (x) (= (stream-car s) x)
 ;;		       x
 ;;		       (stream-cdr s)))
 ;;   (stream-of-ramanujan-numbers? (stream-cdr s))))
-(display-stream-range (stream-of-ramanujan-numbers? (stream-of-sum-of-each-pair pairs-of-triple-numbers)) 0 10)
+;; (display-stream-range (stream-of-ramanujan-numbers? (stream-of-sum-of-each-pair pairs-of-triple-numbers)) 0 10)
 
 ;; (define (inner stream)
 ;;    (let ((stream-value (stream-car stream)))
