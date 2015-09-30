@@ -76,4 +76,4 @@
 (define (make-from-mag-ang r a)
   ((get 'make-from-mag-ang 'polar) r a))
 
-(make-from-mag-ang 20 4)
+;; (make-from-mag-ang 20 4)
