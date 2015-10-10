@@ -1,4 +1,5 @@
 
+;; * put, get method not exists, so first this is needed to be implemented
 
 ;; IDEA :
 ;; 1. Make install-deriv-package. it contains sum & product operation procedures ( named as make-sum, make-product )
@@ -20,30 +21,18 @@
       (cdr datum)
       (error "Bad tagged datum -- CONTENTS" datum)))
 
-
-(define (apply-generic op . args)
-  (let ((type-tags (map type-tag args)))
-	(let ((proc (get op type-tags)))
-	  (if proc
-		  (apply proc (map contents args))
-		  (error
-		   "No method for these types -- APPLY-GENERIC"
-		   (list op type-tags))))))
-
-
+(define (deriv exp var)
+  (cond ((number? exp) 0)
+		((variable? exp) (if (same-variable? exp var) 1 0))
+		(else ((get 'deriv (operator exp))
+			   (operand exp)
+			   var))))
+(define (operator exp) (car exp))
+(define (operands exp) (cdr exp))
 
 ;; Just try ( This form of implementation may needed to be changed. Or the style of calling procedure differently )
 (define (install-deriv-package)
   ;; Procedure
-  (define (deriv exp var)
-	(cond ((number? exp) 0)
-		  ((variable? exp) (if (same-variable? exp var) 1 0))
-		  (else ((get 'deriv (operator exp))
-				 (operand exp)
-				 var))))
-  (define (operator exp) (car exp))
-  (define (operands exp) (cdr exp))
-
   (define (make-sum a1 a2)
 	(cond ((=number? a1 0) a2)
 		  ((=number? a2 0) a1)
@@ -59,9 +48,11 @@
 
   ;; Interface
   (define (tag x) (attach-tag 'deriv x))
-  (put op type item)
-  (put 'make-sum 'deriv make-sum)
-  (put 'make-product 'deriv make-product))
+  ;;  (put op type item)
+  (put 'deriv '+ make-sum)
+  (put 'deriv '* make-product))
 
-
-(deriv ('* '(1 x) 'x)
+;;(install-deriv-package)
+;;(put 'plus '+ +)
+;;((get 'plus '+) 1 2)
+;;(deriv ('* '(1 x)) 'x)
