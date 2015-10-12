@@ -1,6 +1,12 @@
 (define (make-queue)
-  (let ((front-ptr ...)
-		(rear-ptr ...))
-	...
-	(define (dispatch m) ...)
+  (let ((front-ptr '())
+		(rear-ptr '()))
+	;;(define (set-front-ptr! queue item) (set-car! queue item))
+	(define (dispatch m)
+	  (cond ((eq? m 'what?) 0)
+			((eq? m 'set-front!) set-front-ptr!)))
+	;;	(else ...))
 	dispatch))
+
+((make-queue) 'what?)
+;;(((make-queue) 'set-front!) 1)
