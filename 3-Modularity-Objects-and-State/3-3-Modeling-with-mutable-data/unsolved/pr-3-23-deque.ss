@@ -1,4 +1,5 @@
 ;; How can I make a deque?
+;; Direction : left to right
 
 (define (make-deque)
   (cons '() '()))
