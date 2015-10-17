@@ -1,9 +1,11 @@
+# Scheme
 *.ss~
 *.ss#*
 *.scm~
 *.scm#*
 .#*.ss
 
+# Python
 **/venv/
 .env
 
