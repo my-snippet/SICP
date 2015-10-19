@@ -1,5 +1,9 @@
+;; Key-1 : Category
+;; Key-2 : Key of Category
+;; So it requires 2 keys in 2d table
+
 (define (make-table)
-  (let ((local-table (list '*table*')))
+  (let ((local-table (list '*table*)))
 	(define (lookup key-1 key-2)
 	  (let ((subtable (assoc key-1 (cdr local-table))))
 		(if subtable
@@ -24,7 +28,13 @@
 	  'ok)
 	(define (dispatch m)
 	  (cond ((eq? m 'lookup-proc) lookup)
-			((eq? m 'insert-proc) insert!)
+			((eq? m 'insert-proc!) insert!)
 			(else (error "Unknown Operation --TABLE" m))))
 	dispatch))
-		
+
+
+(define operation-table (make-table))
+(define get (operation-table 'lookup-proc))
+(define put (operation-table 'insert-proc!))
+(put 'Food 'Apple 2)
+(get 'Food 'Apple)
