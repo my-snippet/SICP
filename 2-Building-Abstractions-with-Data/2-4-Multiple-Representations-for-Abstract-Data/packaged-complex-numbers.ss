@@ -1,5 +1,20 @@
 ;; Unlike the dispatch on type
 ;; One procedure can include all the interface in the Data-directed programming
+(load "../../modules/3/put-get.ss")
+
+
+(define (attach-tag type-tag contents)
+  (cons type-tag contents))
+
+(define (type-tag datum)
+  (if (pair? datum)
+	  (car datum)
+	  (error "Bad tagged datum -- TYPE-TAG" datum)))
+
+(define (contents datum)
+  (if (pair? datum)
+	  (cdr datum)
+	  (error "Bad tagged datum -- CONTENTS" datum)))
 
 
 (define (install-rectangular-package)
@@ -76,4 +91,7 @@
 (define (make-from-mag-ang r a)
   ((get 'make-from-mag-ang 'polar) r a))
 
-;; (make-from-mag-ang 20 4)
+
+(install-polar-package)
+(define mag-ang-1 (make-from-mag-ang 20 4))
+(cdr mag-ang-1)
