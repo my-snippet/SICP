@@ -12,21 +12,30 @@
 (define (make-deque)
   (list '() '() '()))
 
-(define (front-deque deque)
+(define (front-ptr deque)
   (car deque))
 
-(define (rear-deque deque)
+(define (rear-ptr deque)
   (caddr deque))
 
 (define (empty-deque? deque)
-  (if (and (null? (front-deque deque))
-		   (null? (rear-deque deque)))
-	  true
-	  false))
+  (if (and (null? (cadr deque))
+		   true
+		   false))
 
-(define (front-insert-deque! deque item)
-  (set-car! deque item))
 
+  ;; Following implementation(front-insert-deque!) is Just Idea 
+  (define (front-insert-deque! deque item)
+	(let ((new-deque (cons item '() '())))
+	  (cond ((empty-queue? deque)
+			 (set-front-ptr! deque new-deque)
+			 (set-rear-ptr! deque new-deque)
+			 queue)
+			(else
+			 (set-cdr! (rear-ptr queue) new-deque)
+			 (set-rear-ptr! queue new-deque)
+			 queue))))
+  
 ;;(define (rear-insert-deque! deque item)
 (define dq1 (make-deque))
 ;;(empty-deque? dq1)
