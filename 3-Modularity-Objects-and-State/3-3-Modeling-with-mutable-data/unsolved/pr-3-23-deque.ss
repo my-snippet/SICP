@@ -1,14 +1,22 @@
+(load "../../modules/3/put-get.ss")
+
+
 ;; How can I make a deque?
-;; Direction : left to right
+;; IDEA : triple set, FIRST : HEAD, SECOND : CONTENTS, THIRD : TAIL 
+;; front-insert-deque!
+;; rear-insert-deque!
+;; front-delete-deque!
+;; rear-delete-deque!
+
 
 (define (make-deque)
-  (cons '() '()))
+  (list '() '() '()))
 
 (define (front-deque deque)
   (car deque))
 
 (define (rear-deque deque)
-  (cdr deque))
+  (caddr deque))
 
 (define (empty-deque? deque)
   (if (and (null? (front-deque deque))
@@ -20,8 +28,8 @@
   (set-car! deque item))
 
 ;;(define (rear-insert-deque! deque item)
-
-
 (define dq1 (make-deque))
-(empty-deque? dq1)
-(front-insert-deque! dq1 1)
+;;(empty-deque? dq1)
+(front-deque dq1)
+(rear-deque dq1)
+;;(front-insert-deque! dq1 1)
