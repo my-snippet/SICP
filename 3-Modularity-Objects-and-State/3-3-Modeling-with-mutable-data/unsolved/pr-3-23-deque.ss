@@ -6,31 +6,40 @@
 ;; front-delete-deque!
 ;; rear-delete-deque!
 
+;; *Notice : (cdr (make-queue)) points (item '()). Therefore (set-cdr! (cdr a-queue)) changes (cdr item '())
+
 ;; Most of implementation is equal to 'queue', So it can be implemented just by calling
-;; correspond procedures, ex : (define (make-deque) (make-queue))
-(define (make-deque) (cons '() '()))
-(define (front-ptr deque) (car deque))
-(define (rear-ptr deque) (cdr deque))
-(define (empty-deque? deque) (null? (car deque)))
-(define (set-front-deque! deque item) 
+;; correspond procedures, ex : (define (make-deque) (make-queue)) Or just load library
+(load "queue.ss")
+
+
+(define (make-deque) (make-queue))
+(define (empty-deque? deque) (empty-queue? deque))
+(define (front-deque deque) (front-ptr deque))
+(define (rear-deque deque) (rear-ptr deque))
+(define (set-front-deque! deque item) (set-front-ptr! deque item))
+(define (set-rear-deque! deque item) (set-rear-ptr! deque item))
+
 
 (define (front-insert-deque! deque item)
-  (let ((new-deque (cons item '())))
-	(cond ((empty-queue? deque)
-		   (set-front-ptr! deque new-pair)
-		   (set-rear-ptr! deque new-pair)
-		   queue)
+  (let ((new-pair (cons item '())))
+	(cond ((empty-deque? deque)
+		   (set-front-deque! deque new-pair)
+		   (set-rear-deque! deque new-pair)
+		   deque)
 		  (else
-		   (set-cdr! (rear-ptr deque) new-pair)
-		   (set-rear-ptr! deque new-pair)
+		   (set-cdr! (rear-deque deque) new-pair)
+		   (set-rear-deque! deque new-pair)
 		   deque))))
-  
+
 ;;(define (rear-insert-deque! deque item)
-;;(define dq1 (make-deque))
-;;(empty-deque? dq1)
-;;(front-deque dq1)
-;;(rear-deque dq1)
-;;(front-insert-deque! dq1 1)
+
+(define dq1 (make-deque))
+(empty-deque? dq1)
+(front-deque dq1)
+(rear-deque dq1)
+(front-insert-deque! dq1 1)
+(front-insert-deque! dq1 2)
 
 
 ;; set-cdr! change the cdr of op1 to the car of op2 
