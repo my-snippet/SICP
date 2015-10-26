@@ -39,13 +39,9 @@
 		   (set-rear-deque! deque new-pair)
 		   deque)
 		  (else
-		   ;; needed to change, how can it replaces front..
-		   (let ((new-front-deque (set-rear-deque! new-pair (front-deque deque))))
-			 (set-front-deque! deque
-							   new-front-deque)
-			 
-			 ;;		   (set-front-deque! deque new-pair)
-			 deque)))))
+		   (set-rear-deque! new-pair (front-deque deque))
+		   (set-front-deque! deque new-pair)
+		   deque))))
 
 
 
