@@ -1,6 +1,7 @@
 ;; How can I make a deque?
 ;; IDEA 0 : triple set, FIRST : HEAD, SECOND : CONTENTS, THIRD : TAIL
-;; <- But it seems to be not needed. Already I know HEAD & TAIL
+;; needed to change following implementation using IDEA 0 for O(1)
+
 ;; front-insert-deque!
 ;; rear-insert-deque!
 ;; front-delete-deque!
@@ -21,7 +22,7 @@
 (define (set-rear-deque! deque item) (set-rear-ptr! deque item))
 
 
-(define (front-insert-deque! deque item)
+(define (rear-insert-deque! deque item)
   (let ((new-pair (cons item '())))
 	(cond ((empty-deque? deque)
 		   (set-front-deque! deque new-pair)
@@ -32,14 +33,20 @@
 		   (set-rear-deque! deque new-pair)
 		   deque))))
 
+(define (rear-delete-deque! deque)
+  (delete-queue! deque))
+
+
+
 ;;(define (rear-insert-deque! deque item)
 
 (define dq1 (make-deque))
 (empty-deque? dq1)
 (front-deque dq1)
 (rear-deque dq1)
-(front-insert-deque! dq1 1)
-(front-insert-deque! dq1 2)
+(rear-insert-deque! dq1 1)
+(rear-insert-deque! dq1 2)
+(rear-delete-deque! dq1)
 
 
 ;; set-cdr! change the cdr of op1 to the car of op2 
