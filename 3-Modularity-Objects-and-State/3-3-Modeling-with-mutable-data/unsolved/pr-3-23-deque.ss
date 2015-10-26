@@ -1,7 +1,3 @@
-;; How can I make a deque?
-;; IDEA 0 : triple set, FIRST : HEAD, SECOND : CONTENTS, THIRD : TAIL
-;; needed to change following implementation using IDEA 0 for O(1)
-
 ;; front-insert-deque!
 ;; rear-insert-deque!
 ;; front-delete-deque!
@@ -36,6 +32,21 @@
 (define (rear-delete-deque! deque)
   (delete-queue! deque))
 
+(define (front-insert-deque! deque item)
+  (let ((new-pair (cons item '())))
+	(cond ((empty-deque? deque)
+		   (set-front-deque! deque new-pair)
+		   (set-rear-deque! deque new-pair)
+		   deque)
+		  (else
+		   ;; needed to change, how can it replaces front..
+		   (let ((new-front-deque (set-rear-deque! new-pair (front-deque deque))))
+			 (set-front-deque! deque
+							   new-front-deque)
+			 
+			 ;;		   (set-front-deque! deque new-pair)
+			 deque)))))
+
 
 
 ;;(define (rear-insert-deque! deque item)
@@ -46,9 +57,15 @@
 (rear-deque dq1)
 (rear-insert-deque! dq1 1)
 (rear-insert-deque! dq1 2)
-(rear-delete-deque! dq1)
+;;(rear-delete-deque! dq1)
+(front-insert-deque! dq1 3)
 
 
+;;(set-rear-deque! dq1 (front-deque dq1))
+;;(define a (cons 1 '()))
+;;(set-cdr! a (car dq1))
+;;a
+;;(front-insert-deque! dq1 3)
 ;; set-cdr! change the cdr of op1 to the car of op2 
 ;;(define test-set-cdr (cons 1 2))
 ;;(set-cdr! test-set-cdr (cons 3 4))
