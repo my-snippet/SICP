@@ -7,6 +7,10 @@
 
 ;; Most of implementation is equal to 'queue', So it can be implemented just by calling
 ;; correspond procedures, ex : (define (make-deque) (make-queue)) Or just load library
+
+;; To delete from rear side, It requires previous item position
+;; Therefore, it should be needed to add a proxy, approach prev item position
+;; rear-deque points the proxy, (car proxy) points last item, (cdr proxy) points previous last item
 (load "queue.ss")
 
 
@@ -16,7 +20,6 @@
 (define (rear-deque deque) (rear-ptr deque))
 (define (set-front-deque! deque item) (set-front-ptr! deque item))
 (define (set-rear-deque! deque item) (set-rear-ptr! deque item))
-
 
 (define (rear-insert-deque! deque item)
   (let ((new-pair (cons item '())))
@@ -29,7 +32,7 @@
 		   (set-rear-deque! deque new-pair)
 		   deque))))
 
-(define (rear-delete-deque! deque)
+(define (front-delete-deque! deque)
   (delete-queue! deque))
 
 (define (front-insert-deque! deque item)
@@ -43,8 +46,21 @@
 		   (set-front-deque! deque new-pair)
 		   deque))))
 
+(define (rear-delete-deque! deque item)
+  (cond ((empty-deque? deque)
+		 (error "Empty"))
+		(else
+		 (set-
+
+(define (delete-queue! queue)
+  (cond ((empty-queue? queue)
+		 (error "Empty"))
+		(else
+		 (set-front-ptr! queue (cdr (front-ptr queue)))
+		 queue)))
 
 
+   
 ;;(define (rear-insert-deque! deque item)
 
 (define dq1 (make-deque))
