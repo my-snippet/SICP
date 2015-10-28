@@ -35,22 +35,10 @@
 (define (front-delete-deque! deque)
   (delete-queue! deque))
 
-(define (front-insert-deque! deque item)
-  (let ((new-pair (cons item '())))
-	(cond ((empty-deque? deque)
-		   (set-front-deque! deque new-pair)
-		   (set-rear-deque! deque new-pair)
-		   deque)
-		  (else
-		   (set-rear-deque! new-pair (front-deque deque))
-		   (set-front-deque! deque new-pair)
-		   deque))))
+;;(define (front-insert-deque! deque item)
 
-(define (rear-delete-deque! deque item)
-  (cond ((empty-deque? deque)
-		 (error "Empty"))
-		(else
-		 (set-
+
+;;(define (rear-delete-deque! deque item)
 
 (define (delete-queue! queue)
   (cond ((empty-queue? queue)
@@ -58,8 +46,6 @@
 		(else
 		 (set-front-ptr! queue (cdr (front-ptr queue)))
 		 queue)))
-
-
    
 ;;(define (rear-insert-deque! deque item)
 
