@@ -8,6 +8,11 @@
 ;; Most of implementation is equal to 'queue', So it can be implemented just by calling
 ;; correspond procedures, ex : (define (make-deque) (make-queue)) Or just load library
 
+;; idea 1 : no need a proxy, just cdr deque points second from last element
+;; in that way, the position of last element is located (cdr (cdr deque))
+
+
+;; idea 0
 ;; To delete from rear side, It requires previous item position
 ;; Therefore, it should be needed to add a proxy, approach prev item position
 ;; rear-deque points the proxy, (car proxy) points last item, (cdr proxy) points previous last item
@@ -17,7 +22,9 @@
 (define (make-deque) (make-queue))
 (define (empty-deque? deque) (empty-queue? deque))
 (define (front-deque deque) (front-ptr deque))
-(define (rear-deque deque) (rear-ptr deque))
+(define (rear-deque deque) (if (null? (cdr deque))
+							   deque
+							   (cdr deque)))
 (define (set-front-deque! deque item) (set-front-ptr! deque item))
 (define (set-rear-deque! deque item) (set-rear-ptr! deque item))
 
@@ -28,8 +35,13 @@
 		   (set-rear-deque! deque new-pair)
 		   deque)
 		  (else
+		   (display (cdr (cdr deque)))
+		   (display (cdr deque))
 		   (set-cdr! (rear-deque deque) new-pair)
-		   (set-rear-deque! deque new-pair)
+		   (display (cdr deque))
+		   (if (not (null? (cdr deque)))
+			   (set-rear-deque! deque (cdr deque))
+			   deque)
 		   deque))))
 
 (define (front-delete-deque! deque)
@@ -46,18 +58,23 @@
 		(else
 		 (set-front-ptr! queue (cdr (front-ptr queue)))
 		 queue)))
-   
+
 ;;(define (rear-insert-deque! deque item)
 
 (define dq1 (make-deque))
 (empty-deque? dq1)
-(front-deque dq1)
-(rear-deque dq1)
+;;(front-deque dq1)
+;;(rear-deque dq1)
 (rear-insert-deque! dq1 1)
 (rear-insert-deque! dq1 2)
-;;(rear-delete-deque! dq1)
-(front-insert-deque! dq1 3)
+(rear-insert-deque! dq1 2)
 
+;;(cdr (cons 1 '()))
+;;(rear-delete-deque! dq1)
+;;(front-insert-deque! dq1 3)
+;;(define a (list 1 2 3))
+;;(set-cdr! a (cons 4 '()))
+;;a
 
 ;;(set-rear-deque! dq1 (front-deque dq1))
 ;;(define a (cons 1 '()))
