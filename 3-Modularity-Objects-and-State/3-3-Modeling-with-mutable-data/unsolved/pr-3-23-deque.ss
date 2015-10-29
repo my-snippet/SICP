@@ -4,7 +4,7 @@
 
 ;; idea 4 : prev node(pair) is essential for rear-delete !
 ;; because, it is required to point prev node after delete.
-;; -> But it's too complex
+;; -> But it's too complex + infinite recursion problem occur
 
 ;; idea 3 : size 3 list. car : CONTENTS, cadr : PREV, caddr : TAIL
 ;; cadr is only for delete-rear-deque!
