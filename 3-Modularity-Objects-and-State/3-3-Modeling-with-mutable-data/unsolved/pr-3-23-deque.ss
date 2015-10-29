@@ -4,6 +4,7 @@
 
 ;; idea 4 : prev node(pair) is essential for rear-delete !
 ;; because, it is required to point prev node after delete.
+;; -> But it's too complex
 
 ;; idea 3 : size 3 list. car : CONTENTS, cadr : PREV, caddr : TAIL
 ;; cadr is only for delete-rear-deque!
@@ -25,21 +26,25 @@
 ;;;;;;;;;;;;;;;;;
 
 
-(define (make-deque) (list '() '() '()))
+(define (make-deque) (cons '() '()))
 (define (empty-deque? deque) (null? (car deque)))
 (define (front-deque deque) (car deque))
-(define (prev-deque deque) (cdr deque))
-(define (rear-deque deque) (cddr deque))
+(define (rear-deque deque) (cdr deque))
 (define (set-front-deque! deque item) (set-car! deque item))
-(define (set-rear-deque! deque item) (set-cdr! (cdr deque) item))
+(define (set-rear-deque! deque item) (set-cdr! deque item))
 
-(define (prev-deque-set! deque item)
-  (set-car! (prev-deque deque) (rear-deque deque)))
+(define (front-insert-deque! deque item)
+  (let ((new-pair (cons item '())))
+	(cond ((empty-deque? deque)
+		   (set-front-deque! deque new-pair)		   
+		   (set-rear-deque! deque new-pair)
+		   deque)
+		  (else
+		   (let ((new-front-deque (set-cdr! new-pair (car deque))))
+			 (set-front-deque! deque new-pair)
+			 deque)))))
 
 (define (rear-insert-deque! deque item)
-;;  (define (prev-deque-set!)
-;;	(set-car! (prev-deque deque) (rear-deque deque)))
-  
   (let ((new-pair (cons item '())))
 	(cond ((empty-deque? deque)
 		   (set-front-deque! deque new-pair)		   
@@ -47,20 +52,22 @@
 		   deque)
 		  (else
 		   (set-cdr! (rear-deque deque) new-pair)
-		   (prev-deque-set! deque item)
 		   (set-rear-deque! deque new-pair)
 		   deque))))
 
-;;(define (front-delete-deque! deque)
-;;  (delete-queue! deque))
-
-;;(define (front-insert-deque! deque item)
+(define (front-delete-deque! deque)
+  (cond ((empty-deque? deque)
+		 (error "Empty"))
+		(else
+		 (set-car! deque (cdr (front-deque deque)))
+		 deque)))
+  
 (define (rear-delete-deque! deque)
   (cond ((empty-deque? deque)
 		 (error "Empty"))
 		(else
 		 (set-cdr! (cadr deque) '())
-;;		 (set-car! (cdr deque) (
+		 ;;		 (set-car! (cdr deque) (
 		 (set-rear-deque! deque (cadr deque))
 		 deque)))
 
@@ -74,7 +81,10 @@
 (rear-insert-deque! dq1 2)
 (rear-insert-deque! dq1 3)
 (rear-insert-deque! dq1 4)
-(rear-delete-deque! dq1)
+(front-insert-deque! dq1 (- 1))
+(front-delete-deque! dq1)
+
+;;(rear-delete-deque! dq1)
 
 ;;(set-car! (cdr dq1) '())
 ;;dq1
