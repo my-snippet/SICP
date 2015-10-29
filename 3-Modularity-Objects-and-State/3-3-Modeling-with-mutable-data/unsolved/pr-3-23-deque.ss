@@ -1,6 +1,8 @@
 ;; *Notice : (cdr (make-queue)) points (item '()). Therefore (set-cdr! (cdr a-queue)) changes (cdr item '())
-;; * Caution : car, cdr, ... : content in box, set-...! : pointer from box
+;; *Caution : car, cdr, ... : content in box, set-...! : pointer from box
 
+
+;; *Don't modify basic modules as much as possible !! ( remind the purpose of the module )
 
 ;; idea 4 : prev node(pair) is essential for rear-delete !
 ;; because, it is required to point prev node after delete.
