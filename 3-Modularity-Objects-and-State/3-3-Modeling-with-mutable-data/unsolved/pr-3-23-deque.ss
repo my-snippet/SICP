@@ -1,4 +1,9 @@
 ;; *Notice : (cdr (make-queue)) points (item '()). Therefore (set-cdr! (cdr a-queue)) changes (cdr item '())
+;; * Caution : car, cdr, ... : content in box, set-...! : pointer from box
+
+
+;; idea 4 : prev node(pair) is essential for rear-delete !
+;; because, it is required to point prev node after delete.
 
 ;; idea 3 : size 3 list. car : CONTENTS, cadr : PREV, caddr : TAIL
 ;; cadr is only for delete-rear-deque!
@@ -11,6 +16,7 @@
 ;; To delete from rear side, It requires previous item position
 ;; Therefore, it should be needed to add a proxy, approach prev item position
 ;; rear-deque points the proxy, (car proxy) points last item, (cdr proxy) points previous last item
+
 
 ;;;;;;;;;;;;;;;;;
 ;; Deprecated 
@@ -25,33 +31,38 @@
 (define (prev-deque deque) (cdr deque))
 (define (rear-deque deque) (cddr deque))
 (define (set-front-deque! deque item) (set-car! deque item))
-(define (set-rear-deque! deque item) (set-cdr! deque item))
+(define (set-rear-deque! deque item) (set-cdr! (cdr deque) item))
+
+(define (prev-deque-set! deque item)
+  (set-car! (prev-deque deque) (rear-deque deque)))
 
 (define (rear-insert-deque! deque item)
-  (define (prev-deque-set!)
-	(set-car! (prev-deque deque) (rear-deque deque)))
-    
+;;  (define (prev-deque-set!)
+;;	(set-car! (prev-deque deque) (rear-deque deque)))
+  
   (let ((new-pair (cons item '())))
 	(cond ((empty-deque? deque)
 		   (set-front-deque! deque new-pair)		   
-		   (set-rear-deque! (cdr deque) new-pair)
+		   (set-rear-deque! deque new-pair)
 		   deque)
 		  (else
 		   (set-cdr! (rear-deque deque) new-pair)
-		   (prev-deque-set!)
-		   (set-rear-deque! (cdr deque) new-pair)
+		   (prev-deque-set! deque item)
+		   (set-rear-deque! deque new-pair)
 		   deque))))
 
 ;;(define (front-delete-deque! deque)
 ;;  (delete-queue! deque))
 
 ;;(define (front-insert-deque! deque item)
-(define (rear-delete-deque! deque item)
-  (cond ((empty-deque? queue)
+(define (rear-delete-deque! deque)
+  (cond ((empty-deque? deque)
 		 (error "Empty"))
 		(else
-		 (set-rear-deque (cdr (prev-deque queue)) '())
-		 queue)))
+		 (set-cdr! (cadr deque) '())
+;;		 (set-car! (cdr deque) (
+		 (set-rear-deque! deque (cadr deque))
+		 deque)))
 
 ;;(define (rear-insert-deque! deque item)
 
@@ -63,9 +74,10 @@
 (rear-insert-deque! dq1 2)
 (rear-insert-deque! dq1 3)
 (rear-insert-deque! dq1 4)
+(rear-delete-deque! dq1)
 
 ;;(set-car! (cdr dq1) '())
-dq1
+;;dq1
 
 ;;(cdr (cons 1 '()))
 ;;(rear-delete-deque! dq1)
