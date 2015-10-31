@@ -19,3 +19,25 @@
 ;;   (cddr D)) -> I_1
 ;; 2-3. Point Tail Node
 ;; (cdr D) -> (I_1)
+
+;;(define (test-make-deque)
+;;  ((make-deque))
+
+(define (make-deque)
+  (cons '() '()))
+
+
+
+(define (test-deque)
+  (define dq0 (make-deque))
+  
+  (define (test-make-deque-consist-of-null deque)
+	(if (and (null? (car deque))
+			 (null? (cdr deque)))
+		true
+		(error "test-make-deque should consist-of-null")))
+  (test-make-deque-consist-of-null dq0)
+
+  ;;  (define (test-rear-insert-deque!-contents)
+  )
+(test-deque)
