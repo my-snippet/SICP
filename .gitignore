@@ -5,6 +5,9 @@
 *.scm#*
 .#*.ss
 
+# Scheme test
+*.log
+
 # Python
 **/venv/
 .env
