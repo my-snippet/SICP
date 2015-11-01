@@ -10,6 +10,8 @@
 ;;   D = (d0 d1)
 ;;   d0, d1 -> I_0
 
+;; Deque Structure : ([ITEMs] ([SECOND] [SECOND LAST])
+
 ;; Rear Insert
 ;; 2. Add item
 ;; 2-1. Point Prev node from Next node
