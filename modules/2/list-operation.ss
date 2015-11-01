@@ -1,7 +1,8 @@
-#lang racket
-
-(provide list-ref
-         length)
+;; no racket, use mit scheme
+;;#lang racket
+;;
+;;(provide list-ref
+;;         length)
          
          
          
