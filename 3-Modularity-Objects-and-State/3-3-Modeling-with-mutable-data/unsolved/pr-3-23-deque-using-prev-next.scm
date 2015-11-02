@@ -44,12 +44,14 @@
   (null? (car deque)))
 
 (define (rear-insert-deque! deque item)
-  (let ((new-deque (cons item (cons '() '()))))
+  (let ((new-node (cons item (cons '() '()))))
 	(cond ((empty-deque? deque)
-		   (set-car! deque new-deque)
-		   (set-cdr! deque new-deque))
+		   (set-car! deque new-node)
+		   (set-cdr! deque new-node))
 		  (else
-		   (display "not yet"))))))
+		   (set-car! (cdr new-node) deque)
+		   (set-cdr! (cdr deque) new-node)
+		   (set-cdr! deque new-node)))))
 
 (define (print-deque deque)
   (car deque))
@@ -58,26 +60,38 @@
 ;; Initialize and give a name to a simple testsuite.
 (test-begin "test-deque")
 
-(define dq0 (make-deque))
-(define dq1 (rear-insert-deque! (make-deque) 1))
-(define elem0 'a)
-
 (define (test-make-deque-consist-of-null deque)
   ;; empty deque consists of the empty(null) pair
   (test-assert (and (null? (car deque))
 					(null? (cdr deque)))))
-(test-make-deque-consist-of-null dq0)
+(test-make-deque-consist-of-null (make-deque))
 
-(define (test-rear-insert-deque! deque)
-  (define (insert!-when-empty element)
-	;; When you insert an element in an empty deque,
- 	;; it should be added inside the deque
-	;; the shape is ([element] ('() '()))
-	;;(test-assert true))
-	(rear-insert-deque! deque element)	
-	(test-assert (eq? element (caar deque))))
-  (insert!-when-empty elem0))
-(test-rear-insert-deque! dq0)
+(define (test-rear-insert!-when-empty deque element)
+  ;; When you insert an element in an empty deque,
+  ;; it should be added inside the deque
+  ;; the shape is ([element] ('() '()))
+  ;;(test-assert true))
+  (rear-insert-deque! deque element)
+  (test-assert (eq? element (caar deque))))
+(test-rear-insert!-when-empty (make-deque) 'a)
+
+(define (test-rear-insert!-when-not-empty deque)
+  ;; 1. insert item 0, item 1 into the deque
+  ;; 2. first node should have the second node(next node) : (cddr deque)
+  ;; 2-1. second node should have a item 1
+  ;; 3. second node should have the first node(prev node) : (cadr deque)
+  ;; 3-1 . first node should have a item 0
+  (test-assert (and (= 1 (cadr deque))
+					(= 0 (caar (caddr deque))))))
+(define test-dq0 (make-deque))
+(rear-insert-deque! test-dq0 0)
+(rear-insert-deque! test-dq0 1)
+;; (cadr test-dq0) = 1(second node value)
+;;(caar (caddr test-dq0)) = 0(first node value)
+(test-rear-insert!-when-not-empty test-dq0)
+
+;;(define (continuous-rear-insert! 
+;;(map (lambda (x) (rear-insert-deque! deque x)) (list 0 1))
 
 (define (test-empty-deque-contains-nothing deque)
   (test-assert (empty-deque? deque)))
@@ -93,6 +107,6 @@
 (define (test-print-deque deque)
   (test-assert (is-same-lists (car deque) (print-deque deque))))
 (define deque-for-print (cons (list 1 2 3 4) (cons '() '())))
-(test-print-deque deque-for-print)
+;;(test-print-deque deque-for-print)
 
 (test-end "test-deque")
