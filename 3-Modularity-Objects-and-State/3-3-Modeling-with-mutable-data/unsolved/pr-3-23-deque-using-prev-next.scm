@@ -64,17 +64,16 @@
 		   (set-cdr! deque new-node)))))
 
 (define (front-delete-deque! deque)
+  ;; 1. next node has to be accessed by front deque
+  ;; because rear deque points to the last node
   (cond ((empty-deque? deque)
 		 (error "empty deque"))
 		((eq? (car deque) (cdr deque))
 		 (set-car! deque '())
 		 (set-cdr! deque '()))
 		(else
-		 (set-car! deque (cdr deque))
-		 (set-car! (cdr (car deque)) '())
-
-		 ;; 3-1 test required
-		 (set-cdr! deque (cdddr deque)))))
+ 		 (set-car! deque (cddr (car deque)))
+		 (set-car! (cdr (car deque)) '()))))
 
 (define (extract-deque-elements deque)
   ;; 1. After inserting first item, shape is : (([item 0] ()) [item 0] ())
@@ -159,29 +158,25 @@
 (front-insert-deque! test-dq2 1)
 (test-front-insert!-when-not-empty test-dq2)
 
-(define (test-front-delete!)
+(define (test-front-delete!-one-item-contained)
   ;; 1. empty : error ( test skipped )
   ;; 2. only 1 item contained : empty
-  ;; 3. at least 2 item or more
-  ;; 3-1. next node accessible
   (front-delete-deque! test-dq3)
-  (front-delete-deque! test-dq4)
-  (test-assert (= 1 (caar test-dq4)))
-
-  ;; 3-1 test required
-  ;;(test-assert (= 2 (caar (cdr test-dq4))))
   (test-assert (empty-deque? test-dq3)))
 (define test-dq3 (make-deque))
 (front-insert-deque! test-dq3 0)
+(test-front-delete!-one-item-contained)
+
+(define (test-front-delete!-two-or-more-items-contained)
+  ;; 1. at least 2 item or more
+  ;; 1-2. next node accessible
+  (front-delete-deque! test-dq4)
+  (test-assert (= 1 (caar test-dq4)))
+  (test-assert (= 2 (caddr (car test-dq4)))))
 (define test-dq4 (make-deque))
 (rear-insert-deque! test-dq4 0)
 (rear-insert-deque! test-dq4 1)
 (rear-insert-deque! test-dq4 2)
-(test-front-delete!)
+(test-front-delete!-two-or-more-items-contained)
 
 (test-end "test-deque")
-;;(extract-deque-elements test-dq1)
-;;(print-deque test-dq1)
-;;test-dq1
-;;(cadr (car test-dq1)))
-;;(caar test-dq1)
