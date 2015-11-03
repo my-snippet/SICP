@@ -43,90 +43,110 @@
 (define (empty-deque? deque)
   (null? (car deque)))
 
-(define (rear-insert-deque! deque item)
+(define (front-insert-deque! deque item)
   (let ((new-node (cons item (cons '() '()))))
 	(cond ((empty-deque? deque)
 		   (set-car! deque new-node)
 		   (set-cdr! deque new-node))
 		  (else
-		   (set-car! (cdr new-node) (cdr deque))
-		   (set-cdr! (cddr deque) new-node)
-		   (set-cdr! deque new-node)))))
+		   (set-cdr! (cdr new-node) (cdr deque))
+		   (set-car! (cddr deque) new-node)
+		   (set-car! deque new-node)))))
 
-(define (extract-deque-elements deque)
-  ;; 1. After inserting first item, shape is : (([item 0] ()) [item 0] ())
-  ;; * Notice : First cons makes () to car
-  ;; 2. And Second item, shape is : (([item 0] (() (NEXT NODE))) () (NEXT NODE))
-  ;; At this point, A little confusing happen -> To extract item in the first deque need the [caar]
-  ;; But after that, just need the [car].
-  (define (_extract-deque-elements deque0)
-	(if (null? deque0)
-		'()
-		(cons (car deque0)
-			  (_extract-deque-elements (cddr deque0)))))
-  (_extract-deque-elements (car deque)))
+  (define (rear-insert-deque! deque item)
+	(let ((new-node (cons item (cons '() '()))))
+	  (cond ((empty-deque? deque)
+			 (set-car! deque new-node)
+			 (set-cdr! deque new-node))
+			(else
+			 (set-car! (cdr new-node) (cdr deque))
+			 (set-cdr! (cddr deque) new-node)
+			 (set-cdr! deque new-node)))))
 
-(define (print-deque deque)
-  (display (extract-deque-elements deque)))
+  (define (extract-deque-elements deque)
+	;; 1. After inserting first item, shape is : (([item 0] ()) [item 0] ())
+	;; * Notice : First cons makes () to car
+	;; 2. And Second item, shape is : (([item 0] (() (NEXT NODE))) () (NEXT NODE))
+	;; At this point, A little confusing happen -> To extract item in the first deque need the [caar]
+	;; But after that, just need the [car].
+	(define (_extract-deque-elements deque0)
+	  (if (null? deque0)
+		  '()
+		  (cons (car deque0)
+				(_extract-deque-elements (cddr deque0)))))
+	(_extract-deque-elements (car deque)))
 
-(define (continuous-rear-insert! deque list0)
-  (apply rear-insert-deque! list0))
-;;(continuous-rear-insert! (make-deque) (list 1 2 3))
+  (define (print-deque deque)
+	(display (extract-deque-elements deque)))
 
-;; Initialize and give a name to a simple testsuite.
-(test-begin "test-deque")
+  (define (continuous-rear-insert! deque list0)
+	(apply rear-insert-deque! list0))
+  ;;(continuous-rear-insert! (make-deque) (list 1 2 3))
 
-(define (test-make-deque-consist-of-null deque)
-  ;; empty deque consists of the empty(null) pair
-  (test-assert (and (null? (car deque))
-					(null? (cdr deque)))))
-(test-make-deque-consist-of-null (make-deque))
+  ;; Initialize and give a name to a simple testsuite.
+  (test-begin "test-deque")
 
-(define (test-rear-insert!-when-empty deque element)
-  ;; When you insert an element in an empty deque,
-  ;; it should be added inside the deque
-  ;; the shape is ([element] ('() '()))
-  ;;(test-assert true))
-  (rear-insert-deque! deque element)
-  (test-assert (eq? element (caar deque))))
-(test-rear-insert!-when-empty (make-deque) 'a)
+  (define (test-make-deque-consist-of-null deque)
+	;; empty deque consists of the empty(null) pair
+	(test-assert (and (null? (car deque))
+					  (null? (cdr deque)))))
+  (test-make-deque-consist-of-null (make-deque))
 
-(define (test-rear-insert!-when-not-empty deque)
-  ;; 1. insert item 0, item 1 into the deque
-  ;; 2. first node should have the second node(next node) : (cddr deque)
-  ;; 2-1. second node should have a item 1
-  ;; 3. second node should have the first node(prev node) : (caddr deque)
-  ;; 3-1 . first node should have a item 0
-  (test-assert (and (= 1 (cadr deque))
-					(= 0 (car (caddr deque))))))
-(define test-dq0 (make-deque))
-(rear-insert-deque! test-dq0 0)
-(rear-insert-deque! test-dq0 1)
-;; (cadr test-dq0) = 1(second node value)
-;;(caar (caddr test-dq0)) = 0(first node value)
-(test-rear-insert!-when-not-empty test-dq0)
+  (define (test-rear-insert!-when-empty deque element)
+	;; When you insert an element in an empty deque,
+	;; it should be added inside the deque
+	;; the shape is ([element] ('() '()))
+	;;(test-assert true))
+	(rear-insert-deque! deque element)
+	(test-assert (eq? element (caar deque))))
+  (test-rear-insert!-when-empty (make-deque) 'a)
 
-(define (test-empty-deque-contains-nothing deque)
-  (test-assert (empty-deque? deque)))
-(test-empty-deque-contains-nothing (make-deque))
+  (define (test-rear-insert!-when-not-empty deque)
+	;; 1. insert item 0, item 1 into the deque
+	;; 2. first node should have the second node(next node) : (cddr deque)
+	;; 2-1. second node should have a item 1
+	;; 3. second node should have the first node(prev node) : (caddr deque)
+	;; 3-1 . first node should have a item 0
+	(test-assert (and (= 1 (cadr deque))
+					  (= 0 (car (caddr deque))))))
+  (define test-dq0 (make-deque))
+  (rear-insert-deque! test-dq0 0)
+  (rear-insert-deque! test-dq0 1)
+  (test-rear-insert!-when-not-empty test-dq0)
 
-(define (test-is-same-lists)
-  (define l1 (cons 1 2))
-  (define l2 (cons 3 4))
-  (test-assert (not (is-same-lists l1 l2)))
-  (test-assert (is-same-lists l1 l1)))
-(test-is-same-lists)
+  (define (test-empty-deque-contains-nothing deque)
+	(test-assert (empty-deque? deque)))
+  (test-empty-deque-contains-nothing (make-deque))
 
-(define (test-extract-deque-elements deque)
-  (define test-list0 (list 1 2 3 4))
-  (test-assert (is-same-lists test-list0 (extract-deque-elements deque))))
+  (define (test-is-same-lists)
+	(define l1 (cons 1 2))
+	(define l2 (cons 3 4))
+	(test-assert (not (is-same-lists l1 l2)))
+	(test-assert (is-same-lists l1 l1)))
+  (test-is-same-lists)
 
-(define test-dq1 (make-deque))
-(rear-insert-deque! test-dq1 1)
-(rear-insert-deque! test-dq1 2)
-(rear-insert-deque! test-dq1 3)
-(rear-insert-deque! test-dq1 4)
-(test-extract-deque-elements test-dq1)
+  (define (test-extract-deque-elements deque)
+	(define test-list0 (list 1 2 3 4))
+	(test-assert (is-same-lists test-list0 (extract-deque-elements deque))))
+
+  (define test-dq1 (make-deque))
+  (rear-insert-deque! test-dq1 1)
+  (rear-insert-deque! test-dq1 2)
+  (rear-insert-deque! test-dq1 3)
+  (rear-insert-deque! test-dq1 4)
+  (test-extract-deque-elements test-dq1)
+
+  (define (test-front-insert!-when-not-empty deque)
+	;; * when empty, it's the same as rear-deque-insert! -> therefore skipped.
+	;; 1. first node contain new-node item
+	;; 2. second node contain previous first node item
+	(test-assert (and (= 0 (cadr deque))
+					  (= 1 (car (caddr deque))))))
+  )
+(define test-dq2 (make-deque))
+(front-insert-deque! test-dq2 0)
+(front-insert-deque! test-dq2 1)
+(test-front-insert!-when-not-empty test-dq2)
 
 (test-end "test-deque")
 (extract-deque-elements test-dq1)
