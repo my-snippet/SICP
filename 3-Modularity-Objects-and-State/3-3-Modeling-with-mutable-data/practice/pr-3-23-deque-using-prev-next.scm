@@ -75,6 +75,16 @@
  		 (set-car! deque (cddr (car deque)))
 		 (set-car! (cdr (car deque)) '()))))
 
+(define (rear-delete-deque! deque)
+  (cond ((empty-deque? deque)
+		 (error "empty deque"))
+		((eq? (car deque) (cdr deque))
+		 (set-car! deque '())
+		 (set-cdr! deque '()))
+		(else
+ 		 (set-cdr! deque (caddr deque))
+		 (set-cdr! (cddr deque) '()))))
+
 (define (extract-deque-elements deque)
   ;; 1. After inserting first item, shape is : (([item 0] ()) [item 0] ())
   ;; * Notice : First cons makes () to car
@@ -158,25 +168,41 @@
 (front-insert-deque! test-dq2 1)
 (test-front-insert!-when-not-empty test-dq2)
 
-(define (test-front-delete!-one-item-contained)
+(define (test-front-delete!-one-item-contained deque)
   ;; 1. empty : error ( test skipped )
   ;; 2. only 1 item contained : empty
-  (front-delete-deque! test-dq3)
-  (test-assert (empty-deque? test-dq3)))
+  (front-delete-deque! deque)
+  (test-assert (empty-deque? deque)))
 (define test-dq3 (make-deque))
 (front-insert-deque! test-dq3 0)
-(test-front-delete!-one-item-contained)
+(test-front-delete!-one-item-contained test-dq3)
 
-(define (test-front-delete!-two-or-more-items-contained)
+(define (test-front-delete!-two-or-more-items-contained deque)
   ;; 1. at least 2 item or more
-  ;; 1-2. next node accessible
-  (front-delete-deque! test-dq4)
-  (test-assert (= 1 (caar test-dq4)))
-  (test-assert (= 2 (caddr (car test-dq4)))))
+  ;; * check first & second node
+  (front-delete-deque! deque)
+  (test-assert (= 1 (caar deque)))
+  (test-assert (= 2 (caddr (car deque)))))
 (define test-dq4 (make-deque))
 (rear-insert-deque! test-dq4 0)
 (rear-insert-deque! test-dq4 1)
 (rear-insert-deque! test-dq4 2)
-(test-front-delete!-two-or-more-items-contained)
+(test-front-delete!-two-or-more-items-contained test-dq4)
+
+(define (test-rear-delete!-two-or-more-items-contained deque)
+  ;; 1. empty : error ( test skipped )
+  ;; 2. only 1 item contained : empty ( test already implemented : front-delete ) 
+  ;; 3. at least 2 item or more
+  ;; Check last node & second last node accessible
+  (rear-delete-deque! deque)
+  (test-assert (= 1 (cadr deque)))
+  (test-assert (= 0 (caaddr deque)))  
+  )
+  ;;(test-assert (= 2 (caddr (car test-dq4)))))
+(define test-dq5 (make-deque))
+(rear-insert-deque! test-dq5 0)
+(rear-insert-deque! test-dq5 1)
+(rear-insert-deque! test-dq5 2)
+(test-rear-delete!-two-or-more-items-contained test-dq5)
 
 (test-end "test-deque")
