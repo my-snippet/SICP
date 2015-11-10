@@ -8,6 +8,13 @@ class TestQueue(unittest.TestCase):
 
     # @unittest.skip("test")
     def test_make_queue(self):
-        #pass
+        """
+        Initial Queue
+        1. first node, second node is initialized to 'None'
+        2. size should be zero. ( isEmpty() == True )
+        """
         self.assertIsNone(self.first_queue._first)
         self.assertIsNone(self.first_queue._last)
+        self.assertTrue(self.first_queue.isEmpty())
+
+#    def test_
