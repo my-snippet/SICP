@@ -1,6 +1,10 @@
 """
 Reference
 http://python-algorithms.readthedocs.org/en/latest/_modules/python_algorithms/basic/queue.html
+
+O(1) implementation
+
+Only dequeue method modified
 """
 
 class _Node(object):
@@ -41,3 +45,22 @@ class Queue(object):
         else:
             n.next = self._last
         self._size += 1
+
+    def dequeue(self):
+        """Remove and return the first item from the queue.
+
+        Returns:
+            The first item from the queue.
+
+        Raises:
+            IndexError: If the queue is empty.
+        """
+        if self.isEmpty():
+            raise IndexError("dequeue from empty queue")
+        elif self._size == 1:
+            self._last = None
+
+        n = self._first
+        self._first = self._first.next
+        self._size -= 1
+        return n.item
