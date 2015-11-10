@@ -30,3 +30,14 @@ class Queue(object):
             False otherwise.
         """
         return self._size == 0
+
+
+    def enqueue(self, item):
+        """Insert an item to the queue."""
+        n = self._last
+        self._last = _Node(item)
+        if self.isEmpty():
+            self._first = self._last
+        else:
+            n.next = self._last
+        self._size += 1
