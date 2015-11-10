@@ -1,3 +1,18 @@
+"""
+Reference
+http://python-algorithms.readthedocs.org/en/latest/_modules/python_algorithms/basic/queue.html
+"""
+
+class _Node(object):
+    """An internal class that represents a node with a single value
+    and links to other nodes.
+    """
+
+    def __init__(self, item):
+        self.item = item
+        self.next = None
+
+
 class Queue(object):
     """An implementation of a simple queue with linked list."""
 
