@@ -19,17 +19,24 @@ class TestQueue(unittest.TestCase):
         self.assertIsNone(queue._last)
         self.assertTrue(queue.isEmpty())
 
-    def test_enqueue(self):
+    def test_enqueue_when_empty(self):
         """
-        1. Empty
-            1) First node should be equal to last node
-        2. Not empty
-            1) Last node should contaions inserted item
-            2) First node should access next node
+        First node should be equal to last node
         """
-        # pass
+        queue = Queue()
+        item = 'a'
+        queue.enqueue(item)
+        self.assertEqual(queue._first.item, item)
+        self.assertEqual(queue._first.item, queue._last.item)
+
+    def test_enqueue_when_not_empty(self):
+        """
+        1) Last node should contaions inserted item
+        2) First node should access next node
+        """
         queue = Queue()
         item1, item2 = 'a', 'b'
-        queue.insert_queue(item1)
-        self.assertEqual(queue._first, item1)
-        self.assertEqual(queue._first, queue._last)
+        queue.enqueue(item1)
+        queue.enqueue(item2)
+        self.assertEqual(queue._first.item, item1)
+        self.assertEqual(queue._first.next.item, queue._last.item)
