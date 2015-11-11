@@ -10,7 +10,7 @@ class TestQueue(unittest.TestCase):
     # @unittest.skip("test")
     def test_make_queue(self):
         """
-        Initial Queue
+        test_make_queue
         1) First node, second node is initialized to 'None'
         2) Size should be zero. ( isEmpty() == True )
         """
@@ -20,6 +20,7 @@ class TestQueue(unittest.TestCase):
 
     def test_enqueue_when_empty(self):
         """
+        test_enqueue_when_empty
         First node should be equal to last node
         """
         self.queue.enqueue(self.item1)
@@ -28,6 +29,7 @@ class TestQueue(unittest.TestCase):
 
     def test_enqueue_when_not_empty(self):
         """
+        test_enqueue_when_not_empty
         1) Last node should contaions inserted self.item
         2) First node should access next node
         """
@@ -39,12 +41,13 @@ class TestQueue(unittest.TestCase):
 
     def test_dequeue(self):
         """
+        test_dequeue
         1) If empty, Error should occur
         2) If just 1 item contained, 
             2-1) It should be changed to Empty Queue
             2-2) Head node item should be returned
         3) If more than 2 items contained, 
-            the second node should contain head node item
+            the second node should be changed to head node
         """
         self.assertRaises(IndexError, self.queue.dequeue)
         
@@ -59,6 +62,7 @@ class TestQueue(unittest.TestCase):
 
     def test_peek(self):
         """
+        test_peek
         1) 'peek' returns first node item.
         2) And it always should do same result
         3) if empty queue, then error occur
