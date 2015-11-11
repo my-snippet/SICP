@@ -56,3 +56,16 @@ class TestQueue(unittest.TestCase):
         self.queue.dequeue()
         self.assertIsNone(self.queue._first)
         self.assertIsNone(self.queue._last)
+
+    def test_peek(self):
+        """
+        1) 'peek' returns first node item.
+        2) And it always should do same result
+        3) if empty queue, then error occur
+        """
+        self.assertRaises(IndexError, self.queue.peek)
+ 
+        self.queue.enqueue(self.item1)
+        self.assertEqual(self.queue.peek(), self.item1)
+
+        self.assertEqual(self.queue.peek(), self.item1)

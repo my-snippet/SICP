@@ -64,3 +64,16 @@ class Queue(object):
         self._first = self._first.next
         self._size -= 1
         return n.item
+
+    def peek(self):
+        """Return the first item from the queue.
+
+        Returns:
+            The first item from the queue.
+
+        Raises:
+            IndexError: If the queue is empty.
+        """
+        if self.isEmpty():
+            raise IndexError("peek at empty queue")
+        return self._first.item
