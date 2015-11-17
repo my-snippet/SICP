@@ -1,3 +1,7 @@
+;; This chapter have a need to be read repeatedly at regular intervals
+;; (eval & apply chapter)
+
+
 (define (self-evaluating? exp)
   ;; The only self-evaluating items are numbers and strings:
   (cond ((number? exp) true)
@@ -86,6 +90,15 @@
 (define (first-operand ops) (car ops))
 (define (rest-operands ops) (cdr ops))
 
+(define (list-of-values exps env)
+  ;; Why map isn't used? : Because the evaluator
+  ;; can be implemented without any use of higher-order-functions
+  (if (no-operands? exps)
+	  '()
+	  (cons (eval (first-operand exps) env)
+			(list-of-values
+			 (rest-operands exps)
+			 env))))
 
 (define (eval exp env)
   ;; Eval takes as arguments an expression and an environment.
@@ -101,3 +114,5 @@
 (eval 'a 2) ;; self-evaluating false
 
 
+(load "../../modules/testing.scm")
+(test-begin "eval-test")
