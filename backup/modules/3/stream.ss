@@ -3,23 +3,6 @@
       (stream-car s)
       (stream-ref (stream-cdr s) (- n 1))))
 
-;; New stream-map defined below
-;;
-;(define (stream-map proc s)
-;  (if (stream-null? s)
-;      the-empty-stream
-;      (cons-stream (proc (stream-car s))
-;                   (stream-cdr s))))
-
-
-(define (stream-map proc . argstreams)
-  (if (stream-null? (car argstreams))
-      the-empty-stream
-      (cons-stream
-       (apply proc (map stream-car argstreams))
-       (apply stream-map
-          (cons proc (map stream-cdr argstreams))))))
-
 
 (define (stream-for-each proc s)
   (if (stream-null? s)
