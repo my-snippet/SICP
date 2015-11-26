@@ -13,8 +13,13 @@
 
 (test-assert "Just test" (= 1 1))
 
-(test-assert "compare first element each other"
+(test-assert "Compare first element each other"
 			 (= (car prime-table)
 				(car primes)))
+
+(test-assert "Compare the elements of primes & prime-table before 1,000"
+			 (compare-stream-and-list
+			  primes
+			  prime-table))
 
 (test-end "test-sieve-of-eratosthenes")
