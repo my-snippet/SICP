@@ -53,3 +53,14 @@
 (define (integers-starting-from n)
   (cons-stream
    n (integers-starting-from (+ n 1))))
+
+
+(define (compare-stream-and-list stm lt)
+  #|
+  It assumes a stream(stm) as infinite, and not list(lt)
+  |#
+  
+  (cond ((null? (cdr lt)) true)
+		((not (= (stream-car stm) (stream-car lt))) false)	   
+		(else
+		 (compare-stream-and-list (stream-cdr stm) (cdr lt))))))
