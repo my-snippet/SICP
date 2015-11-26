@@ -48,3 +48,8 @@
 
 (define (scale-stream stream factor)
   (stream-map (lambda (x) (* x factor)) stream))
+
+
+(define (integers-starting-from n)
+  (cons-stream
+   n (integers-starting-from (+ n 1))))
