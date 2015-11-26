@@ -13,10 +13,8 @@
 
 (test-assert "Just test" (= 1 1))
 
-#|
 (test-assert "compare first element each other"
 			 (= (car prime-table)
 				(car primes)))
-|#
 
 (test-end "test-sieve-of-eratosthenes")
