@@ -48,8 +48,7 @@
 
 (test-assert "not-contained test"
 			 (= (nums-freq not-contained-elem
-						   (adjoin-set not-contained-elem
-									   sample-list))
-				1))
+						   sample-list)
+				0))
 
 (test-end "adjoin-set")
