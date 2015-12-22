@@ -2,9 +2,11 @@
 
 ;;;; external lib
 (load "lib/test/chicken-scheme-test.scm")
+(load "lib/hof/nums-freq.scm")
+ 
 
+(test-begin "element-of-set?")
 
-(test-begin "set")
 (define must-contain-this 1)
 (define must-not-contain-this (- 1))
 
@@ -17,5 +19,13 @@
 			 (not (element-of-set? must-not-contain-this
 								   sample-list)))
 
-(test-end "set")
 
+
+(test-end "element-of-set?")
+
+(test-begin "adjoin-set")
+
+(test-assert "?"
+			 (= 1 1))
+
+(test-end "adjoin-set")
