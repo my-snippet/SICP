@@ -52,3 +52,21 @@
 				0))
 
 (test-end "adjoin-set")
+
+(test-begin "intersection-set")
+
+(define common-elem 99)
+(define not-common-elem (- 1))
+
+(define l1 (list common-elem))
+(define l2 (list not-common-elem common-elem))
+
+(test-assert "common elem test"
+			 (element-of-set? common-elem
+							  (intersection-set l1 l2)))
+
+(test-assert "not common elem test"
+			 (not (element-of-set? not-common-elem
+								(intersection-set l1 l2))))
+
+(test-end "intersection-set")
