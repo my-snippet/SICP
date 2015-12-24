@@ -2,10 +2,10 @@
 
 ;;;; external lib
 (load "lib/test/chicken-scheme-test.scm")
-(load "lib/set/nums-freq.scm")
+(load "lib/hof/nums-freq.scm")
  
 
-(test-begin "adjoin-set")
+(test-begin "union-set")
 
 (define already-contained-elem 1)
 (define new-elem 6)
@@ -33,4 +33,4 @@
 						   sample-list)
 				0))
 
-(test-end "adjoin-set")
+(test-end "union-set")

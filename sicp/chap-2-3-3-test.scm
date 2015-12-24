@@ -2,7 +2,7 @@
 
 ;;;; external lib
 (load "lib/test/chicken-scheme-test.scm")
-(load "lib/hof/nums-freq.scm")
+(load "lib/set/nums-freq.scm")
  
 
 (test-begin "element-of-set?")
