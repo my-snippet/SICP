@@ -1,36 +1,18 @@
-(load "ex-2-61.scm")
+(load "ex-2-62.scm")
 
 ;;;; external lib
 (load "lib/test/chicken-scheme-test.scm")
-(load "lib/hof/nums-freq.scm")
+(load "lib/set/nums-freq.scm")
  
 
 (test-begin "union-set")
 
-(define already-contained-elem 1)
-(define new-elem 6)
-(define not-contained-elem (- 1))
-
-(define sample-list (list already-contained-elem 2 3 4 5))
+(define sub-set (list 4 5 6))
+(define super-set-a (append (list 4 5 6) sub-set))
+(define super-set-b (append (list (- 4) (- 5) (- 6)) sub-set))
 
 (test-assert "?"
 			 (= 1 1))
 
-(test-assert "adjoin new element"
-			 (= (nums-freq new-elem
-						   (adjoin-set new-elem
-									   sample-list))
-				1))
-
-(test-assert "duplicate test"
-			 (= (nums-freq already-contained-elem
-						   (adjoin-set already-contained-elem
-									   sample-list))
-				1))
-
-(test-assert "not-contained test"
-			 (= (nums-freq not-contained-elem
-						   sample-list)
-				0))
 
 (test-end "union-set")
