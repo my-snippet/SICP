@@ -18,17 +18,24 @@
 
 (test-assert "intersection test"
 			 ;; work in progress
-			 ;; various range test needed. ( using Venn-diagram)
 			 (let ((intersection-of-super-set
 					(intersection-set super-set-a
 									  super-set-b))
 				   (union-of-super-set
 					(union-set super-set-a
-							   super-set-b))
+							   super-set-b)))
 
-				   (subset? intersection-a super-set-a))
-				   
+				   (subset? intersection-of-super-set
+							union-of-super-set)))
 
+
+(test-assert "duplicate test"
+			 ;; work in progress
+			 (let ((union-of-super-set
+				   (union-set super-set-a
+							  super-set-b)))
+			 
+			 (test-assert (not (duplicate-elem? union-of-super-set)))))
 ;;(test-assert "duplicate test")
 
 ;;(test-assert "not-contained test")
