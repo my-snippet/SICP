@@ -9,3 +9,11 @@
 
 (job ?x (computer programmer))
 (supervisor ?x (Bitdiddle Ben))
+
+;; Explain how it works
+(supervisor ?x ?x)
+
+(job ?x (computer ?type))
+
+;; dot tail notation
+(job ?x (computer . ?type))
