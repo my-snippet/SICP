@@ -17,3 +17,19 @@
 
 ;; dot tail notation
 (job ?x (computer . ?type))
+
+
+;;; compound query
+(and (job ?person (computer programmar))
+	 (address ?person ?where))
+
+(or (supervisor ?x (Bitdiddle Ben))
+	(supervisor ?x (Hacker Alyssa P)))
+
+(and (supervisor ?x (Bitdiddle Ben))
+	 (not (job ?x (computer programmer))))
+
+;; lisp-value is like a map
+;; it apply an operation to queried value
+(and (salary ?person ?amount)
+	 (lisp-value > ?amount 30000))
