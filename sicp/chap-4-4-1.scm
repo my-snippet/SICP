@@ -49,4 +49,13 @@
 
 (rule (same ?x ?x))
 
+(rule (outranked-by ?staff-person ?boss)
+	  (or (supervisor ?staff-person ?boss)
+		  (and (supervisor ?x ?staff-person)
+			   (outranked-by ?staff-person
+							 ?boss))))
+			  
+			   
 (lives-near ?x (Bitdiddle ben))
+(outranked-by (tweakit lem e) (Bitdiddle ben))
+(outranked-by (aull dewitt) (Bitdiddle ben))
