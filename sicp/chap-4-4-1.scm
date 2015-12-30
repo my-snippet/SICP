@@ -33,3 +33,10 @@
 ;; it apply an operation to queried value
 (and (salary ?person ?amount)
 	 (lisp-value > ?amount 30000))
+
+
+;; the query language provides means for abstracting queries.
+;; These are given by rules.
+(rule (wheel ?person)
+	  (and (supervisor ?middle-manager ?person)
+		   (supervisor ?x ?middle-manager)))
