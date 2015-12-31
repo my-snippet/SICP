@@ -726,6 +726,7 @@
           (and (supervisor ?staff-person ?middle-manager)
                (outranked-by ?middle-manager ?boss))))
 
+;;;; ex-4-57 (cr#x are practice versions, replace is real)
 ;;;; Preserve to know the implementation process
 ;; cr(1, 2, ...) is partial implementation of the replace rule
 (rule (cr ?person1 ?person2)
@@ -799,6 +800,7 @@
 		   (and (not (same ?person1 ?person2)))))
 ;;;;
 
+;; ex-4-57
 ;; Reference
 ;; http://community.schemewiki.org/?sicp-ex-4.57
 ;; Inner or sentence is core of this rule.
@@ -809,4 +811,12 @@
 		   (or (same ?j1 ?j2)
 			   (can-do-job ?j1 ?j2))
 		   (not (same ?person1 ?person2))))
+
+;; ex-4-58
+;; now version is needed to add more division(department)
+;; Only CEO is showed up now.
+(rule (bigshot ?someone)
+	  (and (job ?someone ?some-department)
+		   (job ?x ?some-department)
+		   (not (supervisor ?x ?y))))
 ))
