@@ -34,6 +34,11 @@
 (and (salary ?person ?amount)
 	 (lisp-value > ?amount 30000))
 
+;; find a job can do another job
+(can-do-job ?x (computer programmer))
+(can-do-job ?x (administration . ?sub-part))
+(can-do-job ?x (computer . ?sub-part))
+(can-do-job (computer wizard) ?x)
 
 ;; the query language provides means for abstracting queries.
 ;; These are given by rules.
