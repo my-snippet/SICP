@@ -726,7 +726,7 @@
           (and (supervisor ?staff-person ?middle-manager)
                (outranked-by ?middle-manager ?boss))))
 
-
+;;;; Preserve to know the implementation process
 ;; cr(1, 2, ...) is partial implementation of the replace rule
 (rule (cr ?person1 ?person2)
 ;;	  (and (not (same ?person1 ?person2))
@@ -797,6 +797,7 @@
 					(job ?someone ?j1)		   
 					(can-do-job ?someone ?j2)))
 		   (and (not (same ?person1 ?person2)))))
+;;;;
 
 ;; Reference
 ;; http://community.schemewiki.org/?sicp-ex-4.57

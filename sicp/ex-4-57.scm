@@ -6,12 +6,10 @@
 (initialize-data-base exercise-db)
 (query-driver-loop)
 
-;;(job ?x ?y)
-;;(outranked-by (fect cy d) ?x)
-;;(lives-near (fect cy d) ?x)
-;;(job (fect cy d) ?x)
-;;(same1 (fect cy d) (fect cy d))
 
+(replace (fect cy d) ?x)
+
+;;;; Preserve to know the implementation process
 ;;(cr (fect cy d) ?x)
 ;;(cr2 (fect cy d) ?x)
 ;;(cr3 (fect cy d) ?x)
@@ -20,4 +18,4 @@
 ;;(cr6 (fect cy d) ?x)
 ;;(cr7 (fect cy d) ?x)
 ;;(cr8 (fect cy d) ?x)
-(replace (fect cy d) ?x)
+;;;;
