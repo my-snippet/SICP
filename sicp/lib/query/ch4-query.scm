@@ -727,7 +727,7 @@
                (outranked-by ?middle-manager ?boss))))
 
 
-;; cr(1, 2, ...) is partial implementation of the can-replace
+;; cr(1, 2, ...) is partial implementation of the replace rule
 (rule (cr ?person1 ?person2)
 ;;	  (and (not (same ?person1 ?person2))
 	  (and (job ?person1 ?j)
@@ -746,6 +746,7 @@
 		   (and (job ?person1 ?j)
 				(job ?person2 ?j))))
 
+;; It causes duplicate result
 (rule (cr4 ?person1 ?person2)
 	  (or (and (job ?person1 ?j1)
 			   (job ?person2 ?j1)
@@ -755,6 +756,49 @@
 			   (job ?someone ?j1)			   
 			   (job ?someone ?j2)
 			   (not (same ?person1 ?person2)))
+		  ))
+
+(rule (cr5 ?person1 ?person2)
+	  (and (or (and (job ?person1 ?j1)
+					(job ?person2 ?j1))				
+			   (and (job ?person1 ?j1)
+					(job ?person2 ?j2)
+					(job ?someone ?j1)			   
+					(job ?someone ?j2)))
+		   (and (job ?person1 ?j1)
+				(job ?person2 ?j2)
+				(not (same ?person1 ?person2)))
+		  ))
+
+;; it works. duplicate situation does not happen
+(rule (cr6 ?person1 ?person2)
+	  (and (job ?person1 ?j1)
+		   (job ?person2 ?j2)
+		   (not (same ?person1 ?person2))))
+
+;; It also causes duplicate result.
+(rule (cr7 ?person1 ?person2)
+	  ;;	  (and (or (and (job ?person1 ?j1)
+	  ;;(job ?person2 ?j1))
+	  (and 
+	   (and (job ?person1 ?j1)
+			(job ?person2 ?j2)
+			(job ?someone ?j1)			   
+			(job ?someone ?j2))
+	   (and (job ?person1 ?j1)
+			(job ?person2 ?j2)
+			(not (same ?person1 ?person2)))))
+
+(rule (cr5 ?person1 ?person2)
+	  (and (or (and (job ?person1 ?j1)
+					(job ?person2 ?j1))				
+			   (and (job ?person1 ?j1)
+					(job ?person2 ?j2)
+					(job ?someone ?j1)			   
+					(job ?someone ?j2)))
+		   (and (job ?person1 ?j1)
+				(job ?person2 ?j2)
+				(not (same ?person1 ?person2)))
 		  ))
 
 (rule (can-replace ?person1 ?person2)
