@@ -5,6 +5,12 @@
 *.scm#*
 .#*.ss
 
+*.scm~
+*.scm#*
+*.scm~
+*.scm#*
+.#*.scm
+
 # Scheme test
 *.log
 
