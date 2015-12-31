@@ -6,8 +6,15 @@
 (initialize-data-base exercise-db)
 (query-driver-loop)
 
-
+;; a.
 (replace (fect cy d) ?x)
+
+;; b.
+(and (salary ?person ?amount)
+	 (replace ?person ?x)
+	 (salary ?x ?y)
+	 (lisp-value > ?y ?amount))
+
 
 ;;;; Preserve to know the implementation process
 ;;(cr (fect cy d) ?x)
