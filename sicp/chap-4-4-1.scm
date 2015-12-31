@@ -49,12 +49,14 @@
 
 (rule (same ?x ?x))
 
+;; This rule seems important to know about recursive rule.
+;; * boss does not mean CEO. It means Supervisor
 (rule (outranked-by ?staff-person ?boss)
 	  (or (supervisor ?staff-person ?boss)
-		  (and (supervisor ?x ?staff-person)
-			   (outranked-by ?staff-person
+		  (and (supervisor ?staff-person ?middle-manager)
+			   (outranked-by ?middle-manager
 							 ?boss))))
-			  
+
 			   
 (lives-near ?x (Bitdiddle ben))
 (outranked-by (tweakit lem e) (Bitdiddle ben))
