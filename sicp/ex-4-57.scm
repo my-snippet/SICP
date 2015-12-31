@@ -13,4 +13,6 @@
 ;;(same1 (fect cy d) (fect cy d))
 
 ;;(cr (fect cy d) ?x)
-(cr2 (fect cy d) ?x)
+;;(cr2 (fect cy d) ?x)
+;;(cr3 (fect cy d) ?x)
+(cr4 (fect cy d) ?x)

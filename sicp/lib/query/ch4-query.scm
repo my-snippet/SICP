@@ -726,6 +726,8 @@
           (and (supervisor ?staff-person ?middle-manager)
                (outranked-by ?middle-manager ?boss))))
 
+
+;; cr(1, 2, ...) is partial implementation of the can-replace
 (rule (cr ?person1 ?person2)
 ;;	  (and (not (same ?person1 ?person2))
 	  (and (job ?person1 ?j)
@@ -743,6 +745,17 @@
 	  (and (not (same ?person1 ?person2))
 		   (and (job ?person1 ?j)
 				(job ?person2 ?j))))
+
+(rule (cr4 ?person1 ?person2)
+	  (or (and (job ?person1 ?j1)
+			   (job ?person2 ?j1)
+			   (not (same ?person1 ?person2)))
+		  (and (job ?person1 ?j1)
+			   (job ?person2 ?j2)
+			   (job ?someone ?j1)			   
+			   (job ?someone ?j2)
+			   (not (same ?person1 ?person2)))
+		  ))
 
 (rule (can-replace ?person1 ?person2)
 	  (or (and (job ?person1 ?person1-job)
