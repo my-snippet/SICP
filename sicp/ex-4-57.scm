@@ -1,24 +1,15 @@
 ;; It's quite intersting each language version descripton(English, Korean) of this exercise
 
 (load "lib/query/ch4-query.scm")
-(load "lib/query/rules.scm")
 
 
-(initialize-data-base microshaft-data-base)
+(initialize-data-base exercise-db)
 (query-driver-loop)
 
-;; test job procedure to find a worker list
-(job ?x ?y)
+;;(job ?x ?y)
+;;(outranked-by (fect cy d) ?x)
+;;(lives-near (fect cy d) ?x)
+;;(job (fect cy d) ?x)
+;;(same1 (fect cy d) (fect cy d))
 
-
-;; in progress
-;; person1 person2 someone
-(rule (can-replace ?person2)
-	  (or (job ?person2 ?person2-job)
-		   (job ?person1 ?person2-job)
-	  ))
-
-	  
-(can-replace (fect cy d))
-;;(job (fect cy d) ?person2-job)
-(job ?x (computer programmer))
+(cr (fect cy d) ?x)
