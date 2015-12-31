@@ -12,4 +12,5 @@
 ;;(job (fect cy d) ?x)
 ;;(same1 (fect cy d) (fect cy d))
 
-(cr (fect cy d) ?x)
+;;(cr (fect cy d) ?x)
+(cr2 (fect cy d) ?x)

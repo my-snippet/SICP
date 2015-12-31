@@ -731,6 +731,19 @@
 	  (and (job ?person1 ?j)
 		   (job ?person2 ?j)))
 
+(rule (cr2 ?person1 ?person2)
+	  (and (job ?person1 ?j)
+		   (job ?person2 ?j)
+		   (not (same ?person1 ?person2))))
+
+;; It may doesn't work because the type of parameter.
+;; Query variable(argument) is may not determined yet.
+;; Then It is not possible to judge two arguments is same.
+(rule (cr3 ?person1 ?person2)
+	  (and (not (same ?person1 ?person2))
+		   (and (job ?person1 ?j)
+				(job ?person2 ?j))))
+
 (rule (can-replace ?person1 ?person2)
 	  (or (and (job ?person1 ?person1-job)
 			   (job ?person2 ?person1-job))
