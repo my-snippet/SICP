@@ -19,4 +19,5 @@
 ;;(cr5 (fect cy d) ?x)
 ;;(cr6 (fect cy d) ?x)
 ;;(cr7 (fect cy d) ?x)
-(cr8 (fect cy d) ?x)
+;;(cr8 (fect cy d) ?x)
+(replace (fect cy d) ?x)

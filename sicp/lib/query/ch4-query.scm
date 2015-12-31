@@ -797,4 +797,15 @@
 					(job ?someone ?j1)		   
 					(can-do-job ?someone ?j2)))
 		   (and (not (same ?person1 ?person2)))))
+
+;; Reference
+;; http://community.schemewiki.org/?sicp-ex-4.57
+;; Inner or sentence is core of this rule.
+;; (It is a part of and sentence!) 
+(rule (replace ?person1 ?person2)
+	  (and (job ?person1 ?j1)
+		   (job ?person2 ?j2)
+		   (or (same ?j1 ?j2)
+			   (can-do-job ?j1 ?j2))
+		   (not (same ?person1 ?person2))))
 ))
