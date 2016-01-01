@@ -832,5 +832,9 @@
 (meeting computer (Wednesday 3pm))
 (meeting administration (Friday 1pm))
 (meeting whole-company (Wednesday 4pm))
+
+(rule (meeting-time ?person ?day-and-time)
+	  (and (job ?person (?division . ?sub))
+		   (meeting ?division ?day-and-time)))
 ))
 ;; Querying is an output query variable(s) from an input query varialbe(s)
