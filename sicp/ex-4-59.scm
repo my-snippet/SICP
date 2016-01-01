@@ -6,8 +6,10 @@
 
 
 ;; a.
-(meeting ?division ?time)
-
+(meeting ?division ?day-and-time)
 
 ;; b.
-(meeting-time (hacker alyssa p) ?time)
+(meeting-time (hacker alyssa p) ?day-and-time)
+
+;; c.
+
