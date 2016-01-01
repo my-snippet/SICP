@@ -816,7 +816,8 @@
 ;; now version is needed to add more division(department)
 ;; Only CEO is showed up now.
 (rule (bigshot ?someone)
-	  (and (job ?someone ?some-department)
-		   (job ?x ?some-department)
-		   (not (supervisor ?x ?y))))
+	  (and (job ?someone ?division)
+		   (or (not (supervisor ?someone ?bigshot))
+			   (and (supervisor ?someone ?bigshot)
+					(not (job ?bigshot ?divison))))))
 ))

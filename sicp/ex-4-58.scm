@@ -6,3 +6,8 @@
 
 
 (bigshot ?someone)
+
+
+;;(supervisor ?x ?y)
+;;(not (supervisor (warbucks oliver) ?y))
+;;(job ?x ?y)
