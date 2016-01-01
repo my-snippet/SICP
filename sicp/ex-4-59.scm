@@ -12,4 +12,4 @@
 (meeting-time (hacker alyssa p) ?day-and-time)
 
 ;; c.
-
+(meeting-time (hacker alyssa p) (wednesday ?time))
