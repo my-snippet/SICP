@@ -833,8 +833,12 @@
 (meeting administration (Friday 1pm))
 (meeting whole-company (Wednesday 4pm))
 
+;; Inner 'or sentence' is core of this rule.
+;; ?day-and-time is used twice but it has not relation between them.
+;; Because it is enclosed by 'or'
 (rule (meeting-time ?person ?day-and-time)
 	  (and (job ?person (?division . ?sub))
-		   (meeting ?division ?day-and-time)))
+		   (or (meeting ?division ?day-and-time)
+			   (meeting whole-company ?day-and-time))))
 ))
 ;; Querying is an output query variable(s) from an input query varialbe(s)
