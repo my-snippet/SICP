@@ -825,5 +825,12 @@
 		   (or (not (supervisor ?person ?boss))
 			   (and (supervisor ?person ?boss)
 					(not (job ?boss (?division . ?r)))))))
+
+;; ex-4-59
+(meeting accounting (Monday 9am))
+(meeting administration (Monday 10am))
+(meeting computer (Wednesday 3pm))
+(meeting administration (Friday 1pm))
+(meeting whole-company (Wednesday 4pm))
 ))
 ;; Querying is an output query variable(s) from an input query varialbe(s)
