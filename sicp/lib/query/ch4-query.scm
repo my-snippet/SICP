@@ -813,11 +813,17 @@
 		   (not (same ?person1 ?person2))))
 
 ;; ex-4-58
-;; now version is needed to add more division(department)
-;; Only CEO is showed up now.
-(rule (bigshot ?someone)
-	  (and (job ?someone (?division . ?sub))
-		   (or (not (supervisor ?someone ?bigshot))
-			   (and (supervisor ?someone ?bigshot)
-					(not (job ?bigshot (?divison . ?s)))))))
+;; http://community.schemewiki.org/?sicp-ex-4.58
+(rule (bigshot ?x)
+	  (and (job ?x (?d . ?sub))
+		   (or (not (supervisor ?x ?b))
+			   (and (supervisor ?x ?b)
+					(not (job ?b (?d . ?s)))))))
+
+(rule (bigshot2 ?person ?division)
+	  (and (job ?person (?division . ?rest))
+		   (or (not (supervisor ?person ?boss))
+			   (and (supervisor ?person ?boss)
+					(not (job ?boss (?division . ?r)))))))
 ))
+;; Querying is an output query variable(s) from an input query varialbe(s)
