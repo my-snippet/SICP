@@ -803,8 +803,8 @@
 ;; ex-4-57
 ;; Reference
 ;; http://community.schemewiki.org/?sicp-ex-4.57
-;; Inner or sentence is core of this rule.
-;; (It is a part of and sentence!) 
+;; Inner 'or sentence' is core of this rule.
+;; (It is a part of 'and sentence'!) 
 (rule (replace ?person1 ?person2)
 	  (and (job ?person1 ?j1)
 		   (job ?person2 ?j2)
