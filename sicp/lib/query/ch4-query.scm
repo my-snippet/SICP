@@ -852,4 +852,4 @@
 				
 		   
 ))
-;; Querying is an output query variable(s) from an input query varialbe(s)
+;; Querying is the process of an output query variable(s) from an input query varialbe(s)
