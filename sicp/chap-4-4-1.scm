@@ -66,3 +66,9 @@
 (lives-near ?x (Bitdiddle ben))
 (outranked-by (tweakit lem e) (Bitdiddle ben))
 (outranked-by (aull dewitt) (Bitdiddle ben))
+
+;; Logic as programs
+;; It does not work now. is the rule problem?
+(append-to-form (a b) (c d) ?z)
+(append-to-form (a b) ?y (a b c d))
+;;(append-to-form ?x (a b c) ?z)

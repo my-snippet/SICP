@@ -858,7 +858,7 @@
 ;; Chap 4-4-1 : Logic as programs
 (rule (append-to-form () ?y ?y))
 (rule (append-to-form (?u . ?v) ?y (?u . ?z))
-	        (append-to-form ?v ?y ?z))
-	  
+            (append-to-form ?v ?y ?z))
+              
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
