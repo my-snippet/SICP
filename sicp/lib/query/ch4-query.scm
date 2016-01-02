@@ -846,10 +846,19 @@
 ;; 2. Find the same, and exclude the duplicate cases.
 ;; * 'not' in query does not mean a complement.
 ;; It means that just checks a condition if it does not satisfy the query logic
-(rule (lives-near-no-duplicate ?person-1 ?person-2)
-	  (and (lives-near ?person-1 ?person-2)
-		   (and (not 
-				
-		   
+
+;;(rule (lives-near ?person-1 ?person-2)
+;;      (and (address ?person-1 (?town . ?rest-1))
+;;           (address ?person-2 (?town . ?rest-2))
+;;           (not (same ?person-1 ?person-2))))
+
+
+;;(rule (lives-near-no-duplicate ?person-1 ?person-2)
+
+;; Chap 4-4-1 : Logic as programs
+(rule (append-to-form () ?y ?y))
+(rule (append-to-form (?u . ?v) ?y (?u . ?z))
+	        (append-to-form ?v ?y ?z))
+	  
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)

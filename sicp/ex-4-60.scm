@@ -10,4 +10,5 @@
 ;; duplicate problem
 (lives-near ?person-1 ?person-2)
 
-(lives-near-no-duplicate ?person-1 ?person-2)
+;;(lives-near-no-duplicate ?person-1 ?person-2)
+(address ?person ?addr)
