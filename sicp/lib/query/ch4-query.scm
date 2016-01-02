@@ -840,5 +840,16 @@
 	  (and (job ?person (?division . ?sub))
 		   (or (meeting ?division ?day-and-time)
 			   (meeting whole-company ?day-and-time))))
+
+;; ex-4-60
+;; 1. Find not the same
+;; 2. Find the same, and exclude the duplicate cases.
+(rule (lives-near-no-duplicate ?person-1 ?person-2)
+	  (and (same (lives-near ?person-1 ?person-2)
+				 (lives-near ?person-2 ?person-1))
+		   (not (lives-near ?person-1 ?person-2)))))
+		   
+			   
+		   
 ))
 ;; Querying is an output query variable(s) from an input query varialbe(s)
