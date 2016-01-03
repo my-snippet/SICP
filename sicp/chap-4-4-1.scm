@@ -3,7 +3,7 @@
 (load "lib/query/ch4-query.scm")
 
 
-(initialize-data-base microshaft-data-base)
+(initialize-data-base exercise-db)
 (query-driver-loop)
 
 
@@ -69,6 +69,6 @@
 
 ;; Logic as programs
 ;; It does not work now. is the rule problem?
-(append-to-form (a b) (c d) ?z)
+(append-to-form () (c d) ?z)
 (append-to-form (a b) ?y (a b c d))
 ;;(append-to-form ?x (a b c) ?z)
