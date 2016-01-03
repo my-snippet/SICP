@@ -866,5 +866,13 @@
 ;; (append-to-form () (d e) (a b c d e) -> recursive return ->
 ;; (append-to-form (a b c) (d e) (a b c d e))
 
+(rule (?x next-to ?y in (?x ?y . ?u)))
+(rule (?x next-to ?y in (?v . ?z))
+	  (?x next-to ?y in ?z))
+;; Description
+;; In : a b c
+;; Out : (a b) and (b c)
+;; Think of it as a query variable.
+
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
