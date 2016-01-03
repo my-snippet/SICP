@@ -858,7 +858,13 @@
 ;; Chap 4-4-1 : Logic as programs
 (rule (append-to-form () ?y ?y))
 (rule (append-to-form (?u . ?v) ?y (?u . ?z))
-            (append-to-form ?v ?y ?z))
-              
+	  (append-to-form ?v ?y ?z))
+;; z : (?u ?z) -> (?u (?u1 ?z1)) -> (?u (?u1 (?u2 ?z2))) -> ...
+;; Ex
+;; (append-to-form (a b c) (d e) ()) -> (append-to-form (b c) (d e) (a ?z)) ->
+;; (append-to-form (c) (d e) (a b ?z1) -> (append-to-form () (d e) (a b c ?z2) ->
+;; (append-to-form () (d e) (a b c d e) -> recursive return ->
+;; (append-to-form (a b c) (d e) (a b c d e))
+
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
