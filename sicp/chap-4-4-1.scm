@@ -71,4 +71,7 @@
 ;; It does not work now. is the rule problem?
 (append-to-form () (c d) ?z)
 (append-to-form (a b) ?y (a b c d))
-;;(append-to-form ?x (a b c) ?z)
+(append-to-form () (a b c) ?z)
+
+;; Think of it. how it(the query variables) works?
+(append-to-form ?x ?y (a b c d))
