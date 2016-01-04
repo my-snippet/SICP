@@ -908,14 +908,13 @@
 		   (son ?w ?s)))
 
 (rule (find-son ?m ?s)
-	  (and (wife ?m ?w)
-		   (or (son ?w ?s)
-			   (son ?m ?s))))
+	  (or (and (wife ?m ?w)
+			   (son ?w ?s))
+		  (son ?m ?s)))
 
-;; needed to fix : querying not working
 (rule (find-grand-son ?g ?s)
-	  (and (find-son ?g ?f)
-		   (find-son ?f ?s)))
+	  (and (find-son ?f ?s)
+		  (find-son ?g ?f)))
 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
