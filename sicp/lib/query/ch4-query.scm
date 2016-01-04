@@ -898,5 +898,9 @@
 ;; Javal and Jubal are son of Ada
 ;; Ada is wife of Lamech 
 ;; ...
+(rule (find-son ?m ?s)
+	  (and (wife ?m ?w)
+		   (son ?w ?s)))
+
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)

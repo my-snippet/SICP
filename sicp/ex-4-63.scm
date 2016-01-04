@@ -5,6 +5,7 @@
 (query-driver-loop)
 
 
-(find-grand-son Cain ?x)
 (find-son Lamech ?x)
-(find-grand-son Methushael ?x)
+
+;;(find-grand-son Cain ?x)
+;;(find-grand-son Methushael ?x)
