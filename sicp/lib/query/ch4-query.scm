@@ -885,6 +885,18 @@
 (rule (last-pair (?u . ?v) (?x))
 	  (last-pair ?v (?x)))
 
-
+;; ex-4-63
+(son Adam Cain)
+(son Cain Enoch)
+(son Enoch Irad)
+(son Irad Mehujael)
+(son Mehujael Methushael)
+(son Methushael Lamech)
+(wife Lamech Ada)
+(son Ada Jabal)
+(son Ada Jubal)
+;; Javal and Jubal are son of Ada
+;; Ada is wife of Lamech 
+;; ...
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
