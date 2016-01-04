@@ -874,5 +874,17 @@
 ;; Out : (a b) and (b c)
 ;; Think of it as a query variable.
 
+
+;; ex-4-62
+;; http://community.schemewiki.org/?sicp-ex-4.62
+;; This exercise ask reader 
+;; 1. pattern difference variable variable arguments
+;; ?x : just 1 value, . ?y : list values
+;; If (?x) = . ?y, then ?y is the last element, and . ?y is one element list.
+(rule (last-pair (?x) (?x)))
+(rule (last-pair (?u . ?v) (?x))
+	  (last-pair ?v (?x)))
+
+
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
