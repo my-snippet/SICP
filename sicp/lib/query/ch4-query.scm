@@ -914,7 +914,12 @@
 
 (rule (find-grand-son ?g ?s)
 	  (and (find-son ?f ?s)
-		  (find-son ?g ?f)))
+		   (find-son ?g ?f)))
+
+;;;; Infinite loop
+(assert! (married Minnie Mickey))
+(assert! (rule (married ?x ?y)
+			   (married ?y x)))
 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)

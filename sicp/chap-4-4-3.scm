@@ -4,8 +4,8 @@
 (initialize-data-base exercise-db)
 (query-driver-loop)
 
-
-;;;; the necessity of order of query
+;;;; Compound query
+;; the necessity of order of query
 (and (job ?x (computer programmer))
 	 (supervisor ?x ?y))
 ;;or
@@ -18,3 +18,5 @@
 ;;produced by the first clause of the and.
 ;;;;
 
+;; Infinite loop
+;;(married Mickey ?who)	   
