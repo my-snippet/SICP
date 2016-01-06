@@ -19,10 +19,11 @@
    ))
 
 
-;;
-(set-register-contents! gcd-machine 'a 8)
-(set-register-contents! gcd-machine 'b 8)
+;; set data
+(set-register-contents! gcd-machine 'a 48)
+(set-register-contents! gcd-machine 'b 180)
 
+;; operate machine
 (start gcd-machine)
 (newline)
-(display (get-register-contents gcd-machine 't))
+(display (get-register-contents gcd-machine 'a))
