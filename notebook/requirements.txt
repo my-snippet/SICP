@@ -9,3 +9,4 @@ pyzmq>=14.7.0
 terminado>=0.5
 tornado>=4.2
 pylab
+calysto-scheme
