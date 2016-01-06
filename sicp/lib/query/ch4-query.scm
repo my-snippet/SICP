@@ -917,6 +917,7 @@
 		   (find-son ?g ?f)))
 
 ;;;; Infinite loop
+;; notice : assert! notify it is not query but fact or rule.
 (assert! (married Minnie Mickey))
 (assert! (rule (married ?x ?y)
 			   (married ?y x)))
