@@ -922,5 +922,12 @@
 (assert! (rule (married ?x ?y)
 			   (married ?y x)))
 
+
+;; ex-4-68
+;; in progress : reverse idea - rerverse the order of input variable (Resursive)
+;;(rule (reverse (?u . ?v) (?z . ?u))
+;;	  (reverse ?v 
+;;	  (append-to-form 
+
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
