@@ -29,3 +29,9 @@
 				  (contract-question-mark v))))
 			 (qeval q (singleton-stream '()))))
 		   (query-driver-loop)))))
+;; The expressions of the query language
+;; 1. The implementation of the expression syntax
+;; predicate : assertion-to-be-added?
+;; selector : add-assertion-body 
+;; 2. transformations to make the processing more efficient 
+;; procedure : query-syntax-process, contract-question-mark
