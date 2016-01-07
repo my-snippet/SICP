@@ -35,3 +35,26 @@
 ;; selector : add-assertion-body 
 ;; 2. transformations to make the processing more efficient 
 ;; procedure : query-syntax-process, contract-question-mark
+
+
+;;;; Instantiation
+;; To instantiate an expression, we copy it, replacing any variables
+;; in the expression by their values in a given frame.
+;; The values are themselves instantiated, since they could contain variables
+(define (instantiate
+		 exp frame unbound-var-handler)
+  (define (copy exp)
+	(cond ((var? exp)
+		   (let ((binding
+				  (binding-in-frame
+				   exp frame)))
+			 (if binding
+				 (copy
+				  (binding-value binding))
+				 (unbound-var-handler
+				  exp frame))))
+		  ((pair? exp)
+		   (cons (copy (car exp))
+				 (copy (cdr exp))))
+		  (else exp)))
+  (copy exp))
