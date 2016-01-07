@@ -1,0 +1,50 @@
+digraph {
+
+   node [
+      fill=cornflowerblue,
+      fontcolor=black,
+      shape=box,
+      style=filled,
+   ];
+
+   edge [
+    //  arrowhead=box,
+     // arrowtail=dot
+   ];
+
+   Step0 [   
+      color=white,
+      fontcolor=black,
+      label="start",
+      shape=box
+   ];
+
+   Step1 [
+      color=darkgoldenrod2,
+      fontcolor=black,
+      label="counter > n",
+      shape=diamond
+   ];
+
+   Step2 [
+      label="p <- (p * c)"
+   ];
+
+   Step3 [
+   label="c <- (c + 1)"
+   ];
+
+   Step2a [
+      color=white,
+      label="done"
+   ]
+
+   Step0  -> Step1;
+   Step1  -> Step2[
+      label=no;
+      arrowhead=dot;
+   ]
+   Step1  -> Step2a[label=yes];
+   Step2  -> Step3;
+   Step3 -> Step1;
+}
