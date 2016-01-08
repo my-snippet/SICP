@@ -73,3 +73,20 @@
 	(if qproc
 		(qproc (contents query) frame-stream)
 		(simple-query query frame-stream))))
+
+
+(define (simple-query query-pattern
+					  frame-stream)
+  (stream-flatmap
+   (lambda (frame)
+	 (stream-append-delayed
+	  (find-assertions query-pattern frame)
+	  (delay
+		(apply-rules query-pattern frame))))
+   frame-stream))
+;; find-assertions : match each frame in the input stream against
+;; all assertions in the data base, producing a stream of extended frames
+;; apply-rules : apply all possible rules, producing another stream of extended frames.
+;; stream-append-delayed : It combines assertion frames with rule frames as a stream.
+;; stream-flatmap : It makes all the streams as a stream that
+;; can be extended to produce a match with the given pattern.
