@@ -162,3 +162,14 @@
    frame-stream))
 
 ;;(put 'lisp-value 'qeval lisp-value)
+
+
+;; execute
+;; it applies the predicate to the arguments
+;; must eval the predicate expression to get the procedure to apply
+;; but it must not evaluate the arguments,
+;; since they are already the actual arguments
+(define (execute exp)
+  (apply (eval (predicate exp)
+			   user-initial-environment)
+		 (args exp)))
