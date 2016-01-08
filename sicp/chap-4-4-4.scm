@@ -173,3 +173,15 @@
   (apply (eval (predicate exp)
 			   user-initial-environment)
 		 (args exp)))
+
+
+;;;; Finding Assertions by Pattern Matching
+;; find-assertions
+;; it use fetch-assertions to get a stream of all the assertions in the data base
+;; fetch-assertions : to apply simple tests that will eliminate many of the entries
+;; The system would still work if we eliminated fetch-assertions, but less efficient.
+(define (find-assertions pattern frame)
+  (stream-flatmap
+   (lambda (datum)
+	 (check-an-assertion datum pattern frame))
+   (fetch-assertions pattern frame)))
