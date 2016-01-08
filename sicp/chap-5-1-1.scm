@@ -3,6 +3,12 @@
 (load "lib/register/ch5-regsim")
 
 
+(define (gcd a b)
+  (if (= b 0)
+	  a
+	  (gcd b (remainder a b))))
+
+
 (define gcd-machine
   (make-machine
    '(a b t)
