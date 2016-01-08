@@ -109,3 +109,18 @@
 				frame-stream))))
 
 ;;(put 'and 'qeval conjoin)
+
+;; disjoin
+;; The output streams for the various disjuncts(logical summation) of the or
+;; are computed separately and merged using the interleave-delayed procedure
+(define (disjoin disjuncts frame-stream)
+  (if (empty-disjunction? disjuncts)
+	  the-empty-stream
+	  (interleave-delayed
+	   (qeval (first-disjunct disjuncts)
+			  frame-stream)
+	   (delay (disjoin
+			   (rest-disjuncts disjuncts)
+			   frame-stream)))))
+
+(put 'or 'qeval disjoin)
