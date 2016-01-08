@@ -58,3 +58,18 @@
 				 (copy (cdr exp))))
 		  (else exp)))
   (copy exp))
+
+
+;;;; qeval
+;; - It is called by the query-driver-loop
+;; - the basic evaluator of the query system
+;; - input : a query and a stream of frames
+;; - output : a stream of extended frames
+;; - It identifies special forms by a data-directed dispatch.
+;; - else : it is assumed to be a simple query
+;; - type, contents : implement the abstract syntax of the special forms.
+(define (qeval query frame-stream)
+  (let ((qproc (get (type query) 'qeval)))
+	(if qproc
+		(qproc (contents query) frame-stream)
+		(simple-query query frame-stream))))
