@@ -126,3 +126,39 @@
 ;;(put 'or 'qeval disjoin)
 
 
+;;;; negate
+;; include a given frame in the output stream only if it cannot be extended.
+;; (query being negated, that is, query being not statisfied)
+(define (negate operands frame-stream)
+  (stream-flatmap
+   (lambda (frame)
+	 (if (stream-null?
+		  (qeval (negated-query operands)
+				 (singleton-stream frame)))
+		 (singleton-stream frame)
+		 the-empty-stream))
+   frame-stream))
+
+;;(put 'not 'qeval negate)
+
+
+;;;; lisp-value
+;; - if the predicate returns false,
+;; then the frame filtered out of the input stream.
+;; - An error results if there are unbound pattern variables.
+(define (lisp-value call frame-stream)
+  (stream-flatmap
+   (lambda (frame)
+	 (if (execute
+		  (instantiate
+		   call
+		   frame
+		   (lambda (v f)
+			 (error
+			  "Unknown pat var: LISP-VALUE"
+			  v))))
+		 (singleton-stream frame)
+		 the-empty-stream))
+   frame-stream))
+
+;;(put 'lisp-value 'qeval lisp-value)
