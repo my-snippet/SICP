@@ -123,4 +123,6 @@
 			   (rest-disjuncts disjuncts)
 			   frame-stream)))))
 
-(put 'or 'qeval disjoin)
+;;(put 'or 'qeval disjoin)
+
+
