@@ -95,5 +95,17 @@
 
 ;;;;;; Compound query
 ;;;; conjoin
-;; It handles And queries.
-;; 
+;; - It handles And queries.
+;; - It takes as inputs the conjuncts(logical multiplication) and the frame stream
+;; - 1. It finds frame extensions that satisfy the first query in the conjunction.
+;; - 2. using this as the new frame stream, it recursively applies conjoin
+;; to the rest of the queries.
+(define (conjoin conjuncts frame-stream)
+  (if (empty-conjunction? conjuncts)
+	  frame-stream
+	  (conjoin (rest-conjuncts conjuncts)
+			   (qeval
+				(first-conjunct conjuncts)
+				frame-stream))))
+
+;;(put 'and 'qeval conjoin)
