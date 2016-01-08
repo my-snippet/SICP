@@ -1,3 +1,4 @@
+;;;;;; The query evaluator and the driver loop
 ;;;; query-driver-loop
 ;; 1. It(query-driver-loop) repeatedly reads input expressions
 ;; 2. The driver passes this query to the evaluator qeval together with an initial frame stream
@@ -90,3 +91,9 @@
 ;; stream-append-delayed : It combines assertion frames with rule frames as a stream.
 ;; stream-flatmap : It makes all the streams as a stream that
 ;; can be extended to produce a match with the given pattern.
+
+
+;;;;;; Compound query
+;;;; conjoin
+;; It handles And queries.
+;; 
