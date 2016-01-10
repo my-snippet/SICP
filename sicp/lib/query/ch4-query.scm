@@ -924,8 +924,8 @@
 
 
 ;; ex-4-68
-;; in progress : reverse idea - rerverse the order of input variable (Resursive)
 #|
+;; Try 1.
 ;; This style makes a list multiple dimensioned
 (rule (reverse () ?z))
 
@@ -933,6 +933,12 @@
 	  (reverse ?v ?z))
 |#
 
+;; Idea : Logical operation of append-to-form & recursive
+(rule (reverse () ?z))
+
+(rule (reverse ? ?)
+	  (and (append-to-form ? ? ?)
+		   (reverse ? ?)))
 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
