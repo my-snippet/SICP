@@ -67,8 +67,8 @@
 (outranked-by (tweakit lem e) (Bitdiddle ben))
 (outranked-by (aull dewitt) (Bitdiddle ben))
 
-;; Logic as programs
-;; It does not work now. is the rule problem?
+;;;; Logic as programs
+;;; append-to-form
 (append-to-form () (c d) ?z)
 (append-to-form (a b) ?y (a b c d))
 (append-to-form () (a b c) ?z)
@@ -78,3 +78,7 @@
 
 ;; It is implemented as query name, not quote value
 (append-to-form (str1 str2) (str3) ?z)
+
+;; Conjunction & Disjunction Study
+(and (append-to-form ?x ?y (1 2))
+	 (append-to-form ?y ?x (1 2)))
