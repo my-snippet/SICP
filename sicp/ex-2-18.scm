@@ -1,0 +1,5 @@
+(define (reverse-not-built-in l)
+  (if (null? l)
+	  '()
+	  (append (reverse-not-built-in (cdr l))
+			  (cons (car l) '()))))
