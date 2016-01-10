@@ -75,3 +75,6 @@
 
 ;; Think of it. how it(the query variables) works?
 (append-to-form ?x ?y (a b c d))
+
+;; It is implemented as query name, not quote value
+(append-to-form (str1 str2) (str3) ?z)
