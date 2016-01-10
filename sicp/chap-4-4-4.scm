@@ -185,3 +185,16 @@
    (lambda (datum)
 	 (check-an-assertion datum pattern frame))
    (fetch-assertions pattern frame)))
+
+
+;; check-an-assertion
+;; input(arguments) : a pattern, a data object (assertion), a frame
+;; ouput(return) : a one-element stream or the-empty-stream
+(define (check-an-assertion
+		 assertion query-pat query-frame)
+  (let ((match-result
+		 (pattern-match
+		  query-pat assertion query-frame)))
+	(if (eq? match-result 'failed)
+		the-empty-stream
+		(singleton-stream match-result))))
