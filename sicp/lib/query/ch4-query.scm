@@ -934,6 +934,11 @@
 |#
 
 ;; Idea : Logical operation of append-to-form & recursive
+;; The result of query is not a pattern variable. Rather, It is sentences 
+;; that are assigned the data that match the query logic to the pattern 
+;; variables. Therefore, If you call queries recursively without logical
+;; operations(AND, OR),the result will not be desirable.
+
 (rule (reverse () ?z))
 
 (rule (reverse ? ?)
