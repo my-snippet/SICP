@@ -938,6 +938,7 @@
 ;; that are assigned the data that match the query logic to the pattern 
 ;; variables. Therefore, If you call queries recursively without logical
 ;; operations(AND, OR),the result will not be desirable.
+
 #|
 (rule (reverse () ()))
 
@@ -952,11 +953,21 @@
 ;; But when last element meet(The value is null), It did not work.
 (rule (reverse () ()))
 
-
 (rule (reverse (?u . ?v) (?x . ?y))
 	  (and (append-to-form () (?u) ?y)
 		   (reverse ?v ?x)))
 |#
 
+;; Reference
+;; http://community.schemewiki.org/?sicp-ex-4.68
+;; When comparing the two lists upside down,
+;; The value of each element will be the same.
+
+(rule (reverse () ())) 
+
+(rule (reverse ?x ?y)
+	  (and (append-to-form ?rest (?elem) ?x)
+		   (append-to-form (?elem) ?rev-rest ?y)
+		   (reverse ?rest ?rev-rest)))
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
