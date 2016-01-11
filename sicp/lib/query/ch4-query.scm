@@ -947,6 +947,16 @@
 		   (reverse ?v ?y)))
 |#
 
+#|
+;; This implementation remove . notation using covering dot argument with ()
+;; But when last element meet(The value is null), It did not work.
+(rule (reverse () ()))
+
+
+(rule (reverse (?u . ?v) (?x . ?y))
+	  (and (append-to-form () (?u) ?y)
+		   (reverse ?v ?x)))
+|#
 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
