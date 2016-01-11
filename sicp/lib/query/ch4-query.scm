@@ -938,12 +938,15 @@
 ;; that are assigned the data that match the query logic to the pattern 
 ;; variables. Therefore, If you call queries recursively without logical
 ;; operations(AND, OR),the result will not be desirable.
+#|
+(rule (reverse () ()))
 
-(rule (reverse () ?z))
+;; Re-define append-to-form as reverse
+(rule (reverse (?u . ?v) (?x . ?y))
+	  (and (append-to-form () ?u ?x)
+		   (reverse ?v ?y)))
+|#
 
-(rule (reverse ? ?)
-	  (and (append-to-form ? ? ?)
-		   (reverse ? ?)))
 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
