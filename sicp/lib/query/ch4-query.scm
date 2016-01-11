@@ -963,11 +963,32 @@
 ;; When comparing the two lists upside down,
 ;; The value of each element will be the same.
 
-(rule (reverse () ())) 
+(rule (rev-rhs () ())) 
 
-(rule (reverse ?x ?y)
+(rule (rev-rhs ?x ?y)
+	  (and (append-to-form (?elem) ?rest ?x)
+		   (append-to-form ?rev-rest (?elem) ?y)
+		   (rev-rhs ?rest ?rev-rest)))
+
+(rule (rev-lhs () ())) 
+
+(rule (rev-lhs ?x ?y)
 	  (and (append-to-form ?rest (?elem) ?x)
 		   (append-to-form (?elem) ?rev-rest ?y)
-		   (reverse ?rest ?rev-rest)))
+		   (rev-lhs ?rest ?rev-rest)))
+
+;; 'reverse' uses rev-lhs as default.
+(rule (reverse ?x ?y)
+	  (rev-lhs ?x ?y))
+
+#|
+;; It has a problem. When called reverse, same sentence may be right
+;; But After the operation of reverse-[x]hs, the same sentence must be false.
+(rule (reverse ?x ?y)
+	  (or (and (same (?y ()))
+			   (rev-rhs ?x ?y))
+		  (and (same (?x ()))
+			   (rev-lhs ?x ?y))))
+|#
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
