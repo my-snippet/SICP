@@ -992,9 +992,30 @@
 |#
 
 ;; ex-4-69
+;; The reason that it uses <find-son> rather than <son> is that 
+;; First, it should knows the child-parent relationship.
 (rule (relationship (?u . ?v) ?x ?y)
-	  (and (find-son ?x ?y)
-		   (append-to-form () ?u son)
-		   (append-to-form () ?v ())))	   
+	  (or 
+	   ;; son?
+	   (and (find-son ?x ?y)
+			(append-to-form () ?u son)
+			(append-to-form () ?v ()))
+	   ;; father?
+	   (and (find-son ?y ?x)
+			(wife ?y ?z)			
+			(append-to-form () ?u father)
+			(append-to-form () ?v ()))
+	   ;; mother?
+	   (and (find-son ?y ?x)
+			(wife ?z ?y)
+			(append-to-form () ?u mother)
+			(append-to-form () ?v ()))
+	   ;; grandson?
+	   ;; it does not work, needed to fix
+	   (and (find-grand-son ?x ?y)
+			(append-to-form () ?u grandson)
+			(append-to-form () ?v ()))
+	   ))
+		  
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
