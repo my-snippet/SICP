@@ -992,8 +992,9 @@
 |#
 
 ;; ex-4-69
-(rule (relationship ?u ?x ?y)
-	  (and (son ?x ?y)
-		  (append-to-form () ?u son)))	   
+(rule (relationship (?u . ?v) ?x ?y)
+	  (and (find-son ?x ?y)
+		   (append-to-form () ?u son)
+		   (append-to-form () ?v ())))	   
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
