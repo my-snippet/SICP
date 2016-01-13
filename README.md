@@ -8,7 +8,8 @@ Works
 ---
 
 __Documentation__  
-This project has [the documentation of SICP contents](http://wikibootup.github.io/sicp/) using [iPython notebook](http://ipython.org/notebook.html). For this, It uses Scheme, Python, Haskell.  
+This project has [the documentation of SICP contents](http://wikibootup.github.io/sicp/) using [iPython notebook](http://ipython.org/notebook.html).  
+For this, It uses Scheme, Python, Haskell.  
 
 __Test__  
 The project uses [Chicken Scheme test](http://wiki.call-cc.org/eggref/4/test) for testing.
