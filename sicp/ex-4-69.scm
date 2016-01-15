@@ -16,3 +16,6 @@
 
 ;; grondson
 (relationship ?x Methushael Jabal)
+
+;; grondfather
+(relationship ?x Jabal Methushael)

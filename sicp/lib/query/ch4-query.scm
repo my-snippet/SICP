@@ -1014,6 +1014,11 @@
 	   (and (find-grand-son ?x ?y)
 			(append-to-form () ?u grandson)
 			(append-to-form () ?v ()))
+	   ;; grandfather? : ignore wife problem,
+	   ;; it can be solved by naming <parents> and then query <wife>
+	   (and (find-grand-son ?y ?x)
+			(append-to-form () ?u grandfather)
+			(append-to-form () ?v ()))
 	   ))
 		  
 ))
