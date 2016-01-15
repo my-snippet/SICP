@@ -1,3 +1,9 @@
+;; square is built-in proc in mit-schime. but for
+;; ipython notebook kernel I added this.
+(define (square x)
+  (* x x))
+
+
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
 	  guess
