@@ -1,0 +1,5 @@
+calysto-scheme
+gnureadline
+graphviz
+ipynose
+ipython[all]
