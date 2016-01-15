@@ -1011,7 +1011,6 @@
 			(append-to-form () ?u mother)
 			(append-to-form () ?v ()))
 	   ;; grandson?
-	   ;; it does not work, needed to fix
 	   (and (find-grand-son ?x ?y)
 			(append-to-form () ?u grandson)
 			(append-to-form () ?v ()))

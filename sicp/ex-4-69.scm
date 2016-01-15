@@ -6,9 +6,13 @@
 
 ;; son
 (relationship ?x Ada Jabal)
+(relationship ?x Methushael Lamech)
 
 ;; father
 (relationship ?x Jabal Lamech)
 
 ;; mather
 (relationship ?x Jabal Ada)
+
+;; grondson
+(relationship ?x Methushael Jabal)
