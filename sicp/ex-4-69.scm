@@ -21,4 +21,7 @@
 (relationship ?x Jabal Methushael)
 
 ;; (great great great great great grandson)
-(relationship2 ?x Adam Jabal)
+(greats-grandson ?x Adam Jabal)
+
+;; (great great great great great grandfather)
+(greats-grandfather ?x Jabal Adam)

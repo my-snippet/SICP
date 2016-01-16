@@ -1022,7 +1022,7 @@
 	   
 	   ))
 
-(rule (relationship2 (?u . ?v) ?x ?y)
+(rule (greats-grandson (?u . ?v) ?x ?y)
 	  (or 
 	   ;; grandson?
 	   (and (find-grand-son ?x ?y)
@@ -1032,9 +1032,18 @@
 	   (and (not (find-grand-son ?x ?y))		   			
 			(append-to-form () ?u great)
 			(find-son ?x ?z)
-			(relationship2 ?v ?z ?y))))
-	  
+			(greats-grandson ?v ?z ?y))))
 
-
+(rule (greats-grandfather (?u . ?v) ?x ?y)
+	  (or 
+	   ;; grandfather?
+	   (and (find-grand-son ?y ?x)
+			(append-to-form () ?u grandfather)
+			(append-to-form () ?v ()))
+	   ;; not grandfather?
+	   (and (not (find-grand-son ?y ?x))		   			
+			(append-to-form () ?u great)
+			(find-son ?z ?x)
+			(greats-grandfather ?v ?z ?y))))	 
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
