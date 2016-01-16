@@ -19,3 +19,6 @@
 
 ;; grondfather
 (relationship ?x Jabal Methushael)
+
+;; (great great great great great grandson)
+(relationship2 ?x Adam Jabal)
