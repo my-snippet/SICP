@@ -994,32 +994,19 @@
 ;; ex-4-69
 ;; The reason that it uses <find-son> rather than <son> is that 
 ;; First, it should knows the child-parent relationship.
-(rule (relationship (?u . ?v) ?x ?y)
+(rule (simple-relation ?u ?x ?y)
 	  (or 
 	   ;; son?
 	   (and (find-son ?x ?y)
-			(append-to-form () ?u son)
-			(append-to-form () ?v ()))
+			(append-to-form () ?u son))
 	   ;; father?
 	   (and (find-son ?y ?x)
 			(wife ?y ?z)			
-			(append-to-form () ?u father)
-			(append-to-form () ?v ()))
+			(append-to-form () ?u father))
 	   ;; mother?
 	   (and (find-son ?y ?x)
 			(wife ?z ?y)
-			(append-to-form () ?u mother)
-			(append-to-form () ?v ()))
-	   ;; grandson?
-	   (and (find-grand-son ?x ?y)
-			(append-to-form () ?u grandson)
-			(append-to-form () ?v ()))
-	   ;; grandfather? : ignore wife problem,
-	   ;; it can be solved by naming <parents> and then query <wife>
-	   (and (find-grand-son ?y ?x)
-			(append-to-form () ?u grandfather)
-			(append-to-form () ?v ()))
-	   ))
+			(append-to-form () ?u mother))))
 
 (rule (greats-grandson (?u . ?v) ?x ?y)
 	  (or 
@@ -1045,9 +1032,13 @@
 			(find-son ?z ?x)
 			(greats-grandfather ?v ?z ?y))))
 
-(rule (greats-grand-relation (?u . ?v) ?x ?y)
-	  (and (append-to-form () ?v ())
-		   (or (greats-grandson ?u ?x ?y)
-			   (greats-grandfather ?u ?x ?y))))
+(rule (greats-grand-relation ?u ?x ?y)
+	  (or (greats-grandson ?u ?x ?y)
+		  (greats-grandfather ?u ?x ?y)))
+
+(rule (relationship ?u ?x ?y)
+	  (or (greats-grand-relation ?u ?x ?y)
+		  (and (not (greats-grand-relation ?u ?x ?y))
+			   (simple-relation ?u ?x ?y))))
 ))
 ;; Querying is the process of an output query variable(s) from an input query varialbe(s)
