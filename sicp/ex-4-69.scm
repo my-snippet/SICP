@@ -25,3 +25,6 @@
 
 ;; (great great great great great grandfather)
 (greats-grandfather ?x Jabal Adam)
+
+(greats-grand-relationship ?x Adam Jabal)
+(greats-grand-relationship ?x Jabal Adam)
