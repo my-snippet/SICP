@@ -189,7 +189,7 @@
 
 ;; check-an-assertion
 ;; input(arguments) : a pattern, a data object (assertion), a frame
-;; ouput(return) : a one-element stream or the-empty-stream
+;; ouput(return) : one-element stream or the-empty-stream
 (define (check-an-assertion
 		 assertion query-pat query-frame)
   (let ((match-result
@@ -198,3 +198,28 @@
 	(if (eq? match-result 'failed)
 		the-empty-stream
 		(singleton-stream match-result))))
+
+
+;; pattern-match
+;; output : failed sign or an extension of the given frame
+;; It accumulates bindings for the pattern variables
+;; Three possible types of arguments
+;; 1. the pattern and the data object are the same : It returns the frame of bindings
+;; accumulated so far
+;; 2. the pattern is a variable : It extends the current frame by binding the variable
+;; to the data
+;; 3. the pattern and the data are both pairs : It (recursively) matches the car of
+;; the pattern against the car of the data to produce a frame
+(define (pattern-match pat dat frame)
+  (cond ((eq? frame 'failed) 'failed)
+		((equal? pat dat) frame)
+		((var? pat)
+		 (extend-if-consistent
+		  pat dat frame))
+		((and (pair? pat) (pair? dat))
+		 (pattern-match
+		  (cdr pat)
+		  (cdr dat)
+		  (pattern-match
+		   (car pat) (car dat) frame)))
+		(else 'failed)))
