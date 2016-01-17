@@ -223,3 +223,24 @@
 		  (pattern-match
 		   (car pat) (car dat) frame)))
 		(else 'failed)))
+
+
+;; extend-if-consistent
+;; 1. No binding for the variable? : It Just adds the binding of the variable to
+;; the data.
+;; 2. Otherwise? :  It matches the data against the value of the variable in the
+;; frame.
+;; 3. Stored value contains only constants : It simply tests whether the stored
+;; and new values are the same. If so, it returns the unmodified frame; if not,
+;; it returns a failure indication.
+;; 4. The stored value may contain pattern variables if it was stored during
+;; unification. The recursive match of the stored pattern against the new data
+;; will add or check bindings for the variables in this pattern. ( for more
+;; detail, read [4.4.4.3 Finding Assertions by Pattern Matching]. )
+
+(define (extend-if-consistent var dat frame)
+  (let ((binding (binding-in-frame var frame)))
+	(if binding
+		(pattern-match
+		 (binding-value binding) dat frame)
+		(extend var dat frame))))
