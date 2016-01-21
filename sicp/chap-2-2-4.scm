@@ -4,6 +4,9 @@
 ;; I used Racket for picture language. 
 ;; Because it has convenient to import picture-lang libraries.
 
+(require "ex-2-44.scm")
+  
+
 ;; Basic functions
 #|
 (paint einstein)
@@ -27,3 +30,28 @@
 (paint (right-split einstein 1))
 (paint (right-split einstein 2))
 
+(define (corner-split painter n)
+  (if (= n 0)
+      painter
+      (let ((up (up-split painter (- n 1)))
+            (right (right-split painter (- n 1))))
+        (let ((top-left (beside up up))
+              (bottom-right (below right right))
+              (corner (corner-split painter (- n 1))))
+          (beside (below painter top-left)
+                  (below bottom-right corner))))))
+(paint (corner-split einstein 1))
+(paint (corner-split einstein 2))
+
+(define (corner-split-ver-2 painter n)
+  (if (= n 0)
+      (beside painter painter)
+      (let ((up (up-split painter (- n 1)))
+            (right (right-split painter (- n 1))))
+        (let ((top-left (beside up up))
+              (bottom-right (below right right))
+              (corner (corner-split-ver-2 painter (- n 1))))
+          (beside (below painter top-left)
+                  (below bottom-right corner))))))
+(paint (corner-split-ver-2 einstein 1))
+(paint (corner-split-ver-2 einstein 2))
