@@ -24,3 +24,6 @@
 **/__pycache__/
 *.pyc
 *.py.swp
+
+# Dot
+*.dot~
