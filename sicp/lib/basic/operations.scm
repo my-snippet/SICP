@@ -38,3 +38,7 @@
 				 "It has been decreased from 0 to" (- k 1) ", not decreased from" k
 				 ))))))
   (gd-iter 0 1))
+
+
+(define (square x)
+  (* x x))
