@@ -19,4 +19,3 @@
 
 (test-end "fast-expt-iter test")
 (map (lambda (n) (fast-expt 2 n)) (list 1 2 3 4 5 10 11 12 13 14 15 20 21 22 23 24 25))
-
