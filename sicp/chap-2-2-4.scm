@@ -55,3 +55,12 @@
                   (below bottom-right corner))))))
 (paint (corner-split-ver-2 einstein 1))
 (paint (corner-split-ver-2 einstein 2))
+
+
+;; frame-coord-map example
+(define origin (make-vect 0 0))
+(define unit-vect (make-vect 1 1))
+(define edge1 (make-vect 2 4))
+(define edge2 (make-vect 3 9))
+(define a (make-frame origin edge1 edge2))
+((frame-coord-map a) unit-vect)
