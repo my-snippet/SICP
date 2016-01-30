@@ -15,4 +15,5 @@
   ;; pi = 4 * ( (3^2-1)/3^2 * (5^2-1)/5^2 * ... )
   (* 4.0 (product 3
 				  (lambda (x) (/ (- (square x) 1) (square x)))
-				  (lambda (x) (+ x 2)) n)))
+				  (lambda (x) (+ x 2))
+				  n)))
