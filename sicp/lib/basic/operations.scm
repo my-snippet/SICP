@@ -77,3 +77,5 @@
   (if (close-enough? (f k) value)
 	  k
 	  (find-n-when-satisfy-tolerance f value tolerance (next k) next)))
+
+(define e 2.71828)
