@@ -68,3 +68,12 @@
 
 (define (average a b)
   (/ (+ a b) 2))
+
+(define (find-n-when-satisfy-tolerance f value tolerance k next)
+  (define (close-enough? a val)
+	(> tolerance (abs (- a val))))
+  (display (f k))
+  (newline)
+  (if (close-enough? (f k) value)
+	  k
+	  (find-n-when-satisfy-tolerance f value tolerance (next k) next)))
