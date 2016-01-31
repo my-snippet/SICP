@@ -8,12 +8,12 @@
 (test-begin "acc test")
 
 ;; 3628800 is from haskell ghci
-(test-assert "10! using product-using-acc"
+(test-assert "10! using product-using-acc-recur"
 			 (= 3628800
-				(product-using-acc 1 identity inc 10)))
+				(product-using-acc-recur 1 identity inc 10)))
 
-(test-assert "sum[1..10] using sum-using-acc"
+(test-assert "sum[1..10] using sum-using-acc-recur"
 			 (= 55
-				(sum-using-acc 1 identity inc 10)))
+				(sum-using-acc-recur 1 identity inc 10)))
 
 (test-end "acc test")
