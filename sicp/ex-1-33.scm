@@ -1,0 +1,6 @@
+(define (filtered-accumulate combiner predicate null-value term a next b)
+  (define (iter a result)
+	(cond ((> a b) result)
+		  ((predicate a) (iter (next a) (combiner result (term a))))
+		  (else (iter (next a) result))))
+  (iter a null-value))
