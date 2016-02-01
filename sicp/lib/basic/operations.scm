@@ -79,3 +79,4 @@
 	  (find-n-when-satisfy-tolerance f value tolerance (next k) next)))
 
 (define e 2.71828)
+(define pi  3.14159)
