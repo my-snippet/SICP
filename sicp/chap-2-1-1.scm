@@ -20,3 +20,9 @@
 (define (equal-rat? x y)
   (= (* (numer x) (denom y))
 	 (* (numer y) (denom x))))
+
+(define (make-rat n d) (cons n d))
+
+(define (numer x) (car x))
+
+(define (denom x) (cdr x))
