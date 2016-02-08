@@ -25,3 +25,32 @@
 ;; p1 -- p3
 ;; :      :
 ;; p2 -- p4
+
+(define (make-rectangle p1 p2 p3 p4)
+  (cons p1 (cons p2 (cons p3 (cons p4 '())))))
+
+(define (p1-rect r)
+  (car r))
+
+(define (p2-rect r)
+  (cadr r))
+
+(define (p3-rect r)
+  (caddr r))
+
+(define (p4-rect r)
+  (cadddr r))
+
+(define (perimeter-rect r)
+  (let ((h (abs (- (y-point (p2-rect r))
+				   (y-point (p1-rect r)))))
+		(w (abs (- (x-point (p3-rect r))
+				   (x-point (p2-rect r))))))
+	(* 2 (+ h w))))
+
+(define (area-rect r)
+  (let ((h (abs (- (y-point (p2-rect r))
+				   (y-point (p1-rect r)))))
+		(w (abs (- (x-point (p3-rect r))
+				   (x-point (p2-rect r))))))
+	(* h w)))
