@@ -10,13 +10,13 @@
 (define w 2)
 (define h 3)
 
-(define p1 (make-point 0 0))
-(define p2 (make-point 0 (- h)))
-(define p3 (make-point w (- h)))
-(define p4 (make-point w 0))
-(define r (make-rectangle p1 p2 p3 p4))
+(define p-tl (make-point 0 0))
+(define p-bl (make-point 0 (- h)))
+(define p-br (make-point w (- h)))
+(define p-tr (make-point w 0))
+(define r (make-rectangle p-tl p-bl p-br p-tr))
 
-(define r-seg (make-rectangle-seg p1 p2 p3 p4))
+(define r-seg (make-rectangle-seg p-tl p-bl p-br p-tr))
 
 (test-assert "points ver : perimeter containing negative coordinates"
 			 (= (perimeter-rect r) (* 2 (+ w h))))

@@ -25,68 +25,89 @@
 ;; p1 -- p3
 ;; :      :
 ;; p2 -- p4
+;;
+;; For clarity
+;; tl : top left
+;; tr : top right
+;; bl : bottom left
+;; br : bottom right
+;;
+;;         s-t
+;;    p-tl -- p-tr
+;; s-l :        : s-r
+;;    p-bl -- p-br
+;;         s-b
 
-(define (make-rectangle p1 p2 p3 p4)
-  (cons p1 (cons p2 (cons p3 (cons p4 '())))))
 
-(define (p1-rect r)
+(define (make-rectangle p-tl p-bl p-br p-tr)
+  (cons p-tl (cons p-bl (cons p-br (cons p-tr '())))))
+
+(define (p-tl-rect r)
   (car r))
 
-(define (p2-rect r)
+(define (p-bl-rect r)
   (cadr r))
 
-(define (p3-rect r)
+(define (p-br-rect r)
   (caddr r))
 
-(define (p4-rect r)
+(define (p-tr-rect r)
   (cadddr r))
 
+(define (height-points p-tl p-bl)
+  (abs (- (y-point p-bl)
+		  (y-point p-tl))))
+
+(define (width-points p-tl p-bl)
+  (abs (- (x-point p-bl)
+		  (x-point p-tl))))
+
 (define (perimeter-rect r)
-  (let ((h (abs (- (y-point (p2-rect r))
-				   (y-point (p1-rect r)))))
-		(w (abs (- (x-point (p3-rect r))
-				   (x-point (p2-rect r))))))
+  (let ((h (height-points (p-bl-rect r) (p-tl-rect r)))
+		(w (width-points (p-br-rect r) (p-bl-rect r))))
 	(* 2 (+ h w))))
 
 (define (area-rect r)
-  (let ((h (abs (- (y-point (p2-rect r))
-				   (y-point (p1-rect r)))))
-		(w (abs (- (x-point (p3-rect r))
-				   (x-point (p2-rect r))))))
+  (let ((h (height-points (p-bl-rect r) (p-tl-rect r)))
+		(w (width-points (p-br-rect r) (p-bl-rect r))))
 	(* h w)))
 
 ;; Second version
 ;; it takes 4 points and returns 4 segments
 ;; it uses ex-2-2 libraries as segments
-(define (make-rectangle-seg p1 p2 p3 p4)
-  (cons (make-segment p1 p2)
-		(cons (make-segment p2 p3)
-			  (cons (make-segment p3 p4)
-					(cons (make-segment p4 p1)
+(define (make-rectangle-seg p-tl p-bl p-br p-tr)
+  (cons (make-segment p-tl p-bl)
+		(cons (make-segment p-bl p-br)
+			  (cons (make-segment p-br p-tr)
+					(cons (make-segment p-tr p-tl)
 						  '())))))
 
-(define (s1-rect r)
+(define (s-l-rect r)
   (car r))
 
-(define (s2-rect r)
+(define (s-b-rect r)
   (cadr r))
 
-(define (s3-rect r)
+(define (s-r-rect r)
   (caddr r))
 
-(define (s4-rect r)
+(define (s-t-rect r)
   (cadddr r))
 
+(define (height-seg s)
+  (abs (- (y-point (end-segment s))
+		  (y-point (start-segment s)))))
+
+(define (width-seg s)
+  (abs (- (x-point (end-segment s))
+		  (x-point (start-segment s)))))
+
 (define (perimeter-rect-seg r)
-  (let ((h (abs (- (y-point (end-segment (s1-rect r)))
-				   (y-point (start-segment (s1-rect r))))))
-		(w (abs (- (x-point (end-segment (s2-rect r)))
-				   (x-point (start-segment (s2-rect r)))))))
+  (let ((h (height-seg (s-l-rect r)))
+		(w (width-seg (s-b-rect r))))
 	(* 2 (+ h w))))
 
 (define (area-rect-seg r)
-    (let ((h (abs (- (y-point (end-segment (s1-rect r)))
-					 (y-point (start-segment (s1-rect r))))))
-		  (w (abs (- (x-point (end-segment (s2-rect r)))
-				   (x-point (start-segment (s2-rect r)))))))
+  (let ((h (height-seg (s-l-rect r)))
+		(w (width-seg (s-b-rect r))))
 	(* h w)))
