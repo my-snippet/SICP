@@ -38,7 +38,7 @@
 ;;    p-bl -- p-br
 ;;         s-b
 
-;; First ver : it takes 4 points and returns a list which contains 4 points
+;; First ver : it takes 4 points and constructs a list which contains 4 points
 (define (make-rectangle p-tl p-bl p-br p-tr)
   (cons p-tl (cons p-bl (cons p-br (cons p-tr '())))))
 
@@ -74,7 +74,7 @@
 
 
 ;; Second version
-;; it takes 4 points and returns 4 segments
+;; it takes 4 points and constructs 4 segments
 ;; it uses ex-2-2 libraries as segments
 (define (make-rectangle-seg p-tl p-bl p-br p-tr)
   (cons (make-segment p-tl p-bl)
@@ -114,7 +114,7 @@
 	(* h w)))
 
 
-;; Third ver : it takes 2 points and returns a list which contains 2 points
+;; Third ver : it takes 2 points and constructs a list which contains 2 points
 ;; ( a point & opposite side point )
 (define (make-rectangle-2p p p-opposite)
   (cons p p-opposite))
@@ -157,3 +157,55 @@
   (let ((h (y-diff-points (start-diag-point r) (end-diag-point r)))
 		(w (x-diff-points (start-diag-point r) (end-diag-point r))))
 	(* h w)))
+
+
+;; Fifth ver
+;; If a rectangle is not parallel to x axis & y axis, second, third, fourth
+;; versions may causes an error. Therefore it is needed to use pythagoras
+;; theorem.
+
+;; Models 
+;; 1. Three points
+;; 2. Two segments( Adjacent, Parallel )
+;; Here it uses - 1. Three points - as arguments and constructs adjacent 2 segments
+
+;; It assumes that users input point arguments in order of counter-clockwise
+;; like these,
+;;  p2         p1        p3
+;;p3  p1    p2              p2
+;;             p3        p1
+
+(define (make-rectangle-3p p1 p2 p3)
+  (cons (make-segment p1 p2) (make-segment p2 p3)))
+
+(define (point-dist p1 p2)
+  (sqrt (+ (square (- (x-point p1) (x-point p2)))
+		   (square (- (y-point p1) (y-point p2)))))) 
+
+(define (start-seg-rect-3p r)
+  (car r))
+
+(define (end-seg-rect-3p r)
+  (cdr r))
+
+;; it uses first version procedures to calculate height, width
+(define (perimeter-rect-3p r)
+  (let ((h (y-diff-points (start-segment (start-diag-point r))
+						  (end-segment (start-diag-point r))))
+		(w (x-diff-points (start-segment (end-diag-point r))
+						  (end-segment (end-diag-point r)))))
+	(* 2 (+ h w))))
+
+(define (area-rect-3p r)
+  (let ((h (y-diff-points (start-segment (start-diag-point r))
+						  (end-segment (start-diag-point r))))
+		(w (x-diff-points (start-segment (end-diag-point r))
+						  (end-segment (end-diag-point r)))))
+	(* h w)))
+
+
+;; Other versions
+;; If it takes two parellel segments as arguemtns, it is needed to use
+;; pythagoras theorem to calculate a unknown width(or height)
+;; http://www.billthelizard.com/2010/10/sicp-23-rectangles-in-plane.html
+;; http://community.schemewiki.org/?sicp-ex-2.3
