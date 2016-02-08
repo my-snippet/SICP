@@ -51,7 +51,7 @@
 (test-assert "3 points ver : perimeter containing negative coordinates"
 			 (= (perimeter-rect-3p r-3p) (* 2 (+ w h))))
 
-;;(test-assert "3 points ver : area containing negative coordinates"
-;;			 (= (area-rect-3p r-3p) (* w h)))
+(test-assert "3 points ver : area containing negative coordinates"
+			 (= (area-rect-3p r-3p) (* w h)))
 
 (test-end "rectangle operations")
