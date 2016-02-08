@@ -18,6 +18,10 @@
 
 (define r-seg (make-rectangle-seg p-tl p-bl p-br p-tr))
 
+(define r-2p (make-rectangle-2p p-tl p-br))
+
+(define r-1d (make-rectangle-1d (make-segment p-tl p-br)))
+
 (test-assert "points ver : perimeter containing negative coordinates"
 			 (= (perimeter-rect r) (* 2 (+ w h))))
 
@@ -29,5 +33,17 @@
 
 (test-assert "segments ver : area containing negative coordinates"
 			 (= (area-rect-seg r-seg) (* w h)))
+
+(test-assert "2 points ver : perimeter containing negative coordinates"
+			 (= (perimeter-rect-2p r-2p) (* 2 (+ w h))))
+
+(test-assert "2 points ver : area containing negative coordinates"
+			 (= (area-rect-2p r-2p) (* w h)))
+
+(test-assert "1 diagonal ver : perimeter containing negative coordinates"
+			 (= (perimeter-rect-1d r-1d) (* 2 (+ w h))))
+
+(test-assert "1 diagonal ver : area containing negative coordinates"
+			 (= (area-rect-1d r-1d) (* w h)))
 
 (test-end "rectangle operations")

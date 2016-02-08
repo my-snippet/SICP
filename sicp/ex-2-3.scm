@@ -38,7 +38,7 @@
 ;;    p-bl -- p-br
 ;;         s-b
 
-
+;; First ver : it takes 4 points and returns a list which contains 4 points
 (define (make-rectangle p-tl p-bl p-br p-tr)
   (cons p-tl (cons p-bl (cons p-br (cons p-tr '())))))
 
@@ -54,23 +54,24 @@
 (define (p-tr-rect r)
   (cadddr r))
 
-(define (height-points p-tl p-bl)
-  (abs (- (y-point p-bl)
-		  (y-point p-tl))))
+(define (y-diff-points p1 p2)
+  (abs (- (y-point p1)
+		  (y-point p2))))
 
-(define (width-points p-tl p-bl)
-  (abs (- (x-point p-bl)
-		  (x-point p-tl))))
+(define (x-diff-points p1 p2)
+  (abs (- (x-point p1)
+		  (x-point p2))))
 
 (define (perimeter-rect r)
-  (let ((h (height-points (p-bl-rect r) (p-tl-rect r)))
-		(w (width-points (p-br-rect r) (p-bl-rect r))))
+  (let ((h (y-diff-points (p-bl-rect r) (p-tl-rect r)))
+		(w (x-diff-points (p-br-rect r) (p-bl-rect r))))
 	(* 2 (+ h w))))
 
 (define (area-rect r)
-  (let ((h (height-points (p-bl-rect r) (p-tl-rect r)))
-		(w (width-points (p-br-rect r) (p-bl-rect r))))
+  (let ((h (y-diff-points (p-bl-rect r) (p-tl-rect r)))
+		(w (x-diff-points (p-br-rect r) (p-bl-rect r))))
 	(* h w)))
+
 
 ;; Second version
 ;; it takes 4 points and returns 4 segments
@@ -110,4 +111,49 @@
 (define (area-rect-seg r)
   (let ((h (height-seg (s-l-rect r)))
 		(w (width-seg (s-b-rect r))))
+	(* h w)))
+
+
+;; Third ver : it takes 2 points and returns a list which contains 2 points
+;; ( a point & opposite side point )
+(define (make-rectangle-2p p p-opposite)
+  (cons p p-opposite))
+
+(define (p-rect-2p r)
+  (car r))
+
+(define (p-opposite-rect-2p r)
+  (cdr r))
+
+;; it uses first version procedures to calculate height, width
+(define (perimeter-rect-2p r)
+  (let ((h (y-diff-points (p-rect-2p r) (p-opposite-rect-2p r)))
+		(w (x-diff-points (p-rect-2p r) (p-opposite-rect-2p r))))
+	(* 2 (+ h w))))
+
+(define (area-rect-2p r)
+  (let ((h (y-diff-points (p-rect-2p r) (p-opposite-rect-2p r)))
+		(w (x-diff-points (p-rect-2p r) (p-opposite-rect-2p r))))
+	(* h w)))
+
+
+;; Fourth ver : it takes 1 diagonal of a rectangle
+(define (make-rectangle-1d d)
+  (cons (start-segment d) (end-segment d)))
+
+(define (start-diag-point r)
+  (car r))
+
+(define (end-diag-point r)
+  (cdr r))
+
+;; it uses first version procedures to calculate height, width
+(define (perimeter-rect-1d r)
+  (let ((h (y-diff-points (start-diag-point r) (end-diag-point r)))
+		(w (x-diff-points (start-diag-point r) (end-diag-point r))))
+	(* 2 (+ h w))))
+
+(define (area-rect-1d r)
+  (let ((h (y-diff-points (start-diag-point r) (end-diag-point r)))
+		(w (x-diff-points (start-diag-point r) (end-diag-point r))))
 	(* h w)))
