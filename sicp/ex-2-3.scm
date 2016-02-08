@@ -54,3 +54,39 @@
 		(w (abs (- (x-point (p3-rect r))
 				   (x-point (p2-rect r))))))
 	(* h w)))
+
+;; Second version
+;; it takes 4 points and returns 4 segments
+;; it uses ex-2-2 libraries as segments
+(define (make-rectangle-seg p1 p2 p3 p4)
+  (cons (make-segment p1 p2)
+		(cons (make-segment p2 p3)
+			  (cons (make-segment p3 p4)
+					(cons (make-segment p4 p1)
+						  '())))))
+
+(define (s1-rect r)
+  (car r))
+
+(define (s2-rect r)
+  (cadr r))
+
+(define (s3-rect r)
+  (caddr r))
+
+(define (s4-rect r)
+  (cadddr r))
+
+(define (perimeter-rect-seg r)
+  (let ((h (abs (- (y-point (end-segment (s1-rect r)))
+				   (y-point (start-segment (s1-rect r))))))
+		(w (abs (- (x-point (end-segment (s2-rect r)))
+				   (x-point (start-segment (s2-rect r)))))))
+	(* 2 (+ h w))))
+
+(define (area-rect-seg r)
+    (let ((h (abs (- (y-point (end-segment (s1-rect r)))
+					 (y-point (start-segment (s1-rect r))))))
+		  (w (abs (- (x-point (end-segment (s2-rect r)))
+				   (x-point (start-segment (s2-rect r)))))))
+	(* h w)))
