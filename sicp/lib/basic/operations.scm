@@ -64,6 +64,8 @@
 
 (define (inc n) (+ n 1))
 
+(define (dec n) (- n 1))
+
 (define (identity x) x)
 
 (define (average a b)
