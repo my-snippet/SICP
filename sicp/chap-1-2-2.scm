@@ -4,7 +4,7 @@
 (define (count-change amount)
     (cc-new amount 5 0))
 
-(define (cc-new amount kinds-of-coins count)
+(define (cc-iter amount kinds-of-coins count)
   (cond ((= amount 0) (+ count 1))
 		((or (< amount 0) (= kinds-of-coins 0)) count)
 		(else (cc-iter (- amount (first-denomination kinds-of-coins))
