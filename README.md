@@ -6,8 +6,12 @@ References
 
 Documents
 ===
+__Korean__  
 - [Chapter 1](http://wikibootup.github.io/sicp/chap-1)
-- [Previous Doc](http://wikibootup.github.io/sicp/index-bak)
+- [Old Documents](http://wikibootup.github.io/sicp/index-bak)
+
+__English__  
+- [Chapter 1](http://wikibootup.github.io/sicp/chap-1-en)
 
 Works
 ===
