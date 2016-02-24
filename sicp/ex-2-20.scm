@@ -22,10 +22,10 @@
 ;; to seperate implementation(inner procedure) and first proecure
 ;; it cons up first-value and remained-values when calling inner
 ;; proceure
-(define (same-parity-version-1 first-value . remained-values)
-  (define (same-parity? a b)
-	(= (remainder a 2) (remainder b 2)))
+(define (same-parity? a b)
+  (= (remainder a 2) (remainder b 2)))
 
+(define (same-parity-version-1 first-value . remained-values)
   (define (recur l)
 	(cond ((null? l)
 		   '())
@@ -37,9 +37,6 @@
 
 
 (define (same-parity-version-2 first-value . remained-values)
-  (define (same-parity? a b)
-	(= (remainder a 2) (remainder b 2)))
-
   (define (recur l)
 	(cond ((null? l)
 		   '())
