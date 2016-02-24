@@ -45,3 +45,13 @@
 		  (else
 		   (recur (cdr l)))))
   (recur (cons first-value remained-values)))
+
+(define (same-parity-version-3 first-value . remained-values)
+  (define (iter l result)
+	(cond ((null? l)
+		   result)
+		  ((same-parity? first-value (car l))
+		   (iter (cdr l) (append result (list (car l)))))
+		  (else
+		   (iter (cdr l) result))))
+  (iter remained-values (list first-value)))
