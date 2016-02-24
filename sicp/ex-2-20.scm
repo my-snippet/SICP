@@ -10,8 +10,8 @@
 	(cond ((null? l)
 		   '())
 		  ((odd? (car l))
-		   (cons (car l) (even-filter (cdr l))))
-		  (else (even-filter (cdr l)))))
+		   (cons (car l) (odd-filter (cdr l))))
+		  (else (odd-filter (cdr l)))))
 
   (if (even? first-value)
 	  (cons first-value (even-filter remained-values))
