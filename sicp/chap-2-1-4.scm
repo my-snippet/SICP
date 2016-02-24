@@ -21,3 +21,16 @@
 				(make-interval
 				 (/ 1.0 (upper-bound y))
 				 (/ 1.0 (lower-bound y)))))
+
+(define (make-center-width c w)
+  (make-interval (- c w) (+ c w)))
+
+(define (center i)
+  (/ (+ (lower-bound i)
+		(upper-bound i))
+	 2))
+
+(define (width i)
+  (/ (- (upper-bound i)
+		(lower-bound i))
+	 2))
