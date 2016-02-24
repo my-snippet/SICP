@@ -17,16 +17,34 @@
 	  (cons first-value (even-filter remained-values))
 	  (cons first-value (odd-filter remained-values))))
 
-#|
-(define (same-parity-version-1 first-value . remained-values)
-  (define (remainder-by-2 value)
-	(remainder value 2))
 
-  (define (iter 
-  
-  (let ((parity-of-first-value (remainder-by-2 first-value)))
-	(cond ((null? remained-values)
+;; exercise2.20 requires the procedure takes one or more integers
+;; to seperate implementation(inner procedure) and first proecure
+;; it cons up first-value and remained-values when calling inner
+;; proceure
+(define (same-parity-version-1 first-value . remained-values)
+  (define (same-parity? a b)
+	(= (remainder a 2) (remainder b 2)))
+
+  (define (recur l)
+	(cond ((null? l)
 		   '())
-		  ((= parity-of-first-value (remainder-by-2 (car remained-values))
-		   (cons first-value (even-filter remained-values))
-|#
+		  ((same-parity? first-value (car l))
+		   (cons (car l) (recur (cdr l))))
+		  (else
+		   (recur (cdr l)))))
+  (recur (cons first-value remained-values)))
+
+
+(define (same-parity-version-2 first-value . remained-values)
+  (define (same-parity? a b)
+	(= (remainder a 2) (remainder b 2)))
+
+  (define (recur l)
+	(cond ((null? l)
+		   '())
+		  ((same-parity? first-value (car l))
+		   (append (list (car l)) (recur (cdr l))))
+		  (else
+		   (recur (cdr l)))))
+  (recur (cons first-value remained-values)))
