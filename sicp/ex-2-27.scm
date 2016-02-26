@@ -35,3 +35,15 @@
 				 (list (deep-reverse-version2 (car x)))))
 		(else (append (deep-reverse-version2 (cdr x))
 					  (list (car x))))))
+
+;; iterative version
+;; think about the flow of results
+(define (deep-reverse-version3 x)
+  (define (iter items result)
+	(if (pair? items)
+		(iter (cons (iter (car items)
+						  result)
+					result)
+			  result)
+		result))
+  (iter x '()))		
