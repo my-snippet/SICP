@@ -6,3 +6,6 @@
 
 (fringe-version0 x)
 (fringe-version0 y)
+
+(fringe x)
+(fringe y)
