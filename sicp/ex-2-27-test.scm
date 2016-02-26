@@ -12,3 +12,6 @@
 
 (deep-reverse-version2 x)
 (deep-reverse-version2 y)
+
+(deep-reverse-version3 x)
+(deep-reverse-version3 y)
