@@ -17,3 +17,14 @@
 		((not (pair? tree)) (list tree))
 		(else (append (fringe (car tree))
 					  (fringe (cdr tree))))))
+
+;; code reference
+;; http://community.schemewiki.org/?sicp-ex-2.28
+;; iterative version
+(define (fringe-version1 T)
+  (define (iter T R)
+	(cond ((null? T) R)
+		  ((not (pair? T)) (cons T R))
+		  (else (iter (car T)
+					  (iter (cdr T) R)))))
+  (iter T '()))
