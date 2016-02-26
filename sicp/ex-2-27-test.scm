@@ -8,4 +8,7 @@
 (deep-reverse y)
 
 (deep-reverse-version1 x)
+(deep-reverse-version1 y)
+
+(deep-reverse-version2 x)
 (deep-reverse-version2 y)

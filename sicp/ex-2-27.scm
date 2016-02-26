@@ -1,8 +1,5 @@
-;; http://community.schemewiki.org/?sicp-ex-2.27
+;; code reference : http://community.schemewiki.org/?sicp-ex-2.27
 
-;;(define (deep-reverse x)
-;;  (let ((h (if (pair? x) (cdr x) x))
-;;		(t (if (pair? x) (car x) x)))
 
 ;; wow.
 (define (deep-reverse t)
@@ -16,3 +13,19 @@
 	  (append (deep-reverse-version1 (cdr x))
 			  (list (deep-reverse-version1 (car x))))
 	  x)) 
+
+;; This method is a kind of interleaving.
+;; (a) is (a nil) actually.
+;; 'append' procedure uncovers a parenthesis of second argument
+;; Therefore (list ...) is covered to second argument
+(define (deep-reverse-version2 x)
+  (cond ((null? x) '())
+		((pair? (car x))
+		 (append (deep-reverse-version2 (cdr x))
+				 (list (deep-reverse-version2 (car x)))))
+		(else (append (deep-reverse-version2 (cdr x))
+					  (list (car x))))))
+
+;;(define (deep-reverse x)
+;;  (let ((h (if (pair? x) (cdr x) x))
+;;		(t (if (pair? x) (car x) x)))
