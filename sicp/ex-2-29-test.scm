@@ -6,9 +6,13 @@
 
 (test-begin "balanced mobile")
 
+(define length-of-b0 3)
+(define structure-of-b0 1)
+(define b0 (make-branch length-of-b0 structure-of-b0))
 
-(define b0 (make-branch 3 1))
-(define b1 (make-branch 6 1))
+(define length-of-b1 6)
+(define structure-of-b1 1)
+(define b1 (make-branch length-of-b1 structure-of-b1))
 (define m01 (make-mobile b0 b1))
 
 (define b0-copy b0)
@@ -16,7 +20,7 @@
 			 (eq? b0-copy
 				  b0))
 			 
-(test-assert "branch selector in mobile"
+(test-assert "mobile selector"
 			 (and (eq? (left-branch m01)
 					   b0)
 				  (eq? (right-branch m01)
