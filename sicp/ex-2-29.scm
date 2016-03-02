@@ -10,6 +10,11 @@
 (define (right-branch m)
   (cadr m))
 
+(define (branch-length b)
+  (car b))
+
+(define (branch-structure b)
+  (cadr b))
  
 (define (make-mobile-cons left right)
   (cons left right))

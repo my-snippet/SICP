@@ -26,4 +26,10 @@
 				  (eq? (right-branch m01)
 					   b1)))		 				  
 
+(test-assert "branch selector"
+			 (and (eq? (branch-length b0)
+					   length-of-b0)
+				  (eq? (branch-structure b0)
+					   structure-of-b0)))
+
 (test-end "balanced mobile")
