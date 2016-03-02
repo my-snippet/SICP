@@ -16,6 +16,13 @@
 (define (branch-structure b)
   (cadr b))
  
+(define (total-weight m)
+  (cond ((null? m) 0)
+		((not (pair? m)) m)
+		((not (pair? (cadr m))) (car m))
+		(else (+ (total-weight (car m))
+				 (total-weight (cadr m))))))
+
 (define (make-mobile-cons left right)
   (cons left right))
 
