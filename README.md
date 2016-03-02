@@ -39,4 +39,4 @@ It can be downloaded using pip
 
 __[IHaskell](https://github.com/gibiansky/IHaskell)__  
 It can be downloaded in a variety of ways, but The project used ['cabal'](https://www.haskell.org/cabal/)  
-`$ cabal install ihaskell --reorder-goals$`
+`$ cabal install ihaskell --reorder-goals`
