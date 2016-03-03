@@ -26,7 +26,7 @@
 
 ;; This has some errors
 ;; 1. it did not use provided modules.
-;; 2. it addded the lengths, not weights
+;; 2. it added the lengths, not weights
 ;; (define (total-weight m)
 ;;   (cond ((null? m) 0)
 ;; 		((not (pair? m)) m)
