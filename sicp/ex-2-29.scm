@@ -74,10 +74,13 @@
 (define (branch-torque b)
   (* (branch-length b) (branch-weight b)))
 
-;;(define (balanced? m)
-;;  (= (torque (left-branch m))
-		
+(define (branch-balanced? left right)
+  (= (branch-torque left) (branch-torque right)))
 
+;; in progress
+(define (balanced? m)	
+  (branch-balanced? (left-branch m)
+					(right-branch m))
 
 (define (make-mobile-cons left right)
   (cons left right))
