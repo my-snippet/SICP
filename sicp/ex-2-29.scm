@@ -43,7 +43,7 @@
   (+ (branch-weight (left-branch m))
 	 (branch-weight (right-branch m))))
 
-;; Avoid direction problem in the mobile using that the torque
+;; Avoid the direction problem in the mobile using that the torque
 ;; procedure does not allow a branch that has mobile below it.
 (define (torque b)
   (if (pair? (branch-weight b))
