@@ -107,13 +107,19 @@
 (test-assert "total-weight : more multiple mobile"
 			 (= (total-weight m03)
 				(+ structure-of-b0
-				   (total-weight m02))))				   
+				   (total-weight m02))))
 
-(test-assert "balanced? true"
-			 (balanced? m02+m20))
+(test-assert "torque test"
+			 (and (= (torque b0)
+					 (* length-of-b0 structure-of-b0))
+				  (= (torque b1)
+					 (* length-of-b1 structure-of-b1))))
+					 
+;;(test-assert "balanced? true"
+;;			 (balanced? m02+m20))
 
-(test-assert "balanced? false"
-			 (and (not (balanced? m02))
-				  (not (balanced? m20))))
+;;(test-assert "balanced? false"
+;;			 (and (not (balanced? m02))
+;;				  (not (balanced? m20))))
 
 (test-end "balanced mobile")
