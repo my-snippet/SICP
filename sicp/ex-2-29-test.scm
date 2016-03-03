@@ -18,6 +18,20 @@
 ;;         :       
 ;;        ...
 
+;; Example mobile physical structure
+;; m : mobile
+;; b : branch
+;; : : rod(length) of branch
+;; O : weight(sinker)
+;;
+;;      b   -   m   -   b
+;;      :               :
+;;      :               :
+;;  b - m - b           O
+;;  :       : 
+;;  :       : 
+;; ...     ... 
+
 
 (test-begin "balanced mobile")
 
