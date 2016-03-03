@@ -28,20 +28,17 @@
 
 ;; does a branch last?
 (define (last-branch? b)
-  (number? (branch-structure b)))
+  (not (pair? (branch-structure b))))
 
 ;; does a branch contain mobile?
 (define (contain-mobile? b)
-  (and (pair? (branch-structure b))
-	   (pair? (left-branch (branch-structure b)))))
+  (pair? (branch-structure b)))
 
 (define (branch-weight b)
   (display b)
   (newline)
-  (cond ((not (pair? b)) b)
-		((contain-mobile? b) (total-weight (branch-structure b)))
-;;		((last-branch? b) (branch-structure b))
-		(else (branch-weight (branch-structure b)))))
+  (cond ((last-branch? b) (branch-structure b))
+		(else (total-weight (branch-structure b)))))
 
 (define (total-weight m)
   (+ (branch-weight (left-branch m))

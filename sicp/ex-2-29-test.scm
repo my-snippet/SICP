@@ -16,11 +16,14 @@
 (define m01 (make-mobile b0 b1))
 
 (define length-of-b2 4)
-(define structure-of-b2 b1)
+(define structure-of-b2 m01)
 (define b2 (make-branch length-of-b2 structure-of-b2))
 (define m02 (make-mobile b0 b2))
 
-(define m01+m02 (make-mobile m01 m02))
+(define length-of-b3 5)
+(define structure-of-b3 m02)
+(define b3 (make-branch length-of-b3 structure-of-b3))
+(define m03 (make-mobile b0 b3))
 
 (define b0-copy b0)
 (test-assert "eq? test for object comparisons"
@@ -47,16 +50,12 @@
 (test-assert "total-weight : multiple mobile"
 			 (= (total-weight m02)
 				(+ structure-of-b0
-				   structure-of-b1)))
+				   (+ structure-of-b0
+					  structure-of-b1))))
 
 (test-assert "total-weight : more multiple mobile"
-			 (= (total-weight m01+m02)
-				(+ (total-weight m01)
-				   (total-weight m02))))
+			 (= (total-weight m03)
+				(+ structure-of-b0
+				   (total-weight m02))))				   
 
 (test-end "balanced mobile")
-
-
-(total-weight m01+m02)
-
-m01+m02
