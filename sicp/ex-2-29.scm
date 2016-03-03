@@ -45,9 +45,12 @@
 ;; 		(else (+ (total-weight (car m))
 ;; 				 (total-weight (cadr m))))))
 
+(define (structure-mobile? structure)
+  (pair? structure))
+
 ;; does a branch last?
 (define (last-branch? b)
-  (not (pair? (branch-structure b))))
+  (not (structure-mobile? (branch-structure b))))
 
 ;; does a branch contain mobile?
 (define (contain-mobile? b)
