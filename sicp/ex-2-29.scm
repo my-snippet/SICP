@@ -17,6 +17,12 @@
 ;; likewise mobile have branches. That is, it is not a one directional 
 ;; hierarchical structure.
 
+;; About Lengths and Weights
+;; * Only weights have weight, not lengths of branches.
+;; Therefore to find a torque, all the weight values are equal to that
+;; of the last branch
+
+
 (define (make-mobile left right)
   (list left right))
 
