@@ -1,3 +1,11 @@
+;; Cross reference problems.
+;; 1. balanced & branch-balanced 
+;; 2. total-weight & branch-weight
+;; I think these cases should be a seperated functions(procedures),
+;; not a multiple function. Because branches also can have a mobile 
+;; likewise mobile have branches. That is, it is not a one directional 
+;; hierarchical structure.
+
 (define (make-mobile left right)
   (list left right))
 
