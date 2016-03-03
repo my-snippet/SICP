@@ -70,11 +70,6 @@
 (define lengths-of-b02-and-b20 5)
 (define structure-of-b02 m02)
 (define structure-of-b20 m20)
-(define b02 (make-branch lengths-of-b02-and-b20
-						 structure-of-b02))
-(define b20 (make-branch lengths-of-b02-and-b20
-						 structure-of-b20))
-(define m02+m20 (make-mobile b02 b20))
 
 (define b0-copy b0)
 (test-assert "eq? test for object comparisons"
