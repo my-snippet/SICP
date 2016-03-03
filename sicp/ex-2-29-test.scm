@@ -35,12 +35,23 @@
 
 (test-begin "balanced mobile")
 
+;; Test scenario
+;;
+;; Given
+;; - Branch b0, b1 has same torque, but different length, weight.
+;; ( torque = length * weight )
+;; - Branch b2 has m01 as a submobile.m0- Mobile m02 has b0, b2 as branches.
+;; - Mobile m02 has b0, b2 in order as branches.
+;; - Mobile m20 has b2, b0 in order as branches, that is, 
+;; m02 and m20 are like a mirror relationship.
+
+
 (define length-of-b0 3)
-(define structure-of-b0 1)
+(define structure-of-b0 2)
 (define b0 (make-branch length-of-b0 structure-of-b0))
 
-(define length-of-b1 6)
-(define structure-of-b1 1)
+(define length-of-b1 2)
+(define structure-of-b1 3)
 (define b1 (make-branch length-of-b1 structure-of-b1))
 (define m01 (make-mobile b0 b1))
 
