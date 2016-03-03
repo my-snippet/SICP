@@ -20,6 +20,15 @@
 ;; About Lengths and Weights
 ;; * Only weights have a weight, not lengths of branches.
 
+;; About direction problems
+;; I assume that each branches of all the mobile is the half opposite
+;; direction. Then it(direction) does not act on the torque of the
+;; above branches,
+;; But, if the length of two branches are different, the torque of the
+;; above branches will be different.
+;; To escape this problem, here it checks whether the each of the same
+;; level of branches have same torque.
+
 
 (define (make-mobile left right)
   (list left right))
