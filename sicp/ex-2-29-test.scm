@@ -4,6 +4,21 @@
 (load "lib/test/chicken-scheme-test.scm")
 
 
+;; Example mobile hierarchical structure
+;; m : mobile
+;; b : branch
+;; l : length
+;; n : number
+;; 
+;;           m
+;;           :
+;;       b       b
+;;       :       :       
+;;     l   m   l   n
+;;         :       
+;;        ...
+
+
 (test-begin "balanced mobile")
 
 (define length-of-b0 3)
