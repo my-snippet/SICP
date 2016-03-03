@@ -105,9 +105,9 @@
 				   (total-weight m02))))
 
 (test-assert "torque test"
-			 (and (= (torque b0)
+			 (and (= (branch-torque b0)
 					 (* length-of-b0 structure-of-b0))
-				  (= (torque b1)
+				  (= (branch-torque b1)
 					 (* length-of-b1 structure-of-b1))))
 					 
 ;;(test-assert "balanced? true"
