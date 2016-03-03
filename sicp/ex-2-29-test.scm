@@ -55,6 +55,7 @@
 (define structure-of-b1 3)
 (define b1 (make-branch length-of-b1 structure-of-b1))
 (define m01 (make-mobile b0 b1))
+(define m10 (make-mobile b1 b0))
 
 (define length-of-b2 4)
 (define structure-of-b2 m01)
@@ -66,12 +67,8 @@
 (define structure-of-b3 m02)
 (define b3 (make-branch length-of-b3 structure-of-b3))
 (define m03 (make-mobile b0 b3))
-
-(define lengths-of-b02-and-b20 5)
-(define structure-of-b02 m02)
-(define structure-of-b20 m20)
-
 (define b0-copy b0)
+
 (test-assert "eq? test for object comparisons"
 			 (eq? b0-copy
 				  b0))
@@ -110,11 +107,15 @@
 				  (= (branch-torque b1)
 					 (* length-of-b1 structure-of-b1))))
 					 
-;;(test-assert "balanced? true"
-;;			 (balanced? m02+m20))
-
-;;(test-assert "balanced? false"
-;;			 (and (not (balanced? m02))
-;;				  (not (balanced? m20))))
+(test-assert "balanced? true"
+			 (and (balanced? m01)
+				  (balanced? m10)))
+			 
+;; m02, m20 has actually same torque. but 'balanced?' tests
+;; whether each same levels of left, right branches has same torque.
+;; therefore it should be false.
+(test-assert "balanced? false"
+			 (and (not (balanced? m02))
+				  (not (balanced? m20))))
 
 (test-end "balanced mobile")
