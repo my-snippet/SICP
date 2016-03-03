@@ -35,10 +35,9 @@
   (pair? (branch-structure b)))
 
 (define (branch-weight b)
-  (display b)
-  (newline)
-  (cond ((last-branch? b) (branch-structure b))
-		(else (total-weight (branch-structure b)))))
+  (if (last-branch? b)
+	  (branch-structure b)
+	  (total-weight (branch-structure b))))
 
 (define (total-weight m)
   (+ (branch-weight (left-branch m))
