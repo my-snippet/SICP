@@ -53,6 +53,7 @@
 
 ;; Avoid the direction problem in the mobile using that the torque
 ;; procedure does not allow a branch that has mobile below it.
+;; * direction problems = vector problems
 (define (branch-torque b)
   (if (pair? (branch-weight b))
 	  (error "Only one level depth branch possible.")
