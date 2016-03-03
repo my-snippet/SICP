@@ -44,7 +44,8 @@
 ;; - Mobile m02 has b0, b2 in order as branches.
 ;; - Mobile m20 has b2, b0 in order as branches, that is, 
 ;; m02 and m20 are like a mirror relationship.
-
+;; m02+m20 has branch that consists of m02 and m20 with same length,
+;; that is, balanced mobile
 
 (define length-of-b0 3)
 (define structure-of-b0 2)
@@ -59,11 +60,21 @@
 (define structure-of-b2 m01)
 (define b2 (make-branch length-of-b2 structure-of-b2))
 (define m02 (make-mobile b0 b2))
+(define m20 (make-mobile b2 b0))
 
 (define length-of-b3 5)
 (define structure-of-b3 m02)
 (define b3 (make-branch length-of-b3 structure-of-b3))
 (define m03 (make-mobile b0 b3))
+
+(define lengths-of-b02-and-b20 5)
+(define structure-of-b02 m02)
+(define structure-of-b20 m20)
+(define b02 (make-branch lengths-of-b02-and-b20
+						 structure-of-b02))
+(define b20 (make-branch lengths-of-b02-and-b20
+						 structure-of-b20))
+(define m02+m20 (make-mobile b02 b20))
 
 (define b0-copy b0)
 (test-assert "eq? test for object comparisons"
@@ -97,5 +108,12 @@
 			 (= (total-weight m03)
 				(+ structure-of-b0
 				   (total-weight m02))))				   
+
+(test-assert "balanced? true"
+			 (balanced? m02+m20))
+
+(test-assert "balanced? false"
+			 (and (not (balanced? m02))
+				  (not (balanced? m20))))
 
 (test-end "balanced mobile")
