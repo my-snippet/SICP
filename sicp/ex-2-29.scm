@@ -1,3 +1,14 @@
+;; Naming problems.
+;; If a procedure evaluates whether does the structure of a branch
+;; contain structure or not, then what is a suitable name for the
+;; procedure?
+;; 1. explicitly
+;; 2. reducing
+;; Example
+;; -> does-the-structure-of-a-branch-contain-structure-or-not?
+;; -> does-structure-contain-structure?
+;; -> contain-structure?
+
 ;; Cross reference problems.
 ;; 1. balanced & branch-balanced 
 ;; 2. total-weight & branch-weight
