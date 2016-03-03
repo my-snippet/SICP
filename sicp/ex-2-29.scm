@@ -72,9 +72,7 @@
 	 (branch-weight (right-branch m))))
 
 (define (branch-torque b)
-  (if (pair? (branch-weight b))
-	  (error "Only one level depth branch possible.")
-	  (* (branch-length b) (branch-weight b))))
+  (* (branch-length b) (branch-weight b)))
 
 ;;(define (balanced? m)
 ;;  (= (torque (left-branch m))
