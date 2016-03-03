@@ -18,9 +18,7 @@
 ;; hierarchical structure.
 
 ;; About Lengths and Weights
-;; * Only weights have weight, not lengths of branches.
-;; Therefore to find a torque, all the weight values are equal to that
-;; of the last branch
+;; * Only weights have a weight, not lengths of branches.
 
 
 (define (make-mobile left right)
