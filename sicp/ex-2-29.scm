@@ -33,7 +33,6 @@
 ;; * However, to save the minimum safty of the mobile, I think it
 ;; should be checked from the lowest level of the mobiles to the highest.
 
-
 (define (make-mobile left right)
   (list left right))
 
@@ -73,14 +72,20 @@
 (define (contain-mobile? b)
   (pair? (branch-structure b)))
 
+;; mobile-eval
+;; it evaluates the both sides of a mobile using a passed operations and
+;; functions(procedure)
+(define (mobile-eval op m f)
+  (op (f (left-branch m))
+	  (f (right-branch m))))
+
 (define (branch-weight b)
   (if (last-branch? b)
 	  (branch-structure b)
 	  (total-weight (branch-structure b))))
 
 (define (total-weight m)
-  (+ (branch-weight (left-branch m))
-	 (branch-weight (right-branch m))))
+  (mobile-eval + m branch-weight)
 
 (define (branch-torque b)
   (* (branch-length b) (branch-weight b)))
