@@ -26,8 +26,12 @@
 ;; above branches,
 ;; But, if the length of two branches are different, the torque of the
 ;; above branches will be different.
-;; To escape this problem, here it checks whether the each of the same
-;; level of branches have same torque.
+;; To escape this problem, it assumes a branch is forced by 
+;; the below weights directly(100%) regardless of direction problems,
+;; that is, branch torque can be calculated by the lenght of the branch
+;; and the below weights.
+;; * However, to save the minimum safty of the mobile, I think it
+;; should be checked from the lowest level of the mobiles to the highest.
 
 
 (define (make-mobile left right)
