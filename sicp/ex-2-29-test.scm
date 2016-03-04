@@ -106,10 +106,16 @@
 					 (* length-of-b0 structure-of-b0))
 				  (= (branch-torque b1)
 					 (* length-of-b1 structure-of-b1))))
-					 
-(test-assert "balanced? true"
-			 (and (balanced? m01)
-				  (balanced? m10)))
+
+(test-assert "torque test : more than 2 levels branch"
+			 (and (= (branch-torque b2)
+					 (* length-of-b2 (+ structure-of-b0
+										structure-of-b1)))))
+
+
+;(test-assert "balanced? true"
+;			 (and (balanced? m01)
+;				  (balanced? m10)))
 			 
 ;; m02, m20 has actually same torque. but 'balanced?' tests
 ;; whether each same levels of left, right branches has same torque.
