@@ -88,10 +88,13 @@
 (define (branch-balanced? left right)
   (= (branch-torque left) (branch-torque right)))
 
-;; in progress
-(define (balanced? m)	
-  (branch-balanced? (left-branch m)
-					(right-branch m))
+;; sub balanced? idea
+;; How can I test both branches?
+;;;;;; need sub procedure.
+if (last-branch? b)
+then branch-balanced? 
+else (and branch-balanced? ...
+		  balanced? ...
 
 (define (make-mobile-cons left right)
   (cons left right))
