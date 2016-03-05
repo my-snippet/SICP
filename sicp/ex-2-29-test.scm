@@ -112,6 +112,16 @@
 					 (* length-of-b2 (+ structure-0
 										structure-1)))))
 
+(test-assert "mobile-balanced"
+			 (and (mobile-balanced? m01)
+				  (mobile-balanced? m10)))
+
+(test-assert "balanced? true case : 1 level depth"
+			 (and (balanced? m01)
+				  (balanced? m10)))
+
+(test-assert "balanced? true case : 2 level depth"
+			 (balanced? m0000))
 
 ;(test-assert "balanced? true"
 ;			 (and (balanced? m01)
