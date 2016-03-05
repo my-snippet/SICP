@@ -23,7 +23,6 @@
 	  (f (right-branch m))))
 
 (define (branch-weight b)
-  (display b) (newline)
   (if (last-branch? b)
 	  (branch-structure b)
 	  (total-weight (branch-structure b))))
