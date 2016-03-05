@@ -71,7 +71,7 @@
 (define (structure-mobile? structure)
   (pair? structure))
 
-;; does a branch last?
+;; does not a branch have a mobile?
 (define (last-branch? b)
   (not (structure-mobile? (branch-structure b))))
 
@@ -92,13 +92,13 @@
 	  (total-weight (branch-structure b))))
 
 (define (total-weight m)
-  (mobile-eval + m branch-weight)
+  (mobile-eval + m branch-weight))
 
 (define (branch-torque b)
   (* (branch-length b) (branch-weight b)))
 
-(define (branch-balanced? left right)
-  (= (branch-torque left) (branch-torque right)))
+(define (mobile-balanced? m)
+  (= (branch-torque (left-branch m)) (branch-torque (right-branch m))))
 
 ;; sub balanced? idea
 ;; How can I test both branches?
