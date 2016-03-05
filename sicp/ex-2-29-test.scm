@@ -63,10 +63,6 @@
 (define m02 (make-mobile b0 b2))
 (define m20 (make-mobile b2 b0))
 
-(define length-of-b3 5)
-(define structure-of-b3 m02)
-(define b3 (make-branch length-of-b3 structure-of-b3))
-(define m03 (make-mobile b0 b3))
 (define b0-copy b0)
 
 (test-assert "eq? test for object comparisons"
