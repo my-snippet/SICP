@@ -47,6 +47,8 @@
 (define (left-branch m)
   (car m))
 
+;; A list has null to the last index. therefore if one element is left,
+;; it will returns a pair.
 (define (right-branch m)
   (cadr m))
 
@@ -114,9 +116,3 @@
 		(balanced? (branch-structure b))))
   (and (mobile-eval	(lambda (l r) (and l r)) m _balanced?)
 	   (mobile-balanced? m)))
-
-(define (make-mobile-cons left right)
-  (cons left right))
-
-(define (make-branch-cons length structure)
-    (cons length structure))

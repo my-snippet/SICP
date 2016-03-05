@@ -1,4 +1,5 @@
 (load "ex-2-29.scm")
+(load "ex-2-29-var-table.scm")
 
 ;;;; external lib
 (load "lib/test/chicken-scheme-test.scm")
@@ -30,7 +31,7 @@
 ;;  b - m - b           O
 ;;  :       : 
 ;;  :       : 
-;; ...     ... 
+;; ...     ...
 
 
 (test-begin "balanced mobile")
@@ -46,28 +47,6 @@
 ;; m02 and m20 are like a mirror relationship.
 ;; m02+m20 has branch that consists of m02 and m20 with same length,
 ;; that is, balanced mobile
-
-(define length-0 3)
-(define structure-0 2)
-(define b0 (make-branch length-0 structure-0))
-
-(define length-1 2)
-(define structure-1 3)
-(define b1 (make-branch length-1 structure-1))
-(define m01 (make-mobile b0 b1))
-(define m10 (make-mobile b1 b0))
-
-(define m00 (make-mobile b0 b0))
-(define b00 (make-branch length-0 m00))
-(define m0000 (make-mobile b00 b00))
-
-(define length-of-b2 4)
-(define structure-of-b2 m01)
-(define b2 (make-branch length-of-b2 structure-of-b2))
-(define m02 (make-mobile b0 b2))
-(define m20 (make-mobile b2 b0))
-
-(define b0-copy b0)
 
 (test-assert "eq? test for object comparisons"
 			 (eq? b0-copy
@@ -132,3 +111,31 @@
 				  (not (balanced? m20))))
 
 (test-end "balanced mobile")
+
+
+(test-begin "mobile using cons")
+
+(test-assert "mobile selector"
+			 (and (eq? (left-branch m01-cons)
+					   b0-cons)
+				  (eq? (right-branch-cons m01-cons)
+					   b1-cons)))		 				  
+
+(test-assert "branch selector"
+			 (and (eq? (branch-length b0-cons)
+					   length-0)
+				  (eq? (branch-structure b0-cons)
+					   structure-0)))
+
+(test-assert "total-weight : single mobile"
+			 (= (total-weight-cons m01-cons)
+				(+ structure-0
+				   structure-1)))
+
+(test-assert "total-weight : multiple mobile"
+			 (= (total-weight-cons m02-cons)
+				(+ structure-0
+				   (+ structure-0
+					  structure-1))))
+
+(test-end "mobile using cons")
