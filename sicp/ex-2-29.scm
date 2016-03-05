@@ -98,7 +98,7 @@
   (* (branch-length b) (branch-weight b)))
 
 (define (mobile-balanced? m)
-  (= (branch-torque (left-branch m)) (branch-torque (right-branch m))))
+  (mobile-eval = m branch-torque))
 
 ;; sub balanced? idea
 ;; How can I test both branches?
