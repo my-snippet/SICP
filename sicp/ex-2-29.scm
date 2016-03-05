@@ -33,6 +33,12 @@
 ;; * However, to save the minimum safty of the mobile, I think it
 ;; should be checked from the lowest level of the mobiles to the highest.
 
+;; + Exclusion
+;; And it is hart to compare each same levels of branch torque because it
+;; uses the recursive process. Therefore here the balanced? checks only
+;; per one mobiles, not all the same levels of that.
+
+
 (define (make-mobile left right)
   (list left right))
 
