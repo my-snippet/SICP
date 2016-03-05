@@ -88,7 +88,7 @@
 
 (test-assert "torque test : more than 2 levels branch"
 			 (and (= (branch-torque b2)
-					 (* length-of-b2 (+ structure-0
+					 (* length-2 (+ structure-0
 										structure-1)))))
 
 (test-assert "mobile-balanced"
