@@ -47,15 +47,19 @@
 ;; m02+m20 has branch that consists of m02 and m20 with same length,
 ;; that is, balanced mobile
 
-(define length-of-b0 3)
-(define structure-of-b0 2)
-(define b0 (make-branch length-of-b0 structure-of-b0))
+(define length-0 3)
+(define structure-0 2)
+(define b0 (make-branch length-0 structure-0))
 
-(define length-of-b1 2)
-(define structure-of-b1 3)
-(define b1 (make-branch length-of-b1 structure-of-b1))
+(define length-1 2)
+(define structure-1 3)
+(define b1 (make-branch length-1 structure-1))
 (define m01 (make-mobile b0 b1))
 (define m10 (make-mobile b1 b0))
+
+(define m00 (make-mobile b0 b0))
+(define b00 (make-branch length-0 m00))
+(define m0000 (make-mobile b00 b00))
 
 (define length-of-b2 4)
 (define structure-of-b2 m01)
@@ -77,36 +81,36 @@
 
 (test-assert "branch selector"
 			 (and (eq? (branch-length b0)
-					   length-of-b0)
+					   length-0)
 				  (eq? (branch-structure b0)
-					   structure-of-b0)))
+					   structure-0)))
 
 (test-assert "total-weight : single mobile"
 			 (= (total-weight m01)
-				(+ structure-of-b0
-				   structure-of-b1)))
+				(+ structure-0
+				   structure-1)))
 
 (test-assert "total-weight : multiple mobile"
 			 (= (total-weight m02)
-				(+ structure-of-b0
-				   (+ structure-of-b0
-					  structure-of-b1))))
+				(+ structure-0
+				   (+ structure-0
+					  structure-1))))
 
 (test-assert "total-weight : more multiple mobile"
 			 (= (total-weight m03)
-				(+ structure-of-b0
+				(+ structure-0
 				   (total-weight m02))))
 
 (test-assert "torque test"
 			 (and (= (branch-torque b0)
-					 (* length-of-b0 structure-of-b0))
+					 (* length-0 structure-0))
 				  (= (branch-torque b1)
-					 (* length-of-b1 structure-of-b1))))
+					 (* length-1 structure-1))))
 
 (test-assert "torque test : more than 2 levels branch"
 			 (and (= (branch-torque b2)
-					 (* length-of-b2 (+ structure-of-b0
-										structure-of-b1)))))
+					 (* length-of-b2 (+ structure-0
+										structure-1)))))
 
 
 ;(test-assert "balanced? true"
