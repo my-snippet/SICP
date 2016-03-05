@@ -89,7 +89,7 @@
 (test-assert "torque test : more than 2 levels branch"
 			 (and (= (branch-torque b2)
 					 (* length-2 (+ structure-0
-										structure-1)))))
+									structure-1)))))
 
 (test-assert "mobile-balanced"
 			 (and (mobile-balanced? m01)
@@ -111,31 +111,3 @@
 				  (not (balanced? m20))))
 
 (test-end "balanced mobile")
-
-
-(test-begin "mobile using cons")
-
-(test-assert "mobile selector"
-			 (and (eq? (left-branch m01-cons)
-					   b0-cons)
-				  (eq? (right-branch-cons m01-cons)
-					   b1-cons)))		 				  
-
-(test-assert "branch selector"
-			 (and (eq? (branch-length b0-cons)
-					   length-0)
-				  (eq? (branch-structure b0-cons)
-					   structure-0)))
-
-(test-assert "total-weight : single mobile"
-			 (= (total-weight-cons m01-cons)
-				(+ structure-0
-				   structure-1)))
-
-(test-assert "total-weight : multiple mobile"
-			 (= (total-weight-cons m02-cons)
-				(+ structure-0
-				   (+ structure-0
-					  structure-1))))
-
-(test-end "mobile using cons")

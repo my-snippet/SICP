@@ -22,3 +22,8 @@
 (define m20 (make-mobile b2 b0))
 
 (define b0-copy b0)
+
+(define length-3 5)
+(define structure-3 m02)
+(define b3 (make-branch length-3 structure-3))
+(define m03 (make-mobile b0 b3))
