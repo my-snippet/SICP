@@ -48,8 +48,15 @@
 (define (branch-length b)
   (car b))
 
+;; if a branch has a mobile as structure
+;; 'cdr' returns 2 level-enclosed lists. (( m ))
+;; and if it has just a weight,
+;; 'cdr' returns a value that is not enclosed.
 (define (branch-structure b)
-  (cadr b))
+  (let ((structure (cdr b)))
+	(if (not (pair? structure))
+		structure
+		(car structure))))
 
 ;; This has some errors
 ;; 1. it did not use provided modules.
