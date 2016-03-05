@@ -9,13 +9,12 @@
 ;; -> does-structure-contain-structure?
 ;; -> contain-structure?
 
-;; Cross reference problems.
+;; Cross references.
 ;; 1. balanced & branch-balanced 
 ;; 2. total-weight & branch-weight
-;; I think these cases should be a seperated functions(procedures),
+;; I think these cases can be a seperated functions(procedures),
 ;; not a multiple function. Because branches also can have a mobile 
-;; likewise mobile have branches. That is, it is not a one directional 
-;; hierarchical structure.
+;; likewise mobile have branches.
 
 ;; About Lengths and Weights
 ;; * Only weights have a weight, not lengths of branches.
@@ -80,10 +79,10 @@
 ;; does not a branch have a mobile?
 (define (last-branch? b)
   (not (structure-mobile? (branch-structure b))))
-
+   
 ;; does a branch contain mobile?
 (define (contain-mobile? b)
-  (pair? (branch-structure b)))
+  (structure-mobile? (branch-structure b)))
 
 ;; mobile-eval
 ;; it evaluates the both sides of a mobile using a passed operations and
@@ -106,13 +105,15 @@
 (define (mobile-balanced? m)
   (mobile-eval = m branch-torque))
 
-;; sub balanced? idea
-;; How can I test both branches?
-;;;;;; need sub procedure.
-if (last-branch? b)
-then branch-balanced? 
-else (and branch-balanced? ...
-		  balanced? ...
+;; when it meets last branch, then return true because
+;; last operation will be evaluated in 'balanced?'
+(define (balanced? m)
+  (define (_balanced? b)
+	(if (last-branch? b)
+		true
+		(balanced? (branch-structure b))))
+  (and (mobile-eval	(lambda (l r) (and l r)) m _balanced?)
+	   (mobile-balanced? m)))
 
 (define (make-mobile-cons left right)
   (cons left right))

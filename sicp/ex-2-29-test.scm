@@ -123,12 +123,9 @@
 (test-assert "balanced? true case : 2 level depth"
 			 (balanced? m0000))
 
-;(test-assert "balanced? true"
-;			 (and (balanced? m01)
-;				  (balanced? m10)))
-			 
 ;; m02, m20 has actually same torque. but 'balanced?' tests
-;; whether each same levels of left, right branches has same torque.
+;; whether each same levels of left, right branches have the same torque.
+;; * refer to 'About direction problems'
 ;; therefore it should be false.
 (test-assert "balanced? false"
 			 (and (not (balanced? m02))
