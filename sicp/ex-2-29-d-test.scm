@@ -30,4 +30,9 @@
 				   (+ structure-0
 					  structure-1))))
 
+(test-assert "total-weight : more multiple mobile"
+			 (= (total-weight m03)
+				(+ structure-0
+				   (total-weight m02))))
+
 (test-end "mobile using cons")
