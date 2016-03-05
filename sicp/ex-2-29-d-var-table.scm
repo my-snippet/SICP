@@ -11,6 +11,7 @@
 
 (define m01 (make-mobile b0 b1))
 
+(define length-2 4)
 (define structure-2 m01)
 
 (define b2 (make-branch length-2 structure-2))

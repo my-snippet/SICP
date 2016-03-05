@@ -1,3 +1,6 @@
+(load "ex-2-29.scm")
+
+
 ;; d. Using different constructos 
 (define (make-mobile left right)
   (cons left right))
