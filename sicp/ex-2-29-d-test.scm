@@ -35,4 +35,15 @@
 				(+ structure-0
 				   (total-weight m02))))
 
+(test-assert "torque test"
+			 (and (= (branch-torque b0)
+					 (* length-0 structure-0))
+				  (= (branch-torque b1)
+					 (* length-1 structure-1))))
+
+(test-assert "torque test : more than 2 levels branch"
+			 (and (= (branch-torque b2)
+					 (* length-2 (+ structure-0
+									structure-1)))))
+
 (test-end "mobile using cons")
