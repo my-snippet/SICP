@@ -25,6 +25,6 @@
 
 (test-assert "c"
 			 (= 7
-				7));;(car c)))
+				(cadr (cadr (cadr (cadr (cadr (cadr c))))))))
 
 (test-end "select 7 in the hierarchical structures")
