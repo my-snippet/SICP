@@ -36,14 +36,14 @@
 		(else (append (deep-reverse-version2 (cdr x))
 					  (list (car x))))))
 
+;; http://community.schemewiki.org/?sicp-ex-2.27 by varoun
 ;; iterative version
 ;; think about the flow of results
-(define (deep-reverse-version3 x)
-  (define (iter items result)
-	(if (pair? items)
-		(iter (cons (iter (car items)
-						  result)
-					result)
-			  result)
-		result))
-  (iter x '()))		
+(define (deep-reverse-version3 tree)
+  (define (iter t result)
+	(cond ((null? t) result)
+		  ((not (pair? (car t)))
+		   (iter (cdr t) (cons (car t) result)))
+		  (else
+		   (iter (cdr t) (cons (deep-reverse (car t)) result)))))
+  (iter tree '())) 
