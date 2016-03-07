@@ -49,3 +49,16 @@
 		  (else
 		   (iter (cdr t) (cons (deep-reverse (car t)) result)))))
   (iter tree '())) 
+
+
+;; http://community.schemewiki.org/?sicp-ex-2.27 by shyam
+;; iterative version 2, this style is similiar to ex2.32
+(define (deep-reverse-version4 items)
+  (define (iter items result)
+	(if (null? items)
+		result
+		(if (pair? (car items))
+			(let ((x (iter (car items) ())))
+			  (iter (cdr items) (cons x result)))
+			(iter (cdr items) (cons (car items) result)))))
+  (iter items ())) 

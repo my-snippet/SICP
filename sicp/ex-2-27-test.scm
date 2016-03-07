@@ -18,3 +18,6 @@
 
 (deep-reverse-version3 x)
 (deep-reverse-version3 y)
+
+(deep-reverse-version4 x)
+(deep-reverse-version4 y)
