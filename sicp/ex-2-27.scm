@@ -39,6 +39,8 @@
 ;; http://community.schemewiki.org/?sicp-ex-2.27 by varoun
 ;; iterative version
 ;; think about the flow of results
+;; it seems that one man is rowing the boat while another man
+;; is checking the depths of the sea.
 (define (deep-reverse-version3 tree)
   (define (iter t result)
 	(cond ((null? t) result)
