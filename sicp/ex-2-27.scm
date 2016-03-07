@@ -14,8 +14,8 @@
 		(t (if (pair? x) (car x) x)))
 	(if (not (pair? x))
 		x
-		(append (deep-reverse-version3 h)
-				(list (deep-reverse-version3 t))))))
+		(append (deep-reverse-version0 h)
+				(list (deep-reverse-version0 t))))))
 
 ;; It binds recursive call as a consequent using (append ...)
 (define (deep-reverse-version1 x)
