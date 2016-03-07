@@ -5,14 +5,13 @@
 
 ;; The line (let ((rest (subsets (cdr s)))) calls the subsets recursively
 ;; until it will be nil,
-;; 1. at that time subsets returns '(), therefore '() will appears first,
-;; 2. and then, 3 and '() will be consed up to be (3)
-;; 3. and then, 2 and '() will be consed up to be (2)
-;; 4. and then, 2 and (3) will be consed up to be (2 3)
-
-;; in progress 
-;; Why 2. 3. happen successively? : because subsets is called when it is
-;; to be '(), it first evaluates 3, and then evaluates 2
+;; 1. at that time subsets returns (list nil) and (car s) = 3, then
+;; (append (nil) (3)) makes (() (3))
+;; 2. rest = (() (3)), (car s) = 2, then
+;; (append rest ((cons 2 nil) (cons 2 3))) makes (() (3) (2) (2 3))
+;; 3. rest = (() (3) (2) (2 3)), (car s) = 1, then
+;; (append rest ((cons 1 nil) (cons 1 3) (cons 1 2) (cons 1 (2 3))))
+;; = (() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))
 
 
 (define (subsets s)
