@@ -38,7 +38,7 @@
 		  ((not (pair? (car t)))
 		   (iter (cdr t) (cons (car t) result)))
 		  (else
-		   (iter (cdr t) (cons (deep-reverse (car t)) result)))))
+		   (iter (cdr t) (cons (deep-reverse-version3 (car t)) result)))))
   (iter tree '())) 
 
 
