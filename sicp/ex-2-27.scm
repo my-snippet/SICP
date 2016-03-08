@@ -10,19 +10,10 @@
 ;; It uses inner data using let for readibility
 ;; car, cdr signs are a little confused.
 (define (deep-reverse-version0 x)
-  (let ((h (if (pair? x) (cdr x) x))
-		(t (if (pair? x) (car x) x)))
 	(if (not (pair? x))
-		x
-		(append (deep-reverse-version0 h)
-				(list (deep-reverse-version0 t))))))
-
-;; It binds recursive call as a consequent using (append ...)
-(define (deep-reverse-version1 x)
-  (if (pair? x)
-	  (append (deep-reverse-version1 (cdr x))
-			  (list (deep-reverse-version1 (car x))))
-	  x)) 
+		x		
+		(append (deep-reverse-version0 (cdr x))
+				(list (deep-reverse-version0 (car x))))))
 
 ;; This method is a kind of interleaving.
 ;; (a) is (a nil) actually.
