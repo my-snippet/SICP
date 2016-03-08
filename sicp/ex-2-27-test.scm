@@ -7,14 +7,14 @@
 (deep-reverse x)
 (deep-reverse y)
 
-(deep-reverse-version0 x)
-(deep-reverse-version0 y)
+(deep-reverse-2 x)
+(deep-reverse-2 y)
 
-(deep-reverse-version2 x)
-(deep-reverse-version2 y)
+(deep-reverse-3 x)
+(deep-reverse-3 y)
 
-(deep-reverse-version3 x)
-(deep-reverse-version3 y)
+(deep-reverse-4 x)
+(deep-reverse-4 y)
 
-(deep-reverse-version4 x)
-(deep-reverse-version4 y)
+(deep-reverse-5 x)
+(deep-reverse-5 y)

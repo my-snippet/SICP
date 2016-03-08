@@ -9,22 +9,22 @@
 
 ;; It uses inner data using let for readibility
 ;; car, cdr signs are a little confused.
-(define (deep-reverse-version0 x)
-	(if (not (pair? x))
-		x		
-		(append (deep-reverse-version0 (cdr x))
-				(list (deep-reverse-version0 (car x))))))
+(define (deep-reverse-2 x)
+  (if (not (pair? x))
+	  x
+	  (append (deep-reverse-2 (cdr x))
+			                  (list (deep-reverse-2 (car x))))))
 
 ;; This method is a kind of interleaving.
 ;; (a) is (a nil) actually.
 ;; 'append' procedure uncovers a parenthesis of second argument
 ;; Therefore (list ...) is covered to second argument
-(define (deep-reverse-version2 x)
+(define (deep-reverse-3 x)
   (cond ((null? x) '())
 		((pair? (car x))
-		 (append (deep-reverse-version2 (cdr x))
-				 (list (deep-reverse-version2 (car x)))))
-		(else (append (deep-reverse-version2 (cdr x))
+		 (append (deep-reverse-3 (cdr x))
+				 (list (deep-reverse-3 (car x)))))
+		(else (append (deep-reverse-3 (cdr x))
 					  (list (car x))))))
 
 ;; http://community.schemewiki.org/?sicp-ex-2.27 by varoun
@@ -32,19 +32,19 @@
 ;; think about the flow of results
 ;; it seems that one man is rowing the boat while another man
 ;; is checking the depths of the sea.
-(define (deep-reverse-version3 tree)
+(define (deep-reverse-4 tree)
   (define (iter t result)
 	(cond ((null? t) result)
 		  ((not (pair? (car t)))
 		   (iter (cdr t) (cons (car t) result)))
 		  (else
-		   (iter (cdr t) (cons (deep-reverse-version3 (car t)) result)))))
+		   (iter (cdr t) (cons (deep-reverse-4 (car t)) result)))))
   (iter tree '())) 
 
 
 ;; http://community.schemewiki.org/?sicp-ex-2.27 by shyam
 ;; iterative version 2, this style is similiar to ex2.32
-(define (deep-reverse-version4 items)
+(define (deep-reverse-5 items)
   (define (iter items result)
 	(if (null? items)
 		result
