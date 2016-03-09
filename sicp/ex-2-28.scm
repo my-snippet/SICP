@@ -1,5 +1,5 @@
 ;; This makes error because 'map' operation does not append hierarchical list
-;; I think apply will may be used used rather map.
+;; I think apply will may be used, not map.
 ;; (define (flat-1d tree)
 ;;   (cdr tree));;(append (car x) (cdr x)))
 ;; (define (fringe tree)
