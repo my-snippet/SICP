@@ -1,14 +1,14 @@
-;; This idea(using map) is inspired by ex2.27 
-(define (flat-1d tree)
-  (append (car x) (cadr x)))
-
-#|
-(define (fringe tree)  
-  (cond ((null? tree) '())
-		((not (pair? tree)) (list tree))
-		(else (fringe (map flat-1d tree)))))
-|#
-
+;; This makes error because 'map' operation does not append hierarchical list
+;; I think apply will may be used used rather map.
+;; (define (flat-1d tree)
+;;   (cdr tree));;(append (car x) (cdr x)))
+;; (define (fringe tree)
+;;   (display tree) (newline) 
+;;   (if (pair? tree)
+;; 	  (fringe (map flat-1d tree))
+;; 	  tree))
+  
+  
 ;; The reason why it checks null? : because (list '()) makes nested list -> ('())
 ;; Therefore it makes many '() value in the flat lists
 (define (fringe-version0 x)
