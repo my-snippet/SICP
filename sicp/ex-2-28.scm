@@ -2,11 +2,12 @@
 (define (flat-1d tree)
   (append (car x) (cadr x)))
 
+#|
 (define (fringe tree)  
   (cond ((null? tree) '())
 		((not (pair? tree)) (list tree))
 		(else (fringe (map flat-1d tree)))))
-
+|#
 
 ;; The reason why it checks null? : because (list '()) makes nested list -> ('())
 ;; Therefore it makes many '() value in the flat lists
