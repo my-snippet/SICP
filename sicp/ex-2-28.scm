@@ -40,7 +40,9 @@
 
 ;; code reference
 ;; http://community.schemewiki.org/?sicp-ex-2.28
-;; iterative version
+;; It is similar to deep-reverse-5 of ex.2.27
+;; it is not a iterative implementations. refer to
+;; deep-reverse-5 of ex.2.27
 (define (fringe-version2 T)
   (define (iter T R)
 	(cond ((null? T) R)
