@@ -43,7 +43,9 @@
 
 
 ;; http://community.schemewiki.org/?sicp-ex-2.27 by shyam
-;; iterative version 2, this style is similiar to ex2.32
+;; it is not a iterative implementations actually because the process have
+;; a position to return, in other words process makes stacks to return,
+;; that is, it is rather a recursive, not iterative.
 (define (deep-reverse-5 items)
   (define (iter items result)
 	(if (null? items)
