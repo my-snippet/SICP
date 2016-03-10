@@ -99,6 +99,11 @@
 	  (branch-structure b)
 	  (total-weight (branch-structure b))))
 
+;; unmoduling(?)
+;;(define (total-weight m)
+;;  (+ (branch-weight (left-branch m))
+;;	 (branch-weight (right-branch m))))
+
 (define (total-weight m)
   (mobile-eval + m branch-weight))
 
