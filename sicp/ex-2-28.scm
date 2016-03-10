@@ -7,8 +7,17 @@
 ;;   (if (pair? tree)
 ;; 	  (fringe (map flat-1d tree))
 ;; 	  tree))
-  
-  
+
+;; it flattens tree 1 level(dimension)
+(define (flat-1d x)
+  (append (fringe (car x))
+		  (fringe (cdr x))))
+
+(define (fringe tree)
+  (cond ((null? tree) '())
+		((not (pair? tree)) (list tree))
+		(else (flat-1d tree))))
+
 ;; The reason why it checks null? : because (list '()) makes nested list -> ('())
 ;; Therefore it makes many '() value in the flat lists
 (define (fringe-version0 x)
