@@ -10,11 +10,11 @@ y
 (fringe x)
 (fringe y)
 
-(fringe-version0 x)
-(fringe-version0 y)
+(fringe-2 x)
+(fringe-2 y)
 
-(fringe-version1 x)
-(fringe-version1 y)
+(fringe-3 x)
+(fringe-3 y)
 
-(fringe-version2 x)
-(fringe-version2 y)
+(fringe-4 x)
+(fringe-4 y)
