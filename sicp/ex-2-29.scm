@@ -75,16 +75,17 @@
 ;; 		(else (+ (total-weight (car m))
 ;; 				 (total-weight (cadr m))))))
 
+;; does-a-structure-of-a-branch-contain-structure-or-not?
 (define (structure-mobile? structure)
   (pair? structure))
-
-;; does not a branch have a mobile?
-(define (last-branch? b)
-  (not (structure-mobile? (branch-structure b))))
    
 ;; does a branch contain mobile?
 (define (contain-mobile? b)
   (structure-mobile? (branch-structure b)))
+
+;; does not a branch have a mobile?
+(define (last-branch? b)
+  (not (contain-mobile? b)))
 
 ;; mobile-eval
 ;; it evaluates the both sides of a mobile using a passed operations and
