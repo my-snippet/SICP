@@ -9,13 +9,13 @@
 ;; m : mobile
 ;; b : branch
 ;; l : length
-;; n : number
+;; w : weight
 ;; 
 ;;           m
 ;;           :
 ;;       b       b
 ;;       :       :       
-;;     l   m   l   n
+;;     l   m   l   w
 ;;         :       
 ;;        ...
 
@@ -23,12 +23,12 @@
 ;; m : mobile
 ;; b : branch
 ;; : : rod(length) of branch
-;; O : weight(sinker)
+;; w : weight(sinker)
 ;;
 ;;      b   -   m   -   b
 ;;      :               :
 ;;      :               :
-;;  b - m - b           O
+;;  b - m - b           w
 ;;  :       : 
 ;;  :       : 
 ;; ...     ...
