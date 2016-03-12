@@ -31,6 +31,8 @@
 ;; and the below weights.
 ;; * However, to save the minimum safty of the mobile, I think it
 ;; should be checked from the lowest level of the mobiles to the highest.
+;; I mean if the below two branches are balanced, then the upper branch
+;; can ignore direction problems.
 
 ;; + Exclusion
 ;; And it is hart to compare each same levels of branch torque because it
