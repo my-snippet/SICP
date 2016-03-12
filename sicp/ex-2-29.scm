@@ -77,7 +77,7 @@
 ;; 		(else (+ (total-weight (car m))
 ;; 				 (total-weight (cadr m))))))
 
-;; does-a-structure-of-a-branch-contain-structure-or-not?
+;; does-a-structure-of-a-branch-contain-mobile-or-not?
 (define (structure-mobile? structure)
   (pair? structure))
    
