@@ -7,7 +7,8 @@ References
 Documents
 ===
 __Korean__  
-- [Chapter 1](http://wikibootup.github.io/sicp/chap-1)
+- [Chapter 1](http://wikibootup.github.io/sicp/chap-1)  
+- [Chapter 2( ~2.29 )](http://wikibootup.github.io/sicp/chap-2)
 - [Old Documents](http://wikibootup.github.io/sicp/index-bak)
 
 __English__  
