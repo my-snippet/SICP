@@ -7,12 +7,12 @@ References
 Documents
 ===
 __Korean__  
-- [Chapter 1](http://wikibootup.github.io/sicp/chap-1)  
-- [Chapter 2( ~2.29 )](http://wikibootup.github.io/sicp/chap-2)
-- [Old Documents](http://wikibootup.github.io/sicp/index-bak)
+- [Chapter 1](https://github.com/my-snippet/SICP/blob/master/sicp/chap-1.ipynb)  
+- [Chapter 2( ~2.29 )](https://github.com/my-snippet/SICP/blob/master/sicp/chap-2.ipynb)
+- [Old Documents](https://github.com/my-snippet/SICP/tree/master/backup/notebook)
 
 __English__  
-- [Chapter 1](http://wikibootup.github.io/sicp/chap-1-en)
+- [Chapter 1](https://github.com/my-snippet/SICP/blob/master/sicp/chap-1-en.ipynb)
 
 Works
 ===
